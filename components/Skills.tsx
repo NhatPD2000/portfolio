@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import {
@@ -111,6 +111,12 @@ const categories = [
 
 export default function Skills() {
   const [active, setActive] = useState<string | null>(null);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
+
+  // Detect touch device on mount
+  useEffect(() => {
+    setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
+  }, []);
 
   return (
     <section id="skills" className="py-28 px-6 bg-[#0C1226]">
@@ -127,6 +133,9 @@ export default function Skills() {
           <h2 className="font-serif text-4xl sm:text-5xl font-bold text-[#E8EDF8]">
             What I bring to the table
           </h2>
+          <p className="text-[#3A4870] text-xs mt-3 md:hidden">
+            Tap a card to explore skills
+          </p>
         </motion.div>
 
         {/* Cards */}
@@ -135,7 +144,7 @@ export default function Skills() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.1 }}
-          className="flex gap-3"
+          className="flex gap-3 overflow-x-auto md:overflow-x-visible"
           style={{ height: "640px" }}
         >
           {categories.map((cat) => {
@@ -153,8 +162,8 @@ export default function Skills() {
                     ? "border-[#2EC4A8]/40"
                     : "border-[#1B2540] hover:border-[#243050]"
                 }`}
-                onMouseEnter={() => setActive(cat.num)}
-                onMouseLeave={() => setActive(null)}
+                onMouseEnter={() => !isTouchDevice && setActive(cat.num)}
+                onMouseLeave={() => !isTouchDevice && setActive(null)}
                 onClick={() => setActive(isActive ? null : cat.num)}
               >
                 {/* ── IDLE STATE ── */}
@@ -168,65 +177,27 @@ export default function Skills() {
                       transition={{ duration: 0.2 }}
                       className="absolute inset-0 flex flex-col items-center py-6 px-2"
                     >
-                      {/* Decorative isometric illustration */}
-                      <div className="absolute inset-0 overflow-hidden pointer-events-none flex items-center justify-center opacity-15">
-                        {cat.num === "01" && (
-                          // BA: Isometric tablet/document
-                          <svg width="140" height="140" viewBox="0 0 140 140" fill="none" className="transform -rotate-12">
-                            <path d="M40 50 L100 50 L100 110 L40 110 Z" fill={cat.accentColor} opacity="0.3" />
-                            <path d="M40 50 L70 30 L130 30 L100 50 Z" fill={cat.accentColor} opacity="0.5" />
-                            <path d="M100 50 L130 30 L130 90 L100 110 Z" fill={cat.accentColor} opacity="0.4" />
-                            <rect x="50" y="60" width="40" height="3" fill={cat.accentColor} opacity="0.6" />
-                            <rect x="50" y="68" width="35" height="3" fill={cat.accentColor} opacity="0.5" />
-                            <rect x="50" y="76" width="30" height="3" fill={cat.accentColor} opacity="0.4" />
-                            <circle cx="55" cy="90" r="2" fill={cat.accentColor} opacity="0.6" />
-                            <circle cx="65" cy="90" r="2" fill={cat.accentColor} opacity="0.6" />
-                            <circle cx="75" cy="90" r="2" fill={cat.accentColor} opacity="0.6" />
-                          </svg>
-                        )}
-                        {cat.num === "02" && (
-                          // Design: Isometric wireframe screens
-                          <svg width="140" height="140" viewBox="0 0 140 140" fill="none" className="transform rotate-6">
-                            <path d="M30 45 L70 25 L70 85 L30 105 Z" stroke={cat.accentColor} strokeWidth="1.5" fill={cat.accentColor} opacity="0.15" />
-                            <path d="M70 25 L110 45 L110 105 L70 85 Z" stroke={cat.accentColor} strokeWidth="1.5" fill={cat.accentColor} opacity="0.25" />
-                            <path d="M30 45 L70 25 L110 45 L70 65 Z" stroke={cat.accentColor} strokeWidth="1.5" fill={cat.accentColor} opacity="0.2" />
-                            <line x1="40" y1="55" x2="60" y2="45" stroke={cat.accentColor} strokeWidth="1" opacity="0.4" />
-                            <line x1="40" y1="62" x2="60" y2="52" stroke={cat.accentColor} strokeWidth="1" opacity="0.4" />
-                            <rect x="80" y="55" width="20" height="15" stroke={cat.accentColor} strokeWidth="1" fill="none" opacity="0.5" />
-                            <circle cx="90" cy="80" r="8" stroke={cat.accentColor} strokeWidth="1" fill="none" opacity="0.5" />
-                          </svg>
-                        )}
-                        {cat.num === "03" && (
-                          // Tech: Isometric server/database blocks
-                          <svg width="140" height="140" viewBox="0 0 140 140" fill="none" className="transform -rotate-6">
-                            <path d="M45 55 L70 40 L70 75 L45 90 Z" fill={cat.accentColor} opacity="0.3" />
-                            <path d="M70 40 L95 55 L95 90 L70 75 Z" fill={cat.accentColor} opacity="0.5" />
-                            <path d="M45 55 L70 40 L95 55 L70 70 Z" fill={cat.accentColor} opacity="0.4" />
-                            <ellipse cx="70" cy="55" rx="25" ry="8" fill={cat.accentColor} opacity="0.6" />
-                            <path d="M50 65 L65 57 L65 80 L50 88 Z" fill={cat.accentColor} opacity="0.25" />
-                            <path d="M75 65 L90 57 L90 80 L75 88 Z" fill={cat.accentColor} opacity="0.35" />
-                            <line x1="55" y1="70" x2="60" y2="67" stroke={cat.accentColor} strokeWidth="1.5" opacity="0.7" />
-                            <line x1="80" y1="70" x2="85" y2="67" stroke={cat.accentColor} strokeWidth="1.5" opacity="0.7" />
-                          </svg>
-                        )}
-                        {cat.num === "04" && (
-                          // Soft Skills: Isometric people/communication
-                          <svg width="140" height="140" viewBox="0 0 140 140" fill="none" className="transform rotate-3">
-                            <circle cx="50" cy="50" r="12" fill={cat.accentColor} opacity="0.4" />
-                            <path d="M50 62 L40 85 L60 85 Z" fill={cat.accentColor} opacity="0.35" />
-                            <circle cx="90" cy="55" r="12" fill={cat.accentColor} opacity="0.5" />
-                            <path d="M90 67 L80 90 L100 90 Z" fill={cat.accentColor} opacity="0.4" />
-                            <path d="M62 55 Q70 50 78 55" stroke={cat.accentColor} strokeWidth="2" fill="none" opacity="0.3" strokeDasharray="2 2" />
-                            <circle cx="70" cy="75" r="10" fill={cat.accentColor} opacity="0.3" />
-                            <path d="M70 85 L62 100 L78 100 Z" fill={cat.accentColor} opacity="0.25" />
-                            <path d="M55 70 Q62 75 70 70" stroke={cat.accentColor} strokeWidth="1.5" fill="none" opacity="0.25" />
-                            <path d="M85 70 Q78 75 70 70" stroke={cat.accentColor} strokeWidth="1.5" fill="none" opacity="0.25" />
-                          </svg>
-                        )}
+                      {/* Illustration at bottom */}
+                      <div className="absolute bottom-0 left-0 right-0 flex items-end justify-center pointer-events-none pb-16">
+                        <Image
+                          src={
+                            cat.num === "01"
+                              ? "/skill-ba-icon.svg"
+                              : cat.num === "02"
+                              ? "/skill-design-icon.svg"
+                              : cat.num === "03"
+                              ? "/skill-tech-icon.svg"
+                              : "/skill-soft-icon.svg"
+                          }
+                          alt={`${cat.title} illustration`}
+                          width={180}
+                          height={160}
+                          className="opacity-65"
+                        />
                       </div>
 
                       {/* Top indicator */}
-                      <ChevronDown size={10} className="text-[#3A4870] mb-4 shrink-0" />
+                      <ChevronDown size={10} className="text-[#3A4870] mb-4 shrink-0 relative z-10" />
 
                       {/* Category icon */}
                       <Icon
@@ -346,6 +317,121 @@ export default function Skills() {
                             );
                           })}
                         </motion.div>
+
+                        {/* Animated icon with glow + particles */}
+                        <motion.div
+                          initial={{ opacity: 0, scale: 0.9 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ duration: 0.4, delay: 0.3 }}
+                          className="absolute bottom-16 left-0 right-0 h-40 flex items-center justify-center pointer-events-none"
+                        >
+                          {/* Glow effect behind icon */}
+                          <motion.div
+                            animate={{
+                              scale: [1, 1.2, 1],
+                              opacity: [0.3, 0.5, 0.3],
+                            }}
+                            transition={{
+                              duration: 3,
+                              repeat: Infinity,
+                              ease: "easeInOut",
+                            }}
+                            className="absolute w-32 h-32 rounded-full blur-2xl"
+                            style={{ background: cat.accentColor }}
+                          />
+
+                          {/* Icon with subtle animation */}
+                          <motion.div
+                            animate={{
+                              y: [0, -8, 0],
+                            }}
+                            transition={{
+                              duration: 4,
+                              repeat: Infinity,
+                              ease: "easeInOut",
+                            }}
+                          >
+                            <Image
+                              src={
+                                cat.num === "01"
+                                  ? "/skill-ba-icon.svg"
+                                  : cat.num === "02"
+                                  ? "/skill-design-icon.svg"
+                                  : cat.num === "03"
+                                  ? "/skill-tech-icon.svg"
+                                  : "/skill-soft-icon.svg"
+                              }
+                              alt={`${cat.title} illustration`}
+                              width={140}
+                              height={120}
+                              className="opacity-60"
+                              style={{
+                                filter: `drop-shadow(0 0 20px ${cat.accentColor}40)`,
+                              }}
+                            />
+                          </motion.div>
+
+                          {/* Floating particles around icon */}
+                          <motion.div
+                            animate={{
+                              y: [0, -15, 0],
+                              x: [0, 10, 0],
+                              opacity: [0.4, 0.7, 0.4],
+                            }}
+                            transition={{
+                              duration: 4,
+                              repeat: Infinity,
+                              ease: "easeInOut",
+                            }}
+                            className="absolute left-[20%] top-[20%] w-2 h-2 rounded-full"
+                            style={{ background: cat.accentColor, boxShadow: `0 0 10px ${cat.accentColor}` }}
+                          />
+                          <motion.div
+                            animate={{
+                              y: [0, -20, 0],
+                              x: [0, -8, 0],
+                              opacity: [0.5, 0.8, 0.5],
+                            }}
+                            transition={{
+                              duration: 5,
+                              repeat: Infinity,
+                              ease: "easeInOut",
+                              delay: 0.5,
+                            }}
+                            className="absolute right-[25%] top-[30%] w-1.5 h-1.5 rounded-full"
+                            style={{ background: cat.accentColor, boxShadow: `0 0 8px ${cat.accentColor}` }}
+                          />
+                          <motion.div
+                            animate={{
+                              y: [0, -12, 0],
+                              x: [0, 15, 0],
+                              opacity: [0.3, 0.6, 0.3],
+                            }}
+                            transition={{
+                              duration: 4.5,
+                              repeat: Infinity,
+                              ease: "easeInOut",
+                              delay: 1,
+                            }}
+                            className="absolute left-[35%] bottom-[20%] w-1 h-1 rounded-full"
+                            style={{ background: cat.accentColor, boxShadow: `0 0 6px ${cat.accentColor}` }}
+                          />
+                          <motion.div
+                            animate={{
+                              y: [0, -18, 0],
+                              x: [0, -12, 0],
+                              opacity: [0.4, 0.7, 0.4],
+                            }}
+                            transition={{
+                              duration: 5.5,
+                              repeat: Infinity,
+                              ease: "easeInOut",
+                              delay: 1.5,
+                            }}
+                            className="absolute right-[30%] bottom-[25%] w-1.5 h-1.5 rounded-full"
+                            style={{ background: cat.accentColor, boxShadow: `0 0 8px ${cat.accentColor}` }}
+                          />
+                        </motion.div>
                       </div>
 
                       {/* Footer */}
@@ -372,38 +458,35 @@ export default function Skills() {
           })}
         </motion.div>
 
-        {/* Illustrations below cards */}
+        {/* CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-12 grid grid-cols-4 gap-6 px-8"
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="mt-12 text-center"
         >
-          {categories.map((cat) => (
-            <div key={cat.num} className="flex justify-center">
-              <div className="relative w-full max-w-xs">
-                <Image
-                  src={
-                    cat.num === "01"
-                      ? "/skill-ba-2.svg"
-                      : cat.num === "02"
-                      ? "/skill-design-2.svg"
-                      : cat.num === "03"
-                      ? "/skill-tech-2.svg"
-                      : "/skills-soft-2.svg"
-                  }
-                  alt={`${cat.title} illustration`}
-                  width={280}
-                  height={200}
-                  className="w-full h-auto opacity-70 hover:opacity-100 transition-opacity duration-300"
-                  style={{
-                    filter: "brightness(1.1) contrast(1.05) saturate(0.95)",
-                  }}
-                />
-              </div>
-            </div>
-          ))}
+          <a
+            href="#projects"
+            className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium text-[#E8EDF8] hover:text-[#2EC4A8] transition-colors duration-200 group"
+          >
+            <span>See these skills in action</span>
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+              fill="none"
+              className="group-hover:translate-x-1 transition-transform duration-200"
+            >
+              <path
+                d="M6 12L10 8L6 4"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </a>
         </motion.div>
       </div>
 
