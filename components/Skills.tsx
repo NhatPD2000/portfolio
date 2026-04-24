@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import {
   ClipboardList, PenTool, Code2, Users, ChevronDown,
   ListChecks, FileText, BookOpen, RefreshCw, CheckSquare, GitBranch,
@@ -16,6 +17,7 @@ const categories = [
     shortTitle: "BA",
     icon: ClipboardList,
     accentColor: "#818CF8",
+    illustration: "/skill-ba.svg",
     gradient: `
       radial-gradient(ellipse at 25% 75%, rgba(99,102,241,0.85) 0%, transparent 55%),
       radial-gradient(ellipse at 75% 25%, rgba(59,130,246,0.75) 0%, transparent 55%),
@@ -39,6 +41,7 @@ const categories = [
     shortTitle: "Design",
     icon: PenTool,
     accentColor: "#C084FC",
+    illustration: "/skill-design.svg",
     gradient: `
       radial-gradient(ellipse at 30% 30%, rgba(139,92,246,0.9) 0%, transparent 55%),
       radial-gradient(ellipse at 70% 70%, rgba(236,72,153,0.8) 0%, transparent 50%),
@@ -62,6 +65,7 @@ const categories = [
     shortTitle: "Tech",
     icon: Code2,
     accentColor: "#2EC4A8",
+    illustration: "/skill-tech.svg",
     gradient: `
       radial-gradient(ellipse at 25% 35%, rgba(20,184,166,0.9) 0%, transparent 55%),
       radial-gradient(ellipse at 75% 75%, rgba(6,182,212,0.7) 0%, transparent 55%),
@@ -85,6 +89,7 @@ const categories = [
     shortTitle: "Soft Skills",
     icon: Users,
     accentColor: "#FBBF24",
+    illustration: "/skill-soft.svg",
     gradient: `
       radial-gradient(ellipse at 30% 45%, rgba(217,119,6,0.9) 0%, transparent 55%),
       radial-gradient(ellipse at 72% 65%, rgba(245,158,11,0.7) 0%, transparent 50%),
@@ -163,6 +168,63 @@ export default function Skills() {
                       transition={{ duration: 0.2 }}
                       className="absolute inset-0 flex flex-col items-center py-6 px-2"
                     >
+                      {/* Decorative isometric illustration */}
+                      <div className="absolute inset-0 overflow-hidden pointer-events-none flex items-center justify-center opacity-15">
+                        {cat.num === "01" && (
+                          // BA: Isometric tablet/document
+                          <svg width="140" height="140" viewBox="0 0 140 140" fill="none" className="transform -rotate-12">
+                            <path d="M40 50 L100 50 L100 110 L40 110 Z" fill={cat.accentColor} opacity="0.3" />
+                            <path d="M40 50 L70 30 L130 30 L100 50 Z" fill={cat.accentColor} opacity="0.5" />
+                            <path d="M100 50 L130 30 L130 90 L100 110 Z" fill={cat.accentColor} opacity="0.4" />
+                            <rect x="50" y="60" width="40" height="3" fill={cat.accentColor} opacity="0.6" />
+                            <rect x="50" y="68" width="35" height="3" fill={cat.accentColor} opacity="0.5" />
+                            <rect x="50" y="76" width="30" height="3" fill={cat.accentColor} opacity="0.4" />
+                            <circle cx="55" cy="90" r="2" fill={cat.accentColor} opacity="0.6" />
+                            <circle cx="65" cy="90" r="2" fill={cat.accentColor} opacity="0.6" />
+                            <circle cx="75" cy="90" r="2" fill={cat.accentColor} opacity="0.6" />
+                          </svg>
+                        )}
+                        {cat.num === "02" && (
+                          // Design: Isometric wireframe screens
+                          <svg width="140" height="140" viewBox="0 0 140 140" fill="none" className="transform rotate-6">
+                            <path d="M30 45 L70 25 L70 85 L30 105 Z" stroke={cat.accentColor} strokeWidth="1.5" fill={cat.accentColor} opacity="0.15" />
+                            <path d="M70 25 L110 45 L110 105 L70 85 Z" stroke={cat.accentColor} strokeWidth="1.5" fill={cat.accentColor} opacity="0.25" />
+                            <path d="M30 45 L70 25 L110 45 L70 65 Z" stroke={cat.accentColor} strokeWidth="1.5" fill={cat.accentColor} opacity="0.2" />
+                            <line x1="40" y1="55" x2="60" y2="45" stroke={cat.accentColor} strokeWidth="1" opacity="0.4" />
+                            <line x1="40" y1="62" x2="60" y2="52" stroke={cat.accentColor} strokeWidth="1" opacity="0.4" />
+                            <rect x="80" y="55" width="20" height="15" stroke={cat.accentColor} strokeWidth="1" fill="none" opacity="0.5" />
+                            <circle cx="90" cy="80" r="8" stroke={cat.accentColor} strokeWidth="1" fill="none" opacity="0.5" />
+                          </svg>
+                        )}
+                        {cat.num === "03" && (
+                          // Tech: Isometric server/database blocks
+                          <svg width="140" height="140" viewBox="0 0 140 140" fill="none" className="transform -rotate-6">
+                            <path d="M45 55 L70 40 L70 75 L45 90 Z" fill={cat.accentColor} opacity="0.3" />
+                            <path d="M70 40 L95 55 L95 90 L70 75 Z" fill={cat.accentColor} opacity="0.5" />
+                            <path d="M45 55 L70 40 L95 55 L70 70 Z" fill={cat.accentColor} opacity="0.4" />
+                            <ellipse cx="70" cy="55" rx="25" ry="8" fill={cat.accentColor} opacity="0.6" />
+                            <path d="M50 65 L65 57 L65 80 L50 88 Z" fill={cat.accentColor} opacity="0.25" />
+                            <path d="M75 65 L90 57 L90 80 L75 88 Z" fill={cat.accentColor} opacity="0.35" />
+                            <line x1="55" y1="70" x2="60" y2="67" stroke={cat.accentColor} strokeWidth="1.5" opacity="0.7" />
+                            <line x1="80" y1="70" x2="85" y2="67" stroke={cat.accentColor} strokeWidth="1.5" opacity="0.7" />
+                          </svg>
+                        )}
+                        {cat.num === "04" && (
+                          // Soft Skills: Isometric people/communication
+                          <svg width="140" height="140" viewBox="0 0 140 140" fill="none" className="transform rotate-3">
+                            <circle cx="50" cy="50" r="12" fill={cat.accentColor} opacity="0.4" />
+                            <path d="M50 62 L40 85 L60 85 Z" fill={cat.accentColor} opacity="0.35" />
+                            <circle cx="90" cy="55" r="12" fill={cat.accentColor} opacity="0.5" />
+                            <path d="M90 67 L80 90 L100 90 Z" fill={cat.accentColor} opacity="0.4" />
+                            <path d="M62 55 Q70 50 78 55" stroke={cat.accentColor} strokeWidth="2" fill="none" opacity="0.3" strokeDasharray="2 2" />
+                            <circle cx="70" cy="75" r="10" fill={cat.accentColor} opacity="0.3" />
+                            <path d="M70 85 L62 100 L78 100 Z" fill={cat.accentColor} opacity="0.25" />
+                            <path d="M55 70 Q62 75 70 70" stroke={cat.accentColor} strokeWidth="1.5" fill="none" opacity="0.25" />
+                            <path d="M85 70 Q78 75 70 70" stroke={cat.accentColor} strokeWidth="1.5" fill="none" opacity="0.25" />
+                          </svg>
+                        )}
+                      </div>
+
                       {/* Top indicator */}
                       <ChevronDown size={10} className="text-[#3A4870] mb-4 shrink-0" />
 
@@ -308,6 +370,40 @@ export default function Skills() {
               </motion.div>
             );
           })}
+        </motion.div>
+
+        {/* Illustrations below cards */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="mt-12 grid grid-cols-4 gap-6 px-8"
+        >
+          {categories.map((cat) => (
+            <div key={cat.num} className="flex justify-center">
+              <div className="relative w-full max-w-xs">
+                <Image
+                  src={
+                    cat.num === "01"
+                      ? "/skill-ba-2.svg"
+                      : cat.num === "02"
+                      ? "/skill-design-2.svg"
+                      : cat.num === "03"
+                      ? "/skill-tech-2.svg"
+                      : "/skills-soft-2.svg"
+                  }
+                  alt={`${cat.title} illustration`}
+                  width={280}
+                  height={200}
+                  className="w-full h-auto opacity-70 hover:opacity-100 transition-opacity duration-300"
+                  style={{
+                    filter: "brightness(1.1) contrast(1.05) saturate(0.95)",
+                  }}
+                />
+              </div>
+            </div>
+          ))}
         </motion.div>
       </div>
 
