@@ -8,7 +8,7 @@ import Contact from "@/components/Contact";
 
 export default function Home() {
   return (
-    <main className="bg-[#0b1120]">
+    <main className="bg-[#090C14]">
       <Navbar />
       <Hero />
       <About />

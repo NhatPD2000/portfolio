@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { Building2, Calendar } from "lucide-react";
+import { Building2, Calendar, MapPin } from "lucide-react";
 
 const experiences = [
   {
@@ -8,116 +8,116 @@ const experiences = [
     role: "Business Analyst",
     period: "April 2024 – Present",
     location: "Ho Chi Minh City",
-    type: "Full-time",
+    current: true,
     highlights: [
       "Delivered BRD & FSD documentation for 2 major MES projects, ensuring full alignment between client operations and system design",
-      "Implemented MES solutions for 3 factory clients, improving operational efficiency by 15% through workflow optimization",
-      "Designed mockups, wireframes, and prototypes using Figma to visualize system workflows and UX for operators",
-      "Collaborated with cross-functional teams including Developers, QA Testers, and the IoT team",
+      "Implemented MES solutions for 3 factory clients — improved operational efficiency by 15% through workflow optimization and smart factory design",
+      "Designed mockups, wireframes, and prototypes in Figma to visualize system workflows and operator UX",
+      "Collaborated cross-functionally with Developers, QA Testers, and the IoT team throughout the full project lifecycle",
       "Led go-live activities, user training, and pilot testing at manufacturing sites",
     ],
-    tags: ["MES/MOM", "IoT", "BRD/FSD", "Figma", "Agile"],
-    accent: "sky",
+    tags: ["MES / MOM", "IoT", "BRD / FSD", "Figma", "Agile"],
   },
   {
     company: "Lumos IS — ERP Solution",
     role: "Business Analyst",
     period: "June 2023 – March 2024",
     location: "Ho Chi Minh City",
-    type: "Full-time",
+    current: false,
     highlights: [
       "Gathered, refined, and documented user requirements in Business Requirement Specifications for ERP implementations",
-      "Designed and implemented ERP system functionalities using Agile principles on Oracle Apex low-code platform",
-      "Developed dashboards, reports, and custom features according to client business requirements",
-      "Deployed software during testing phases, provided end-user guidance, and resolved system issues post-deployment",
+      "Designed and built ERP system functionalities on Oracle Apex using Agile principles — developed dashboards, reports, and custom features",
+      "Deployed software during testing phases, provided end-user training, and resolved system issues post-go-live",
     ],
-    tags: ["ERP", "Oracle Apex", "Agile/Scrum", "SQL", "Power BI"],
-    accent: "teal",
+    tags: ["ERP", "Oracle Apex", "Agile / Scrum", "SQL", "Power BI"],
   },
 ];
 
 export default function Experience() {
   return (
-    <section id="experience" className="py-24 px-6">
+    <section id="experience" className="py-24 px-6 bg-[#090C14]">
       <div className="max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.45 }}
           className="text-center mb-14"
         >
-          <p className="text-sky-400 text-sm font-semibold tracking-widest uppercase mb-3">
+          <p className="text-[#4361EE] text-xs font-semibold tracking-[0.18em] uppercase mb-3">
             Work Experience
           </p>
-          <h2 className="text-4xl font-bold text-slate-100">
+          <h2 className="text-3xl sm:text-4xl font-bold text-[#E2E8F8]">
             Where I&apos;ve made an impact
           </h2>
         </motion.div>
 
         <div className="relative">
           {/* Timeline line */}
-          <div className="absolute left-6 top-0 bottom-0 w-px bg-slate-700 hidden sm:block" />
+          <div className="absolute left-[22px] top-6 bottom-6 w-px bg-[#1E2436] hidden sm:block" />
 
-          <div className="space-y-10">
+          <div className="space-y-6">
             {experiences.map((exp, i) => (
               <motion.div
                 key={exp.company}
-                initial={{ opacity: 0, x: -30 }}
+                initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: i * 0.1 }}
-                className="relative sm:pl-16"
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="relative sm:pl-14"
               >
                 {/* Timeline dot */}
                 <div
-                  className={`absolute left-4 top-6 w-4 h-4 rounded-full border-2 hidden sm:block ${
-                    exp.accent === "sky"
-                      ? "bg-sky-500 border-sky-400"
-                      : "bg-teal-500 border-teal-400"
+                  className={`absolute left-[15px] top-6 w-3.5 h-3.5 rounded-full border-2 hidden sm:block ${
+                    exp.current
+                      ? "bg-[#4361EE] border-[#4361EE] shadow-[0_0_0_4px_rgba(67,97,238,0.15)]"
+                      : "bg-[#252D42] border-[#252D42]"
                   }`}
                 />
 
-                <div className="p-6 bg-slate-800/40 border border-slate-700/50 rounded-2xl hover:border-sky-500/20 transition-all duration-200">
-                  <div className="flex flex-wrap items-start justify-between gap-3 mb-4">
+                <div className="p-6 bg-[#0E1220] border border-[#1E2436] hover:border-[#252D42] rounded-xl transition-colors duration-200">
+                  {/* Header */}
+                  <div className="flex flex-wrap items-start justify-between gap-3 mb-5">
                     <div>
-                      <div className="flex items-center gap-2 mb-1">
-                        <Building2 size={14} className="text-slate-500" />
-                        <span className="text-sm text-slate-500">{exp.company}</span>
+                      <div className="flex items-center gap-2 mb-1.5">
+                        <Building2 size={12} className="text-[#4A5268]" />
+                        <span className="text-xs text-[#4A5268]">{exp.company}</span>
+                        {exp.current && (
+                          <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#4361EE]/12 text-[#7B9BFF] border border-[#4361EE]/20 font-medium">
+                            Current
+                          </span>
+                        )}
                       </div>
-                      <h3 className="text-xl font-bold text-slate-100">{exp.role}</h3>
+                      <h3 className="text-lg font-bold text-[#E2E8F8]">{exp.role}</h3>
                     </div>
-                    <div className="text-right">
-                      <div className="flex items-center gap-1.5 text-sm text-slate-400 justify-end mb-1">
-                        <Calendar size={13} />
+                    <div className="text-right flex flex-col items-end gap-1.5">
+                      <div className="flex items-center gap-1.5 text-xs text-[#8892AA]">
+                        <Calendar size={11} />
                         {exp.period}
                       </div>
-                      <span
-                        className={`text-xs px-3 py-1 rounded-full ${
-                          exp.accent === "sky"
-                            ? "bg-sky-500/10 text-sky-400 border border-sky-500/20"
-                            : "bg-teal-500/10 text-teal-400 border border-teal-500/20"
-                        }`}
-                      >
-                        {exp.type}
-                      </span>
+                      <div className="flex items-center gap-1 text-xs text-[#4A5268]">
+                        <MapPin size={10} />
+                        {exp.location}
+                      </div>
                     </div>
                   </div>
 
+                  {/* Highlights */}
                   <ul className="space-y-2 mb-5">
                     {exp.highlights.map((point) => (
-                      <li key={point} className="flex items-start gap-2 text-sm text-slate-400">
-                        <span className="text-sky-500 mt-1.5 shrink-0">▸</span>
+                      <li key={point} className="flex items-start gap-2.5 text-sm text-[#8892AA]">
+                        <span className="text-[#4361EE] mt-1.5 shrink-0 text-xs">▸</span>
                         {point}
                       </li>
                     ))}
                   </ul>
 
-                  <div className="flex flex-wrap gap-2">
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-1.5">
                     {exp.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="text-xs px-2.5 py-1 bg-slate-700/50 text-slate-400 rounded-full border border-slate-600/50"
+                        className="text-[11px] px-2.5 py-1 bg-[#111520] text-[#8892AA] rounded-md border border-[#1E2436]"
                       >
                         {tag}
                       </span>
@@ -130,7 +130,7 @@ export default function Experience() {
         </div>
       </div>
 
-      <div className="section-divider mt-24 max-w-6xl mx-auto opacity-30" />
+      <div className="section-line mt-24 max-w-6xl mx-auto" />
     </section>
   );
 }
