@@ -35,7 +35,7 @@ const experiences = [
 
 export default function Experience() {
   return (
-    <section id="experience" className="py-24 px-6 bg-[#090C14]">
+    <section id="experience" className="py-24 px-6 bg-white">
       <div className="max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -47,14 +47,13 @@ export default function Experience() {
           <p className="text-[#4361EE] text-xs font-semibold tracking-[0.18em] uppercase mb-3">
             Work Experience
           </p>
-          <h2 className="text-3xl sm:text-4xl font-bold text-[#E2E8F8]">
+          <h2 className="text-3xl sm:text-4xl font-bold text-[#0F172A]">
             Where I&apos;ve made an impact
           </h2>
         </motion.div>
 
         <div className="relative">
-          {/* Timeline line */}
-          <div className="absolute left-[22px] top-6 bottom-6 w-px bg-[#1E2436] hidden sm:block" />
+          <div className="absolute left-[22px] top-6 bottom-6 w-px bg-[#E2E8F0] hidden sm:block" />
 
           <div className="space-y-6">
             {experiences.map((exp, i) => (
@@ -66,58 +65,54 @@ export default function Experience() {
                 transition={{ duration: 0.5, delay: i * 0.1 }}
                 className="relative sm:pl-14"
               >
-                {/* Timeline dot */}
                 <div
                   className={`absolute left-[15px] top-6 w-3.5 h-3.5 rounded-full border-2 hidden sm:block ${
                     exp.current
-                      ? "bg-[#4361EE] border-[#4361EE] shadow-[0_0_0_4px_rgba(67,97,238,0.15)]"
-                      : "bg-[#252D42] border-[#252D42]"
+                      ? "bg-[#4361EE] border-[#4361EE] shadow-[0_0_0_4px_rgba(67,97,238,0.12)]"
+                      : "bg-white border-[#CBD5E1]"
                   }`}
                 />
 
-                <div className="p-6 bg-[#0E1220] border border-[#1E2436] hover:border-[#252D42] rounded-xl transition-colors duration-200">
-                  {/* Header */}
+                <div className="p-6 bg-white border border-[#E2E8F0] hover:border-[#C7D2FE] hover:shadow-md rounded-xl transition-all duration-200">
                   <div className="flex flex-wrap items-start justify-between gap-3 mb-5">
                     <div>
                       <div className="flex items-center gap-2 mb-1.5">
-                        <Building2 size={12} className="text-[#4A5268]" />
-                        <span className="text-xs text-[#4A5268]">{exp.company}</span>
+                        <Building2 size={12} className="text-[#94A3B8]" />
+                        <span className="text-xs text-[#94A3B8]">{exp.company}</span>
                         {exp.current && (
-                          <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#4361EE]/12 text-[#7B9BFF] border border-[#4361EE]/20 font-medium">
+                          <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#EEF2FF] text-[#4361EE] border border-[#C7D2FE] font-medium">
                             Current
                           </span>
                         )}
                       </div>
-                      <h3 className="text-lg font-bold text-[#E2E8F8]">{exp.role}</h3>
+                      <h3 className="text-lg font-bold text-[#0F172A]">{exp.role}</h3>
                     </div>
                     <div className="text-right flex flex-col items-end gap-1.5">
-                      <div className="flex items-center gap-1.5 text-xs text-[#8892AA]">
+                      <div className="flex items-center gap-1.5 text-xs text-[#64748B]">
                         <Calendar size={11} />
                         {exp.period}
                       </div>
-                      <div className="flex items-center gap-1 text-xs text-[#4A5268]">
+                      <div className="flex items-center gap-1 text-xs text-[#94A3B8]">
                         <MapPin size={10} />
                         {exp.location}
                       </div>
                     </div>
                   </div>
 
-                  {/* Highlights */}
                   <ul className="space-y-2 mb-5">
                     {exp.highlights.map((point) => (
-                      <li key={point} className="flex items-start gap-2.5 text-sm text-[#8892AA]">
+                      <li key={point} className="flex items-start gap-2.5 text-sm text-[#475569]">
                         <span className="text-[#4361EE] mt-1.5 shrink-0 text-xs">▸</span>
                         {point}
                       </li>
                     ))}
                   </ul>
 
-                  {/* Tags */}
                   <div className="flex flex-wrap gap-1.5">
                     {exp.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="text-[11px] px-2.5 py-1 bg-[#111520] text-[#8892AA] rounded-md border border-[#1E2436]"
+                        className="text-[11px] px-2.5 py-1 bg-[#F8FAFC] text-[#64748B] rounded-md border border-[#E2E8F0]"
                       >
                         {tag}
                       </span>

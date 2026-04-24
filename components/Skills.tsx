@@ -63,7 +63,7 @@ const categories = [
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-24 px-6 bg-[#0E1220]">
+    <section id="skills" className="py-24 px-6 bg-[#F8FAFC]">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -75,7 +75,7 @@ export default function Skills() {
           <p className="text-[#4361EE] text-xs font-semibold tracking-[0.18em] uppercase mb-3">
             Skills & Tools
           </p>
-          <h2 className="text-3xl sm:text-4xl font-bold text-[#E2E8F8]">
+          <h2 className="text-3xl sm:text-4xl font-bold text-[#0F172A]">
             What I bring to the table
           </h2>
         </motion.div>
@@ -88,24 +88,19 @@ export default function Skills() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.45, delay: i * 0.08 }}
-              className="p-6 bg-[#111520] border border-[#1E2436] hover:border-[#252D42] rounded-xl transition-colors duration-200"
+              className="p-6 bg-white border border-[#E2E8F0] hover:border-[#C7D2FE] hover:shadow-md rounded-xl transition-all duration-200"
             >
-              {/* Icon */}
-              <div className="inline-flex p-2.5 rounded-lg bg-[#4361EE]/10 text-[#7B9BFF] mb-4">
+              <div className="inline-flex p-2.5 rounded-lg bg-[#EEF2FF] text-[#4361EE] mb-4">
                 <cat.icon size={20} />
               </div>
-
-              {/* Title */}
-              <h3 className="font-semibold text-[#E2E8F8] mb-4 text-sm tracking-wide">
+              <h3 className="font-semibold text-[#0F172A] mb-4 text-sm tracking-wide">
                 {cat.title}
               </h3>
-
-              {/* Skills */}
               <div className="flex flex-wrap gap-1.5">
                 {cat.skills.map((skill) => (
                   <span
                     key={skill}
-                    className="text-[11px] px-2.5 py-1 rounded-md bg-[#4361EE]/8 text-[#7B9BFF] border border-[#4361EE]/15"
+                    className="text-[11px] px-2.5 py-1 rounded-md bg-[#EEF2FF] text-[#4361EE] border border-[#C7D2FE]"
                   >
                     {skill}
                   </span>

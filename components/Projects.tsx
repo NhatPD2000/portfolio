@@ -3,27 +3,19 @@ import { motion } from "framer-motion";
 import { TrendingUp, Zap, Factory } from "lucide-react";
 import Image from "next/image";
 
-function BrowserFrame({
-  src,
-  alt,
-  url,
-}: {
-  src: string;
-  alt: string;
-  url: string;
-}) {
+function BrowserFrame({ src, alt, url }: { src: string; alt: string; url: string }) {
   return (
-    <div className="rounded-xl overflow-hidden border border-[#252D42] shadow-2xl shadow-black/40">
-      {/* Browser chrome */}
-      <div className="flex items-center gap-1.5 px-3 py-2.5 bg-[#141928] border-b border-[#252D42]">
-        <div className="w-2.5 h-2.5 rounded-full bg-[#FF5F57]/70" />
-        <div className="w-2.5 h-2.5 rounded-full bg-[#FEBC2E]/70" />
-        <div className="w-2.5 h-2.5 rounded-full bg-[#28C840]/70" />
-        <div className="ml-3 flex-1 h-5 bg-[#0E1220] rounded text-[11px] flex items-center px-2.5 text-[#4A5268] font-mono truncate">
+    <div className="rounded-xl overflow-hidden border border-[#E2E8F0] shadow-lg">
+      {/* Chrome */}
+      <div className="flex items-center gap-1.5 px-3 py-2.5 bg-[#F1F5F9] border-b border-[#E2E8F0]">
+        <div className="w-2.5 h-2.5 rounded-full bg-[#FF5F57]/80" />
+        <div className="w-2.5 h-2.5 rounded-full bg-[#FEBC2E]/80" />
+        <div className="w-2.5 h-2.5 rounded-full bg-[#28C840]/80" />
+        <div className="ml-3 flex-1 h-5 bg-white rounded text-[11px] flex items-center px-2.5 text-[#94A3B8] font-mono truncate border border-[#E2E8F0]">
           {url}
         </div>
       </div>
-      {/* Screenshot with fade */}
+      {/* Screenshot */}
       <div className="relative overflow-hidden" style={{ maxHeight: "260px" }}>
         <Image
           src={src}
@@ -33,7 +25,7 @@ function BrowserFrame({
           className="w-full object-cover object-top"
           style={{ maxHeight: "260px" }}
         />
-        <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-[#141928] to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white to-transparent" />
       </div>
     </div>
   );
@@ -49,16 +41,8 @@ const projects = [
     subtitle: "Custom MES — built from scratch with IoT integration",
     period: "Dec 2024 – Present",
     screenshots: [
-      {
-        src: "/smes-workcenter.png",
-        alt: "SMES Work Order & Production Line Tracking",
-        url: "smes.spartronics.com/work-center",
-      },
-      {
-        src: "/smes-iqc.png",
-        alt: "SMES Incoming Quality Control",
-        url: "smes.spartronics.com/iqc",
-      },
+      { src: "/smes-workcenter.png", alt: "SMES Work Order & Production Line Tracking", url: "smes.spartronics.com/work-center" },
+      { src: "/smes-iqc.png", alt: "SMES Incoming Quality Control", url: "smes.spartronics.com/iqc" },
     ],
     challenge:
       "Spartronics had zero real-time visibility into their SMT production lines. Manual tracking created blind spots — product traceability didn't exist, and quality defects were only caught late in the cycle.",
@@ -84,11 +68,7 @@ const projects = [
     subtitle: "MES digitalization — Apriso / Dassault Systèmes",
     period: "Dec 2023 – Dec 2024",
     screenshots: [
-      {
-        src: "/pnj-production.png",
-        alt: "PNJ Production Execution — Bắt đầu sản xuất",
-        url: "pnj-mes.apriso.com/production",
-      },
+      { src: "/pnj-production.png", alt: "PNJ Production Execution Screen", url: "pnj-mes.apriso.com/production" },
     ],
     challenge:
       "PNJ's electroplating line ran entirely on manual surface area calculations and paper-based logs. This caused frequent coating thickness errors, high rework rates, and zero integration between SCADA machines and production reports.",
@@ -109,7 +89,7 @@ const projects = [
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-24 px-6 bg-[#0E1220]">
+    <section id="projects" className="py-24 px-6 bg-[#F8FAFC]">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -121,10 +101,10 @@ export default function Projects() {
           <p className="text-[#4361EE] text-xs font-semibold tracking-[0.18em] uppercase mb-3">
             Featured Projects
           </p>
-          <h2 className="text-3xl sm:text-4xl font-bold text-[#E2E8F8] mb-4">
+          <h2 className="text-3xl sm:text-4xl font-bold text-[#0F172A] mb-4">
             Real problems. Real results.
           </h2>
-          <p className="text-[#8892AA] max-w-lg mx-auto text-sm leading-relaxed">
+          <p className="text-[#64748B] max-w-lg mx-auto text-sm leading-relaxed">
             Each project follows a structured BA process: understand the problem,
             map the flow, document requirements, validate with users.
           </p>
@@ -138,56 +118,54 @@ export default function Projects() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.55, delay: i * 0.08 }}
-              className="bg-[#111520] border border-[#1E2436] hover:border-[#252D42] rounded-2xl overflow-hidden transition-colors duration-300"
+              className="bg-white border border-[#E2E8F0] hover:border-[#C7D2FE] hover:shadow-lg rounded-2xl overflow-hidden transition-all duration-300"
             >
-              {/* Card header */}
-              <div className="px-8 pt-8 pb-6 border-b border-[#1E2436]">
+              {/* Header */}
+              <div className="px-8 pt-8 pb-6 border-b border-[#F1F5F9]">
                 <div className="flex flex-wrap items-start justify-between gap-4">
                   <div className="flex items-start gap-4">
-                    <div className="p-3 rounded-xl bg-[#4361EE]/10 text-[#7B9BFF] shrink-0">
+                    <div className="p-3 rounded-xl bg-[#EEF2FF] text-[#4361EE] shrink-0">
                       <project.icon size={22} />
                     </div>
                     <div>
                       <div className="flex items-center gap-2 mb-1.5">
-                        <span className="text-xs text-[#4A5268]">{project.company}</span>
-                        <span className="text-[#252D42]">·</span>
-                        <span className="text-xs font-semibold text-[#7B9BFF]">{project.client}</span>
+                        <span className="text-xs text-[#94A3B8]">{project.company}</span>
+                        <span className="text-[#E2E8F0]">·</span>
+                        <span className="text-xs font-semibold text-[#4361EE]">{project.client}</span>
                       </div>
-                      <h3 className="text-xl font-bold text-[#E2E8F8]">{project.title}</h3>
-                      <p className="text-sm text-[#4A5268] mt-0.5">{project.subtitle}</p>
+                      <h3 className="text-xl font-bold text-[#0F172A]">{project.title}</h3>
+                      <p className="text-sm text-[#94A3B8] mt-0.5">{project.subtitle}</p>
                     </div>
                   </div>
-                  <span className="text-xs px-3 py-1.5 rounded-md bg-[#4361EE]/10 text-[#7B9BFF] border border-[#4361EE]/20 shrink-0">
+                  <span className="text-xs px-3 py-1.5 rounded-md bg-[#EEF2FF] text-[#4361EE] border border-[#C7D2FE] shrink-0">
                     {project.period}
                   </span>
                 </div>
               </div>
 
               {/* Screenshots */}
-              <div className={`px-8 py-6 border-b border-[#1E2436] ${project.screenshots.length === 2 ? "grid md:grid-cols-2 gap-4" : ""}`}>
+              <div className={`px-8 py-6 border-b border-[#F1F5F9] bg-[#FAFBFC] ${project.screenshots.length === 2 ? "grid md:grid-cols-2 gap-4" : ""}`}>
                 {project.screenshots.map((shot) => (
                   <BrowserFrame key={shot.src} {...shot} />
                 ))}
               </div>
 
-              {/* Content — 3 columns */}
-              <div className="grid lg:grid-cols-3 gap-0 divide-y lg:divide-y-0 lg:divide-x divide-[#1E2436]">
-                {/* Challenge */}
+              {/* 3 columns */}
+              <div className="grid lg:grid-cols-3 gap-0 divide-y lg:divide-y-0 lg:divide-x divide-[#F1F5F9]">
                 <div className="px-8 py-6">
-                  <h4 className="text-[10px] font-semibold text-[#4A5268] uppercase tracking-[0.18em] mb-3">
+                  <h4 className="text-[10px] font-semibold text-[#94A3B8] uppercase tracking-[0.18em] mb-3">
                     Challenge
                   </h4>
-                  <p className="text-sm text-[#8892AA] leading-relaxed">{project.challenge}</p>
+                  <p className="text-sm text-[#475569] leading-relaxed">{project.challenge}</p>
                 </div>
 
-                {/* Approach */}
                 <div className="px-8 py-6">
-                  <h4 className="text-[10px] font-semibold text-[#4A5268] uppercase tracking-[0.18em] mb-3">
+                  <h4 className="text-[10px] font-semibold text-[#94A3B8] uppercase tracking-[0.18em] mb-3">
                     BA Approach
                   </h4>
                   <ul className="space-y-2.5">
                     {project.approach.map((step) => (
-                      <li key={step} className="flex items-start gap-2 text-sm text-[#8892AA]">
+                      <li key={step} className="flex items-start gap-2 text-sm text-[#475569]">
                         <span className="text-[#4361EE] mt-1.5 shrink-0 text-xs">▸</span>
                         {step}
                       </li>
@@ -195,20 +173,18 @@ export default function Projects() {
                   </ul>
                 </div>
 
-                {/* Results */}
                 <div className="px-8 py-6">
-                  <h4 className="text-[10px] font-semibold text-[#4A5268] uppercase tracking-[0.18em] mb-3">
+                  <h4 className="text-[10px] font-semibold text-[#94A3B8] uppercase tracking-[0.18em] mb-3">
                     Results
                   </h4>
                   <div className="space-y-3 mb-6">
                     {project.results.map((r) => (
                       <div
                         key={r.metric}
-                        className="flex items-center gap-3 p-3 bg-[#090C14] rounded-lg border border-[#1E2436]"
+                        className="flex items-center gap-3 p-3 bg-[#FFFBEB] rounded-lg border border-[#FDE68A]"
                       >
-                        {/* Amber for metrics — personality highlight */}
-                        <span className="text-xl font-bold text-[#F59E0B]">{r.metric}</span>
-                        <span className="text-xs text-[#8892AA] leading-tight">{r.label}</span>
+                        <span className="text-xl font-bold text-[#D97706]">{r.metric}</span>
+                        <span className="text-xs text-[#92400E] leading-tight">{r.label}</span>
                       </div>
                     ))}
                   </div>
@@ -216,7 +192,7 @@ export default function Projects() {
                     {project.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="text-[11px] px-2 py-0.5 rounded-md bg-[#4361EE]/8 text-[#7B9BFF] border border-[#4361EE]/15"
+                        className="text-[11px] px-2 py-0.5 rounded-md bg-[#EEF2FF] text-[#4361EE] border border-[#C7D2FE]"
                       >
                         {tag}
                       </span>
@@ -234,26 +210,23 @@ export default function Projects() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.45, delay: 0.2 }}
-          className="mt-6 p-6 bg-[#111520] border border-[#1E2436] rounded-xl flex items-start gap-4"
+          className="mt-6 p-6 bg-white border border-[#E2E8F0] rounded-xl flex items-start gap-4"
         >
-          <div className="p-2.5 rounded-lg bg-[#4361EE]/10 text-[#7B9BFF] shrink-0">
+          <div className="p-2.5 rounded-lg bg-[#EEF2FF] text-[#4361EE] shrink-0">
             <TrendingUp size={18} />
           </div>
           <div>
-            <h4 className="font-semibold text-[#E2E8F8] mb-1 text-sm">
+            <h4 className="font-semibold text-[#0F172A] mb-1 text-sm">
               ERP Implementation — Lumos IS (2023–2024)
             </h4>
-            <p className="text-sm text-[#8892AA] leading-relaxed">
+            <p className="text-sm text-[#475569] leading-relaxed">
               Collaborated with enterprise clients to implement ERP solutions on Oracle Apex.
               Delivered custom dashboards, reports, and system features via Agile sprints.
               Managed UAT cycles and provided post-deployment support.
             </p>
             <div className="flex flex-wrap gap-1.5 mt-3">
               {["Oracle Apex", "ERP", "Agile", "Dashboard Design", "UAT"].map((t) => (
-                <span
-                  key={t}
-                  className="text-[11px] px-2 py-0.5 rounded-md bg-[#4361EE]/8 text-[#7B9BFF] border border-[#4361EE]/15"
-                >
+                <span key={t} className="text-[11px] px-2 py-0.5 rounded-md bg-[#EEF2FF] text-[#4361EE] border border-[#C7D2FE]">
                   {t}
                 </span>
               ))}

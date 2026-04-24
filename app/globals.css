@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-background: #090C14;
-  --color-foreground: #E2E8F8;
+  --color-background: #FFFFFF;
+  --color-foreground: #0F172A;
   --font-sans: var(--font-geist-sans);
 }
 
@@ -11,30 +11,28 @@ html {
 }
 
 body {
-  background: #090C14;
-  color: #E2E8F8;
+  background: #FFFFFF;
+  color: #0F172A;
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
 }
 
 ::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: #0E1220; }
+::-webkit-scrollbar-track { background: #F1F5F9; }
 ::-webkit-scrollbar-thumb { background: #4361EE; border-radius: 2px; }
 
-/* Name gradient — single blue family, no rainbow */
 .gradient-text {
-  background: linear-gradient(120deg, #7B9BFF 0%, #4361EE 60%, #6B8EFF 100%);
+  background: linear-gradient(120deg, #4361EE 0%, #6B8EFF 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* Subtle dot pattern for hero */
 .hero-dots {
-  background-image: radial-gradient(circle, #1E2436 1px, transparent 1px);
+  background-image: radial-gradient(circle, #CBD5E1 1px, transparent 1px);
   background-size: 28px 28px;
 }
 
 .section-line {
   height: 1px;
-  background: linear-gradient(90deg, transparent, #252D42 20%, #252D42 80%, transparent);
+  background: linear-gradient(90deg, transparent, #E2E8F0 20%, #E2E8F0 80%, transparent);
 }

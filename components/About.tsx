@@ -22,7 +22,7 @@ const highlights = [
 
 export default function About() {
   return (
-    <section id="about" className="py-24 px-6 bg-[#090C14]">
+    <section id="about" className="py-24 px-6 bg-white">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -36,27 +36,27 @@ export default function About() {
             <p className="text-[#4361EE] text-xs font-semibold tracking-[0.18em] uppercase mb-3">
               About Me
             </p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-[#E2E8F8] mb-6 leading-snug">
+            <h2 className="text-3xl sm:text-4xl font-bold text-[#0F172A] mb-6 leading-snug">
               Turning complex factory processes{" "}
               <span className="gradient-text">into clear digital systems</span>
             </h2>
-            <p className="text-[#8892AA] leading-relaxed mb-4 text-[15px]">
+            <p className="text-[#475569] leading-relaxed mb-4 text-[15px]">
               I&apos;m a Business Analyst with 3+ years of experience specializing in
               manufacturing technology — from implementing MES systems on factory
               floors to digitizing ERP workflows for enterprise clients.
             </p>
-            <p className="text-[#8892AA] leading-relaxed mb-8 text-[15px]">
+            <p className="text-[#475569] leading-relaxed mb-8 text-[15px]">
               My edge: I speak both the language of the shop floor and the
               boardroom. I translate production line realities into system
               requirements that developers can build and operators can adopt.
             </p>
-            <div className="flex items-center gap-2 text-[#4A5268] text-sm">
-              <MapPin size={13} className="text-[#7B9BFF]" />
+            <div className="flex items-center gap-2 text-[#94A3B8] text-sm">
+              <MapPin size={13} className="text-[#4361EE]" />
               Ho Chi Minh City, Vietnam
             </div>
           </div>
 
-          {/* Right — highlight cards */}
+          {/* Right */}
           <div className="space-y-3">
             {highlights.map((item, i) => (
               <motion.div
@@ -65,14 +65,14 @@ export default function About() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.45, delay: i * 0.08 }}
-                className="flex items-start gap-4 p-5 bg-[#0E1220] border border-[#1E2436] hover:border-[#252D42] rounded-xl transition-colors duration-200"
+                className="flex items-start gap-4 p-5 bg-[#F8FAFC] border border-[#E2E8F0] hover:border-[#C7D2FE] rounded-xl transition-colors duration-200"
               >
-                <div className="p-2 rounded-lg bg-[#4361EE]/10 text-[#7B9BFF] shrink-0 mt-0.5">
+                <div className="p-2 rounded-lg bg-[#EEF2FF] text-[#4361EE] shrink-0 mt-0.5">
                   <item.icon size={18} />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-[#E2E8F8] mb-1 text-sm">{item.title}</h3>
-                  <p className="text-xs text-[#8892AA] leading-relaxed">{item.desc}</p>
+                  <h3 className="font-semibold text-[#0F172A] mb-1 text-sm">{item.title}</h3>
+                  <p className="text-xs text-[#64748B] leading-relaxed">{item.desc}</p>
                 </div>
               </motion.div>
             ))}

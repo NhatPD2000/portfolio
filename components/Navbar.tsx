@@ -28,14 +28,14 @@ export default function Navbar() {
       transition={{ duration: 0.45, ease: "easeOut" }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-[#090C14]/95 backdrop-blur-md border-b border-[#1E2436]"
+          ? "bg-white/95 backdrop-blur-md border-b border-[#E2E8F0] shadow-sm"
           : "bg-transparent"
       }`}
     >
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
         <a href="#" className="flex items-center gap-2.5">
           <span className="text-lg font-bold gradient-text tracking-tight">PDN</span>
-          <span className="hidden sm:block text-[10px] text-[#4A5268] tracking-[0.2em] uppercase font-medium">
+          <span className="hidden sm:block text-[10px] text-[#94A3B8] tracking-[0.2em] uppercase font-medium">
             Portfolio
           </span>
         </a>
@@ -45,7 +45,7 @@ export default function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              className="text-sm text-[#8892AA] hover:text-[#E2E8F8] transition-colors duration-200"
+              className="text-sm text-[#475569] hover:text-[#0F172A] transition-colors duration-200"
             >
               {link.label}
             </a>
@@ -60,7 +60,7 @@ export default function Navbar() {
             Hire Me
           </a>
           <button
-            className="md:hidden text-[#8892AA] p-1"
+            className="md:hidden text-[#475569] p-1"
             onClick={() => setMobileOpen(!mobileOpen)}
           >
             {mobileOpen ? <X size={20} /> : <Menu size={20} />}
@@ -72,14 +72,14 @@ export default function Navbar() {
         <motion.div
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: "auto" }}
-          className="md:hidden bg-[#0E1220] border-b border-[#1E2436] px-6 pb-4"
+          className="md:hidden bg-white border-b border-[#E2E8F0] px-6 pb-4"
         >
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
               onClick={() => setMobileOpen(false)}
-              className="block py-3 text-[#8892AA] hover:text-[#E2E8F8] transition-colors border-b border-[#1E2436] last:border-0 text-sm"
+              className="block py-3 text-[#475569] hover:text-[#0F172A] transition-colors border-b border-[#F1F5F9] last:border-0 text-sm"
             >
               {link.label}
             </a>
