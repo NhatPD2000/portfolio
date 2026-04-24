@@ -1,38 +1,71 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-background: #FFFFFF;
-  --color-foreground: #0F172A;
-  --font-sans: var(--font-geist-sans);
+  --color-background: #070C18;
+  --color-foreground: #E8EDF8;
+  --font-sans: var(--font-sans);
+  --font-serif: var(--font-serif);
 }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
-  background: #FFFFFF;
-  color: #0F172A;
-  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  background: #070C18;
+  color: #E8EDF8;
+  font-family: var(--font-sans), Arial, sans-serif;
 }
 
 ::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: #F1F5F9; }
-::-webkit-scrollbar-thumb { background: #4361EE; border-radius: 2px; }
+::-webkit-scrollbar-track { background: #0C1226; }
+::-webkit-scrollbar-thumb { background: #2EC4A8; border-radius: 2px; }
 
+/* Serif utility */
+.font-serif { font-family: var(--font-serif), Georgia, serif; }
+
+/* Topographic radial lines — background decoration */
+.topo-bg {
+  background-image:
+    repeating-radial-gradient(ellipse at 60% 50%,
+      transparent 0, transparent 58px,
+      rgba(99,130,200,0.045) 59px, rgba(99,130,200,0.045) 60px,
+      transparent 61px
+    ),
+    repeating-radial-gradient(ellipse at 30% 70%,
+      transparent 0, transparent 80px,
+      rgba(46,196,168,0.03) 81px, rgba(46,196,168,0.03) 82px,
+      transparent 83px
+    );
+}
+
+/* Gradient name text */
 .gradient-text {
-  background: linear-gradient(120deg, #4361EE 0%, #6B8EFF 100%);
+  background: linear-gradient(120deg, #E8EDF8 30%, #2EC4A8 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-.hero-dots {
-  background-image: radial-gradient(circle, #CBD5E1 1px, transparent 1px);
-  background-size: 28px 28px;
+/* Amber label */
+.label-amber {
+  color: #E8960C;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
 }
 
+/* Section divider */
 .section-line {
   height: 1px;
-  background: linear-gradient(90deg, transparent, #E2E8F0 20%, #E2E8F0 80%, transparent);
+  background: linear-gradient(90deg, transparent, #1B2540 20%, #1B2540 80%, transparent);
+}
+
+/* Card glow on hover */
+.card-hover {
+  transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+}
+.card-hover:hover {
+  border-color: #243050;
+  box-shadow: 0 8px 40px rgba(7,12,24,0.6), 0 0 0 1px rgba(46,196,168,0.08);
+  transform: translateY(-2px);
 }

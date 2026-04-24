@@ -3,79 +3,155 @@ import { motion } from "framer-motion";
 import { ArrowDown, FileText, Layers } from "lucide-react";
 
 const stats = [
-  { value: "3+", label: "Years Experience" },
+  { value: "3+", label: "Years" },
   { value: "2", label: "Companies" },
-  { value: "5+", label: "Projects Delivered" },
+  { value: "5+", label: "Projects" },
   { value: "3", label: "Languages" },
 ];
 
+function GradientOrb() {
+  return (
+    <div className="relative w-[360px] h-[360px] sm:w-[440px] sm:h-[440px] mx-auto select-none pointer-events-none">
+      {/* Rotating outer rings */}
+      <motion.div
+        animate={{ rotate: 360 }}
+        transition={{ duration: 28, repeat: Infinity, ease: "linear" }}
+        className="absolute inset-0 rounded-full border border-[#1B2540]"
+      />
+      <motion.div
+        animate={{ rotate: -360 }}
+        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+        className="absolute inset-10 rounded-full border border-[#1B2540]/60"
+      />
+      <div className="absolute inset-[72px] rounded-full border border-[#1B2540]/35" />
+
+      {/* Pink-orange orb */}
+      <motion.div
+        animate={{ y: [-14, 12, -14], x: [-6, 8, -6] }}
+        transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-[6%] left-[10%] w-60 h-60 rounded-full"
+        style={{
+          background: "radial-gradient(circle at 40% 35%, #FF6B9D 0%, #FF9A50 45%, transparent 72%)",
+          filter: "blur(34px)",
+          opacity: 0.7,
+        }}
+      />
+
+      {/* Blue-teal orb */}
+      <motion.div
+        animate={{ y: [10, -14, 10], x: [8, -6, 8] }}
+        transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 1.2 }}
+        className="absolute bottom-[6%] right-[6%] w-56 h-56 rounded-full"
+        style={{
+          background: "radial-gradient(circle at 55% 60%, #4F8EF7 0%, #2EC4A8 50%, transparent 75%)",
+          filter: "blur(38px)",
+          opacity: 0.6,
+        }}
+      />
+
+      {/* Violet accent orb */}
+      <motion.div
+        animate={{ y: [-8, 10, -8], scale: [1, 1.12, 1] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 2.5 }}
+        className="absolute top-[28%] right-[12%] w-40 h-40 rounded-full"
+        style={{
+          background: "radial-gradient(circle, #9B5CF6 0%, #4F8EF7 55%, transparent 75%)",
+          filter: "blur(28px)",
+          opacity: 0.45,
+        }}
+      />
+
+      {/* Center highlight */}
+      <div
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-28 h-28 rounded-full"
+        style={{
+          background: "radial-gradient(circle, rgba(255,255,255,0.07) 0%, transparent 70%)",
+          filter: "blur(8px)",
+        }}
+      />
+
+      {/* Small detail dots */}
+      <div className="absolute top-[18%] left-[52%] w-1.5 h-1.5 rounded-full bg-[#2EC4A8]/60" />
+      <div className="absolute bottom-[22%] left-[30%] w-1 h-1 rounded-full bg-[#FF6B9D]/50" />
+      <div className="absolute top-[60%] right-[22%] w-1 h-1 rounded-full bg-white/30" />
+    </div>
+  );
+}
+
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-white">
-      {/* Dot pattern */}
-      <div className="absolute inset-0 hero-dots opacity-60" />
+    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-[#070C18] topo-bg">
+      {/* Very subtle ambient glow behind orb */}
+      <div
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none"
+        style={{ background: "radial-gradient(circle, rgba(78,110,247,0.07) 0%, transparent 65%)", filter: "blur(60px)" }}
+      />
 
-      {/* Subtle blue glow — top center */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] rounded-full bg-[#4361EE]/6 blur-[100px] pointer-events-none" />
-
-      <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
-        {/* Amber badge */}
+      <div className="relative z-10 w-full max-w-5xl mx-auto px-6 flex flex-col items-center text-center">
+        {/* Gradient orb visual */}
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#F59E0B]/30 bg-[#FEF3C7] text-[#D97706] text-xs font-medium mb-8 tracking-wide"
+          initial={{ opacity: 0, scale: 0.85 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, ease: "easeOut" }}
         >
-          <span className="w-1.5 h-1.5 rounded-full bg-[#F59E0B] animate-pulse" />
-          Available for new opportunities
+          <GradientOrb />
         </motion.div>
 
-        {/* Name */}
-        <motion.h1
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.08 }}
-          className="text-5xl sm:text-6xl lg:text-[72px] font-bold tracking-tight mb-5 leading-[1.1]"
-        >
-          <span className="gradient-text">Phan Dinh Nhat</span>
-        </motion.h1>
-
-        {/* Role */}
-        <motion.div
+        {/* Label */}
+        <motion.p
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.16 }}
-          className="flex items-center justify-center gap-4 mb-6"
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="label-amber mb-3"
         >
-          <div className="h-px w-10 bg-[#E2E8F0]" />
-          <span className="text-[#4361EE] font-semibold text-sm tracking-[0.2em] uppercase">
-            Business Analyst
+          Business Analyst
+        </motion.p>
+
+        {/* Name — serif, large */}
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="font-serif text-5xl sm:text-6xl lg:text-7xl font-bold text-[#E8EDF8] leading-tight mb-4 tracking-tight"
+        >
+          Phan Dinh Nhat
+        </motion.h1>
+
+        {/* Subtitle */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.52 }}
+          className="flex items-center gap-3 mb-6"
+        >
+          <span className="h-px w-8 bg-[#243050]" />
+          <span className="text-[#2EC4A8] text-xs tracking-[0.22em] uppercase font-medium">
+            Manufacturing Intelligence
           </span>
-          <div className="h-px w-10 bg-[#E2E8F0]" />
+          <span className="h-px w-8 bg-[#243050]" />
         </motion.div>
 
         {/* Tagline */}
         <motion.p
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.22 }}
-          className="text-[#64748B] text-lg max-w-xl mx-auto mb-10 leading-relaxed"
+          transition={{ duration: 0.5, delay: 0.62 }}
+          className="text-[#6B7AB8] max-w-md text-base leading-relaxed mb-10"
         >
-          Bridging{" "}
-          <span className="text-[#0F172A] font-medium">manufacturing intelligence</span>{" "}
-          with smart digital solutions — MES, MOM, ERP and beyond.
+          Bridging factory floor realities with smart digital systems.
+          MES, MOM, ERP — from requirement to go-live.
         </motion.p>
 
         {/* CTAs */}
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.28 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-16"
+          transition={{ duration: 0.5, delay: 0.72 }}
+          className="flex flex-col sm:flex-row items-center gap-3 mb-16"
         >
           <a
             href="#projects"
-            className="flex items-center gap-2 px-7 py-3 bg-[#4361EE] hover:bg-[#3451D1] text-white font-medium rounded-lg transition-colors duration-200 text-sm shadow-md shadow-[#4361EE]/20"
+            className="flex items-center gap-2 px-7 py-3 bg-[#2EC4A8] hover:bg-[#25A890] text-[#070C18] font-semibold rounded-lg transition-colors duration-200 text-sm"
           >
             <Layers size={15} />
             View Projects
@@ -84,7 +160,7 @@ export default function Hero() {
             href="/phan-dinh-nhat-cv.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-7 py-3 border border-[#E2E8F0] hover:border-[#4361EE]/40 text-[#475569] hover:text-[#0F172A] font-medium rounded-lg transition-all duration-200 text-sm bg-white"
+            className="flex items-center gap-2 px-7 py-3 border border-[#1B2540] hover:border-[#243050] text-[#6B7AB8] hover:text-[#E8EDF8] font-medium rounded-lg transition-all duration-200 text-sm"
           >
             <FileText size={15} />
             Download CV
@@ -93,20 +169,18 @@ export default function Hero() {
 
         {/* Stats */}
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.36 }}
-          className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-2xl mx-auto"
+          transition={{ duration: 0.5, delay: 0.82 }}
+          className="grid grid-cols-4 gap-6 max-w-sm mx-auto"
         >
-          {stats.map((stat) => (
-            <div
-              key={stat.label}
-              className="py-4 px-3 bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl"
-            >
-              <div className="text-2xl font-bold text-[#4361EE]">{stat.value}</div>
-              <div className="text-[11px] text-[#94A3B8] mt-1 tracking-wide uppercase">
-                {stat.label}
-              </div>
+          {stats.map((s, i) => (
+            <div key={s.label} className="text-center">
+              <div className="font-serif text-2xl font-bold text-[#E8EDF8]">{s.value}</div>
+              <div className="text-[10px] text-[#3A4870] tracking-widest uppercase mt-0.5">{s.label}</div>
+              {i < stats.length - 1 && (
+                <div className="absolute" />
+              )}
             </div>
           ))}
         </motion.div>
@@ -116,12 +190,12 @@ export default function Hero() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 0.9 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-[#94A3B8]"
+        transition={{ delay: 1.2 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-[#3A4870]"
       >
-        <span className="text-[10px] tracking-[0.2em] uppercase">Scroll</span>
-        <motion.div animate={{ y: [0, 5, 0] }} transition={{ duration: 1.6, repeat: Infinity }}>
-          <ArrowDown size={14} />
+        <span className="text-[10px] tracking-[0.25em] uppercase">Scroll</span>
+        <motion.div animate={{ y: [0, 6, 0] }} transition={{ duration: 1.8, repeat: Infinity }}>
+          <ArrowDown size={13} />
         </motion.div>
       </motion.div>
     </section>
