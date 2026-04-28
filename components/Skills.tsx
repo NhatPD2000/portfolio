@@ -219,16 +219,16 @@ export default function Skills() {
                               key={skill.name}
                               className="flex items-center gap-2 w-full px-2.5 py-1.5 rounded-md"
                               style={{
-                                background: "#F0F5FF",
-                                border: "1px solid #D8E2F0",
+                                background: `${cat.accentColor}14`,
+                                border: `1px solid ${cat.accentColor}35`,
                               }}
                             >
                               <SkillIcon
                                 size={11}
                                 strokeWidth={1.5}
-                                style={{ color: cat.accentColor, flexShrink: 0, opacity: 0.9 }}
+                                style={{ color: cat.accentColor, flexShrink: 0 }}
                               />
-                              <span className="text-[11px] text-[#4A5E7A] truncate leading-tight">
+                              <span className="text-[11px] text-[#2A3B55] truncate leading-tight font-medium">
                                 {skill.name}
                               </span>
                             </div>
