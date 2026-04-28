@@ -9,7 +9,7 @@ const contactItems = [
 ];
 
 const socialLinks = [
-  { icon: Link2, label: "LinkedIn", href: "https://linkedin.com/in/phandinhnhat" },
+  { icon: Link2, label: "LinkedIn", href: "https://www.linkedin.com/in/nhatsifo806/" },
   { icon: GitBranch, label: "GitHub", href: "https://github.com/phandinhnhat" },
 ];
 
@@ -127,13 +127,10 @@ export default function Contact() {
         </div>
       </section>
 
-      <footer className="border-t border-[#D8E2F0] py-8 px-6 bg-[#F7F9FC]">
-        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-[#8999BB] text-sm">
-            © 2026 <span className="font-serif text-[#4A5E7A]">Phan Dinh Nhat</span> — Business Analyst
-          </p>
-          <p className="text-[#8999BB] text-xs tracking-wide">
-            Next.js · Tailwind CSS · Framer Motion · Vercel
+      <footer className="border-t border-[#D8E2F0] dark:border-[#2A3B55] py-8 px-6 bg-[#F7F9FC] dark:bg-[#0D1B2E]">
+        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-3">
+          <p className="text-[#8999BB] dark:text-[#6B7E9A] text-sm">
+            © 2026 <span className="font-serif text-[#4A5E7A] dark:text-[#B0BFDA]">Phan Dinh Nhat</span> — Business Analyst
           </p>
         </div>
       </footer>
