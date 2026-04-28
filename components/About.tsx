@@ -22,7 +22,7 @@ const highlights = [
 
 export default function About() {
   return (
-    <section id="about" className="py-28 px-6 bg-[#070C18] topo-bg">
+    <section id="about" className="py-28 px-6 bg-[#F7F9FC] topo-bg">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -34,17 +34,17 @@ export default function About() {
           {/* Left */}
           <div>
             <p className="label-amber mb-4">About Me</p>
-            <h2 className="font-serif text-4xl sm:text-5xl font-bold text-[#E8EDF8] mb-6 leading-tight">
+            <h2 className="font-serif text-4xl sm:text-5xl font-bold text-[#0D1B2E] mb-6 leading-tight">
               Turning complex processes into{" "}
               <span className="text-[#2EC4A8]">clear digital systems</span>
             </h2>
-            <p className="text-[#6B7AB8] leading-relaxed mb-4 text-[15px]">
+            <p className="text-[#4A5E7A] leading-relaxed mb-4 text-[15px]">
               I&apos;m a Business Analyst with 3+ years of experience in manufacturing technology — implementing MES systems on factory floors and digitizing ERP workflows for enterprise clients.
             </p>
-            <p className="text-[#6B7AB8] leading-relaxed mb-8 text-[15px]">
+            <p className="text-[#4A5E7A] leading-relaxed mb-8 text-[15px]">
               I speak both the language of the shop floor and the boardroom, translating production realities into requirements that developers can build and operators can adopt.
             </p>
-            <div className="flex items-center gap-2 text-[#3A4870] text-sm">
+            <div className="flex items-center gap-2 text-[#8999BB] text-sm">
               <MapPin size={13} className="text-[#2EC4A8]" />
               Ho Chi Minh City, Vietnam
             </div>
@@ -59,14 +59,14 @@ export default function About() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="flex items-start gap-4 p-5 bg-[#0C1226] border border-[#1B2540] rounded-xl card-hover"
+                className="flex items-start gap-4 p-5 bg-white border border-[#D8E2F0] rounded-xl card-hover"
               >
                 <div className="p-2 rounded-lg bg-[#2EC4A8]/10 text-[#2EC4A8] shrink-0 mt-0.5">
                   <item.icon size={18} />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-[#E8EDF8] mb-1 text-sm">{item.title}</h3>
-                  <p className="text-xs text-[#6B7AB8] leading-relaxed">{item.desc}</p>
+                  <h3 className="font-semibold text-[#0D1B2E] mb-1 text-sm">{item.title}</h3>
+                  <p className="text-xs text-[#4A5E7A] leading-relaxed">{item.desc}</p>
                 </div>
               </motion.div>
             ))}

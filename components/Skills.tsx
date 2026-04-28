@@ -113,13 +113,12 @@ export default function Skills() {
   const [active, setActive] = useState<string | null>(null);
   const [isTouchDevice, setIsTouchDevice] = useState(false);
 
-  // Detect touch device on mount
   useEffect(() => {
     setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
   }, []);
 
   return (
-    <section id="skills" className="py-28 px-6 bg-[#0C1226]">
+    <section id="skills" className="py-28 px-6 bg-[#EEF3FA]">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
@@ -130,10 +129,10 @@ export default function Skills() {
           className="text-center mb-16"
         >
           <p className="label-amber mb-4">Skills & Tools</p>
-          <h2 className="font-serif text-4xl sm:text-5xl font-bold text-[#E8EDF8]">
+          <h2 className="font-serif text-4xl sm:text-5xl font-bold text-[#0D1B2E]">
             What I bring to the table
           </h2>
-          <p className="text-[#3A4870] text-xs mt-3 md:hidden">
+          <p className="text-[#8999BB] text-xs mt-3 md:hidden">
             Tap a card to explore skills
           </p>
         </motion.div>
@@ -157,10 +156,10 @@ export default function Skills() {
                 animate={{ flexGrow: isActive ? 2.6 : 1 }}
                 transition={{ duration: 0.45, ease: [0.4, 0, 0.2, 1] }}
                 style={{ flexShrink: 1, flexBasis: "0%", minWidth: "72px" }}
-                className={`relative overflow-hidden rounded-2xl cursor-pointer bg-[#0F1830] border transition-colors duration-300 ${
+                className={`relative overflow-hidden rounded-2xl cursor-pointer bg-white transition-colors duration-300 ${
                   isActive
-                    ? "border-[#2EC4A8]/40"
-                    : "border-[#1B2540] hover:border-[#243050]"
+                    ? "border border-[#2EC4A8]/40 shadow-lg shadow-[#2EC4A8]/10"
+                    : "border border-[#D8E2F0] hover:border-[#C8D5E8] shadow-sm"
                 }`}
                 onMouseEnter={() => !isTouchDevice && setActive(cat.num)}
                 onMouseLeave={() => !isTouchDevice && setActive(null)}
@@ -192,26 +191,26 @@ export default function Skills() {
                           alt={`${cat.title} illustration`}
                           width={180}
                           height={160}
-                          className="opacity-65"
+                          className="opacity-50"
                         />
                       </div>
 
                       {/* Top indicator */}
-                      <ChevronDown size={10} className="text-[#3A4870] mb-4 shrink-0 relative z-10" />
+                      <ChevronDown size={10} className="text-[#C8D5E8] mb-4 shrink-0 relative z-10" />
 
                       {/* Category icon */}
                       <Icon
                         size={40}
                         strokeWidth={1.2}
                         className="shrink-0 mb-3"
-                        style={{ color: cat.accentColor, opacity: 0.7 }}
+                        style={{ color: cat.accentColor, opacity: 0.8 }}
                       />
-                      <div className="w-1 h-1 rounded-full bg-[#3A4870] mb-4 shrink-0" />
+                      <div className="w-1 h-1 rounded-full bg-[#C8D5E8] mb-4 shrink-0" />
 
                       {/* Divider */}
-                      <div className="w-6 h-px bg-[#1B2540] mb-3 shrink-0" />
+                      <div className="w-6 h-px bg-[#D8E2F0] mb-3 shrink-0" />
 
-                      {/* Skill bars — visible at all times */}
+                      {/* Skill bars */}
                       <div className="flex flex-col gap-1.5 flex-1 overflow-hidden w-full px-3">
                         {cat.skills.map((skill) => {
                           const SkillIcon = skill.icon;
@@ -220,16 +219,16 @@ export default function Skills() {
                               key={skill.name}
                               className="flex items-center gap-2 w-full px-2.5 py-1.5 rounded-md"
                               style={{
-                                background: "#111827",
-                                border: "1px solid #1B2540",
+                                background: "#F0F5FF",
+                                border: "1px solid #D8E2F0",
                               }}
                             >
                               <SkillIcon
                                 size={11}
                                 strokeWidth={1.5}
-                                style={{ color: cat.accentColor, flexShrink: 0, opacity: 0.8 }}
+                                style={{ color: cat.accentColor, flexShrink: 0, opacity: 0.9 }}
                               />
-                              <span className="text-[11px] text-[#6B7AB8] truncate leading-tight">
+                              <span className="text-[11px] text-[#4A5E7A] truncate leading-tight">
                                 {skill.name}
                               </span>
                             </div>
@@ -239,7 +238,7 @@ export default function Skills() {
 
                       {/* Title + number */}
                       <div className="flex flex-col items-center gap-1.5 mt-3 shrink-0">
-                        <p className="text-[#6B7AB8] text-[9px] tracking-[0.2em] uppercase font-medium text-center leading-tight px-1">
+                        <p className="text-[#4A5E7A] text-[9px] tracking-[0.2em] uppercase font-medium text-center leading-tight px-1">
                           {cat.shortTitle}
                         </p>
                         <p className="label-amber">{cat.num}</p>
@@ -248,7 +247,7 @@ export default function Skills() {
                   )}
                 </AnimatePresence>
 
-                {/* ── ACTIVE STATE ── */}
+                {/* ── ACTIVE STATE — keeps dark gradient for contrast ── */}
                 <AnimatePresence>
                   {isActive && (
                     <motion.div
@@ -325,31 +324,15 @@ export default function Skills() {
                           transition={{ duration: 0.4, delay: 0.3 }}
                           className="absolute bottom-16 left-0 right-0 h-40 flex items-center justify-center pointer-events-none"
                         >
-                          {/* Glow effect behind icon */}
                           <motion.div
-                            animate={{
-                              scale: [1, 1.2, 1],
-                              opacity: [0.3, 0.5, 0.3],
-                            }}
-                            transition={{
-                              duration: 3,
-                              repeat: Infinity,
-                              ease: "easeInOut",
-                            }}
+                            animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
+                            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                             className="absolute w-32 h-32 rounded-full blur-2xl"
                             style={{ background: cat.accentColor }}
                           />
-
-                          {/* Icon with subtle animation */}
                           <motion.div
-                            animate={{
-                              y: [0, -8, 0],
-                            }}
-                            transition={{
-                              duration: 4,
-                              repeat: Infinity,
-                              ease: "easeInOut",
-                            }}
+                            animate={{ y: [0, -8, 0] }}
+                            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                           >
                             <Image
                               src={
@@ -365,69 +348,30 @@ export default function Skills() {
                               width={140}
                               height={120}
                               className="opacity-60"
-                              style={{
-                                filter: `drop-shadow(0 0 20px ${cat.accentColor}40)`,
-                              }}
+                              style={{ filter: `drop-shadow(0 0 20px ${cat.accentColor}40)` }}
                             />
                           </motion.div>
-
-                          {/* Floating particles around icon */}
                           <motion.div
-                            animate={{
-                              y: [0, -15, 0],
-                              x: [0, 10, 0],
-                              opacity: [0.4, 0.7, 0.4],
-                            }}
-                            transition={{
-                              duration: 4,
-                              repeat: Infinity,
-                              ease: "easeInOut",
-                            }}
+                            animate={{ y: [0, -15, 0], x: [0, 10, 0], opacity: [0.4, 0.7, 0.4] }}
+                            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                             className="absolute left-[20%] top-[20%] w-2 h-2 rounded-full"
                             style={{ background: cat.accentColor, boxShadow: `0 0 10px ${cat.accentColor}` }}
                           />
                           <motion.div
-                            animate={{
-                              y: [0, -20, 0],
-                              x: [0, -8, 0],
-                              opacity: [0.5, 0.8, 0.5],
-                            }}
-                            transition={{
-                              duration: 5,
-                              repeat: Infinity,
-                              ease: "easeInOut",
-                              delay: 0.5,
-                            }}
+                            animate={{ y: [0, -20, 0], x: [0, -8, 0], opacity: [0.5, 0.8, 0.5] }}
+                            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
                             className="absolute right-[25%] top-[30%] w-1.5 h-1.5 rounded-full"
                             style={{ background: cat.accentColor, boxShadow: `0 0 8px ${cat.accentColor}` }}
                           />
                           <motion.div
-                            animate={{
-                              y: [0, -12, 0],
-                              x: [0, 15, 0],
-                              opacity: [0.3, 0.6, 0.3],
-                            }}
-                            transition={{
-                              duration: 4.5,
-                              repeat: Infinity,
-                              ease: "easeInOut",
-                              delay: 1,
-                            }}
+                            animate={{ y: [0, -12, 0], x: [0, 15, 0], opacity: [0.3, 0.6, 0.3] }}
+                            transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
                             className="absolute left-[35%] bottom-[20%] w-1 h-1 rounded-full"
                             style={{ background: cat.accentColor, boxShadow: `0 0 6px ${cat.accentColor}` }}
                           />
                           <motion.div
-                            animate={{
-                              y: [0, -18, 0],
-                              x: [0, -12, 0],
-                              opacity: [0.4, 0.7, 0.4],
-                            }}
-                            transition={{
-                              duration: 5.5,
-                              repeat: Infinity,
-                              ease: "easeInOut",
-                              delay: 1.5,
-                            }}
+                            animate={{ y: [0, -18, 0], x: [0, -12, 0], opacity: [0.4, 0.7, 0.4] }}
+                            transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
                             className="absolute right-[30%] bottom-[25%] w-1.5 h-1.5 rounded-full"
                             style={{ background: cat.accentColor, boxShadow: `0 0 8px ${cat.accentColor}` }}
                           />
@@ -435,14 +379,14 @@ export default function Skills() {
                       </div>
 
                       {/* Footer */}
-                      <div className="px-5 py-3 bg-[#0F1830] flex items-center justify-between border-t border-[#1B2540]">
-                        <p className="text-[#E8EDF8] text-[10px] tracking-[0.2em] uppercase font-semibold">
+                      <div className="px-5 py-3 bg-white flex items-center justify-between border-t border-[#D8E2F0]">
+                        <p className="text-[#0D1B2E] text-[10px] tracking-[0.2em] uppercase font-semibold">
                           {cat.skills.length} skills
                         </p>
-                        <p className="text-[#3A4870] text-[10px]">hover to explore</p>
+                        <p className="text-[#8999BB] text-[10px]">hover to explore</p>
                       </div>
 
-                      {/* Teal progress bar */}
+                      {/* Accent progress bar */}
                       <motion.div
                         initial={{ scaleX: 0 }}
                         animate={{ scaleX: 1 }}
@@ -468,7 +412,7 @@ export default function Skills() {
         >
           <a
             href="#projects"
-            className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium text-[#E8EDF8] hover:text-[#2EC4A8] transition-colors duration-200 group"
+            className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium text-[#4A5E7A] hover:text-[#2EC4A8] transition-colors duration-200 group"
           >
             <span>See these skills in action</span>
             <svg

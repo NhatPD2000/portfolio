@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-background: #070C18;
-  --color-foreground: #E8EDF8;
+  --color-background: #F7F9FC;
+  --color-foreground: #0D1B2E;
   --font-sans: var(--font-sans);
   --font-serif: var(--font-serif);
 }
@@ -10,13 +10,13 @@
 html { scroll-behavior: smooth; }
 
 body {
-  background: #070C18;
-  color: #E8EDF8;
+  background: #F7F9FC;
+  color: #0D1B2E;
   font-family: var(--font-sans), Arial, sans-serif;
 }
 
 ::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: #0C1226; }
+::-webkit-scrollbar-track { background: #EEF3FA; }
 ::-webkit-scrollbar-thumb { background: #2EC4A8; border-radius: 2px; }
 
 /* Serif utility */
@@ -27,19 +27,19 @@ body {
   background-image:
     repeating-radial-gradient(ellipse at 60% 50%,
       transparent 0, transparent 58px,
-      rgba(99,130,200,0.045) 59px, rgba(99,130,200,0.045) 60px,
+      rgba(99,130,200,0.07) 59px, rgba(99,130,200,0.07) 60px,
       transparent 61px
     ),
     repeating-radial-gradient(ellipse at 30% 70%,
       transparent 0, transparent 80px,
-      rgba(46,196,168,0.03) 81px, rgba(46,196,168,0.03) 82px,
+      rgba(46,196,168,0.045) 81px, rgba(46,196,168,0.045) 82px,
       transparent 83px
     );
 }
 
 /* Gradient name text */
 .gradient-text {
-  background: linear-gradient(120deg, #E8EDF8 30%, #2EC4A8 100%);
+  background: linear-gradient(120deg, #0D1B2E 30%, #2EC4A8 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -57,7 +57,7 @@ body {
 /* Section divider */
 .section-line {
   height: 1px;
-  background: linear-gradient(90deg, transparent, #1B2540 20%, #1B2540 80%, transparent);
+  background: linear-gradient(90deg, transparent, #D8E2F0 20%, #D8E2F0 80%, transparent);
 }
 
 /* Card glow on hover */
@@ -65,7 +65,7 @@ body {
   transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
 }
 .card-hover:hover {
-  border-color: #243050;
-  box-shadow: 0 8px 40px rgba(7,12,24,0.6), 0 0 0 1px rgba(46,196,168,0.08);
+  border-color: #C8D5E8;
+  box-shadow: 0 8px 40px rgba(13,27,46,0.08), 0 0 0 1px rgba(46,196,168,0.1);
   transform: translateY(-2px);
 }

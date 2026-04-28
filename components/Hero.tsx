@@ -16,14 +16,14 @@ function GradientOrb() {
       <motion.div
         animate={{ rotate: 360 }}
         transition={{ duration: 28, repeat: Infinity, ease: "linear" }}
-        className="absolute inset-0 rounded-full border border-[#1B2540]"
+        className="absolute inset-0 rounded-full border border-[#D8E2F0]"
       />
       <motion.div
         animate={{ rotate: -360 }}
         transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-        className="absolute inset-10 rounded-full border border-[#1B2540]/60"
+        className="absolute inset-10 rounded-full border border-[#D8E2F0]/70"
       />
-      <div className="absolute inset-[72px] rounded-full border border-[#1B2540]/35" />
+      <div className="absolute inset-[72px] rounded-full border border-[#D8E2F0]/50" />
 
       {/* Pink-orange orb */}
       <motion.div
@@ -33,7 +33,7 @@ function GradientOrb() {
         style={{
           background: "radial-gradient(circle at 40% 35%, #FF6B9D 0%, #FF9A50 45%, transparent 72%)",
           filter: "blur(34px)",
-          opacity: 0.7,
+          opacity: 0.5,
         }}
       />
 
@@ -45,7 +45,7 @@ function GradientOrb() {
         style={{
           background: "radial-gradient(circle at 55% 60%, #4F8EF7 0%, #2EC4A8 50%, transparent 75%)",
           filter: "blur(38px)",
-          opacity: 0.6,
+          opacity: 0.45,
         }}
       />
 
@@ -57,7 +57,7 @@ function GradientOrb() {
         style={{
           background: "radial-gradient(circle, #9B5CF6 0%, #4F8EF7 55%, transparent 75%)",
           filter: "blur(28px)",
-          opacity: 0.45,
+          opacity: 0.3,
         }}
       />
 
@@ -65,7 +65,7 @@ function GradientOrb() {
       <div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-28 h-28 rounded-full"
         style={{
-          background: "radial-gradient(circle, rgba(255,255,255,0.07) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(0,0,0,0.03) 0%, transparent 70%)",
           filter: "blur(8px)",
         }}
       />
@@ -73,18 +73,18 @@ function GradientOrb() {
       {/* Small detail dots */}
       <div className="absolute top-[18%] left-[52%] w-1.5 h-1.5 rounded-full bg-[#2EC4A8]/60" />
       <div className="absolute bottom-[22%] left-[30%] w-1 h-1 rounded-full bg-[#FF6B9D]/50" />
-      <div className="absolute top-[60%] right-[22%] w-1 h-1 rounded-full bg-white/30" />
+      <div className="absolute top-[60%] right-[22%] w-1 h-1 rounded-full bg-[#0D1B2E]/20" />
     </div>
   );
 }
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-[#070C18] topo-bg">
-      {/* Very subtle ambient glow behind orb */}
+    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-[#F7F9FC] topo-bg">
+      {/* Subtle ambient glow */}
       <div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(78,110,247,0.07) 0%, transparent 65%)", filter: "blur(60px)" }}
+        style={{ background: "radial-gradient(circle, rgba(46,196,168,0.06) 0%, transparent 65%)", filter: "blur(60px)" }}
       />
 
       <div className="relative z-10 w-full max-w-5xl mx-auto px-6 flex flex-col items-center text-center">
@@ -112,7 +112,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="font-serif text-5xl sm:text-6xl lg:text-7xl font-bold text-[#E8EDF8] leading-tight mb-4 tracking-tight"
+          className="font-serif text-5xl sm:text-6xl lg:text-7xl font-bold text-[#0D1B2E] leading-tight mb-4 tracking-tight"
         >
           Phan Dinh Nhat
         </motion.h1>
@@ -124,11 +124,11 @@ export default function Hero() {
           transition={{ duration: 0.5, delay: 0.52 }}
           className="flex items-center gap-3 mb-6"
         >
-          <span className="h-px w-8 bg-[#243050]" />
+          <span className="h-px w-8 bg-[#D8E2F0]" />
           <span className="text-[#2EC4A8] text-xs tracking-[0.22em] uppercase font-medium">
             Manufacturing Intelligence
           </span>
-          <span className="h-px w-8 bg-[#243050]" />
+          <span className="h-px w-8 bg-[#D8E2F0]" />
         </motion.div>
 
         {/* Tagline */}
@@ -136,7 +136,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.62 }}
-          className="text-[#6B7AB8] max-w-md text-base leading-relaxed mb-10"
+          className="text-[#4A5E7A] max-w-md text-base leading-relaxed mb-10"
         >
           Bridging factory floor realities with smart digital systems.
           MES, MOM, ERP — from requirement to go-live.
@@ -151,7 +151,7 @@ export default function Hero() {
         >
           <a
             href="#projects"
-            className="flex items-center gap-2 px-7 py-3 bg-[#2EC4A8] hover:bg-[#25A890] text-[#070C18] font-semibold rounded-lg transition-colors duration-200 text-sm"
+            className="flex items-center gap-2 px-7 py-3 bg-[#2EC4A8] hover:bg-[#25A890] text-white font-semibold rounded-lg transition-colors duration-200 text-sm"
           >
             <Layers size={15} />
             View Projects
@@ -160,7 +160,7 @@ export default function Hero() {
             href="/phan-dinh-nhat-cv.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-7 py-3 border border-[#1B2540] hover:border-[#243050] text-[#6B7AB8] hover:text-[#E8EDF8] font-medium rounded-lg transition-all duration-200 text-sm"
+            className="flex items-center gap-2 px-7 py-3 border border-[#D8E2F0] hover:border-[#C8D5E8] text-[#4A5E7A] hover:text-[#0D1B2E] font-medium rounded-lg transition-all duration-200 text-sm"
           >
             <FileText size={15} />
             Download CV
@@ -174,13 +174,10 @@ export default function Hero() {
           transition={{ duration: 0.5, delay: 0.82 }}
           className="grid grid-cols-4 gap-6 max-w-sm mx-auto"
         >
-          {stats.map((s, i) => (
+          {stats.map((s) => (
             <div key={s.label} className="text-center">
-              <div className="font-serif text-2xl font-bold text-[#E8EDF8]">{s.value}</div>
-              <div className="text-[10px] text-[#3A4870] tracking-widest uppercase mt-0.5">{s.label}</div>
-              {i < stats.length - 1 && (
-                <div className="absolute" />
-              )}
+              <div className="font-serif text-2xl font-bold text-[#0D1B2E]">{s.value}</div>
+              <div className="text-[10px] text-[#8999BB] tracking-widest uppercase mt-0.5">{s.label}</div>
             </div>
           ))}
         </motion.div>
@@ -191,7 +188,7 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-[#3A4870]"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-[#8999BB]"
       >
         <span className="text-[10px] tracking-[0.25em] uppercase">Scroll</span>
         <motion.div animate={{ y: [0, 6, 0] }} transition={{ duration: 1.8, repeat: Infinity }}>
