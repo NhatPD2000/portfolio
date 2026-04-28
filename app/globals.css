@@ -7,31 +7,26 @@
   --font-serif: var(--font-serif);
 }
 
-html { scroll-behavior: smooth; }
-
-/* Smooth scroll offset for anchor links — prevents navbar overlap */
-section[id] {
-  scroll-margin-top: 80px;
+:root {
+  /* Light mode colors */
+  --bg-primary: #F7F9FC;
+  --bg-secondary: #FFFFFF;
+  --bg-tertiary: #EEF3FA;
+  --surface: #FFFFFF;
+  --surface-elevated: #F7F9FC;
+  --border: #D8E2F0;
+  --border-hover: #C8D5E8;
+  --text-primary: #0D1B2E;
+  --text-secondary: #4A5E7A;
+  --text-muted: #8999BB;
+  --accent: #2EC4A8;
 }
 
-body {
-  background: #F7F9FC;
-  color: #0D1B2E;
-  font-family: var(--font-sans), Arial, sans-serif;
-  transition: background-color 0.3s, color 0.3s;
-}
-
-/* Dark mode */
-.dark body {
-  background: #0D1B2E;
-  color: #E8EDF8;
-}
-
-/* Dark mode color overrides */
 .dark {
+  /* Dark mode colors */
   --bg-primary: #0D1B2E;
   --bg-secondary: #1A2332;
-  --bg-tertiary: #243050;
+  --bg-tertiary: #162844;
   --surface: #1A2332;
   --surface-elevated: #243050;
   --border: #2A3B55;
@@ -39,19 +34,28 @@ body {
   --text-primary: #E8EDF8;
   --text-secondary: #B0BFDA;
   --text-muted: #6B7E9A;
+  --accent: #2EC4A8;
+}
+
+html { scroll-behavior: smooth; }
+
+section[id] {
+  scroll-margin-top: 80px;
+}
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-sans), Arial, sans-serif;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 ::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: #EEF3FA; }
-::-webkit-scrollbar-thumb { background: #2EC4A8; border-radius: 2px; }
+::-webkit-scrollbar-track { background: var(--bg-tertiary); }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
 
-.dark ::-webkit-scrollbar-track { background: #1A2332; }
-.dark ::-webkit-scrollbar-thumb { background: #2EC4A8; }
-
-/* Serif utility */
 .font-serif { font-family: var(--font-serif), Georgia, serif; }
 
-/* Topographic radial lines — background decoration */
 .topo-bg {
   background-image:
     repeating-radial-gradient(ellipse at 60% 50%,
@@ -80,15 +84,13 @@ body {
     );
 }
 
-/* Gradient name text */
 .gradient-text {
-  background: linear-gradient(120deg, #0D1B2E 30%, #2EC4A8 100%);
+  background: linear-gradient(120deg, var(--text-primary) 30%, var(--accent) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* Amber label */
 .label-amber {
   color: #E8960C;
   font-size: 11px;
@@ -97,27 +99,24 @@ body {
   text-transform: uppercase;
 }
 
-/* Section divider */
 .section-line {
   height: 1px;
-  background: linear-gradient(90deg, transparent, #D8E2F0 20%, #D8E2F0 80%, transparent);
+  background: linear-gradient(90deg, transparent, var(--border) 20%, var(--border) 80%, transparent);
 }
 
-.dark .section-line {
-  background: linear-gradient(90deg, transparent, #2A3B55 20%, #2A3B55 80%, transparent);
-}
-
-/* Card glow on hover */
 .card-hover {
   transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
 }
+
 .card-hover:hover {
-  border-color: #C8D5E8;
-  box-shadow: 0 8px 40px rgba(13,27,46,0.08), 0 0 0 1px rgba(46,196,168,0.1);
+  border-color: var(--border-hover);
   transform: translateY(-2px);
 }
 
+.card-hover:hover {
+  box-shadow: 0 8px 40px rgba(13,27,46,0.08), 0 0 0 1px rgba(46,196,168,0.1);
+}
+
 .dark .card-hover:hover {
-  border-color: #3A4870;
   box-shadow: 0 8px 40px rgba(0,0,0,0.3), 0 0 0 1px rgba(46,196,168,0.15);
 }

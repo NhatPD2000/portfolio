@@ -193,7 +193,7 @@ function ProcessFlow() {
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center bg-[#F7F9FC] topo-bg overflow-hidden">
+    <section className="relative min-h-screen flex items-center bg-[#F7F9FC] dark:bg-[#0D1B2E] topo-bg overflow-hidden">
       {/* Large faded watermark */}
       <div
         className="absolute right-[-2vw] top-1/2 -translate-y-1/2 font-serif font-bold select-none pointer-events-none leading-none text-[#0D1B2E]/[0.025]"

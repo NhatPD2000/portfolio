@@ -9,7 +9,7 @@ import BackToTop from "@/components/BackToTop";
 
 export default function Home() {
   return (
-    <main className="bg-[#F7F9FC]">
+    <main className="bg-[#F7F9FC] dark:bg-[#0D1B2E]">
       <Navbar />
       <Hero />
       <About />
