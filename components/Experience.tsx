@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { Building2, Calendar, MapPin } from "lucide-react";
+import { Building2, Calendar, MapPin, TrendingUp } from "lucide-react";
 
 const experiences = [
   {
@@ -10,6 +10,7 @@ const experiences = [
     period: "April 2024 – Present",
     location: "Ho Chi Minh City",
     current: true,
+    keyResult: "3 factory go-lives completed · 15% operational efficiency improvement at Spartronics",
     highlights: [
       "Delivered BRD & FSD for 2 major MES projects, ensuring full alignment between client operations and system design",
       "Implemented MES for 3 factory clients — improved operational efficiency by 15% through workflow optimization",
@@ -26,6 +27,7 @@ const experiences = [
     period: "June 2023 – March 2024",
     location: "Ho Chi Minh City",
     current: false,
+    keyResult: "ERP delivered for enterprise clients · Agile sprints from requirement to UAT sign-off",
     highlights: [
       "Gathered, refined, and documented user requirements in Business Requirement Specifications for ERP implementations",
       "Designed and built ERP functionalities on Oracle Apex using Agile — delivered dashboards, reports, and custom features",
@@ -37,7 +39,7 @@ const experiences = [
 
 export default function Experience() {
   return (
-    <section id="experience" className="py-28 px-6 bg-[#F7F9FC]">
+    <section id="experience" className="py-28 px-6 bg-white">
       <div className="max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -53,7 +55,7 @@ export default function Experience() {
         </motion.div>
 
         <div className="relative">
-          {/* Timeline */}
+          {/* Timeline line */}
           <div className="absolute left-[22px] top-6 bottom-6 w-px bg-[#D8E2F0] hidden sm:block" />
 
           <div className="space-y-6">
@@ -73,46 +75,67 @@ export default function Experience() {
                     : "bg-[#D8E2F0] border-[#C8D5E8]"
                 }`} />
 
-                <div className="p-6 bg-white border border-[#D8E2F0] rounded-xl card-hover">
-                  <div className="flex flex-wrap items-start justify-between gap-3 mb-5">
-                    <div>
-                      <div className="flex items-center gap-2 mb-1.5">
-                        <Building2 size={12} className="text-[#8999BB]" />
-                        <span className="text-xs text-[#8999BB]">{exp.company}</span>
-                        {exp.current && (
-                          <span className="text-[10px] px-2 py-0.5 rounded bg-[#2EC4A8]/12 text-[#2EC4A8] border border-[#2EC4A8]/20 font-medium">
-                            Current
-                          </span>
-                        )}
-                      </div>
-                      <h3 className="font-serif text-xl font-bold text-[#0D1B2E]">{exp.role}</h3>
-                    </div>
-                    <div className="flex flex-col items-end gap-1.5">
-                      <div className="flex items-center gap-1.5 text-xs text-[#4A5E7A]">
-                        <Calendar size={11} />{exp.period}
-                      </div>
-                      <div className="flex items-center gap-1 text-xs text-[#8999BB]">
-                        <MapPin size={10} />{exp.location}
-                      </div>
-                      <div className="label-amber">{exp.num}</div>
-                    </div>
-                  </div>
+                <div className="bg-[#F7F9FC] border border-[#D8E2F0] rounded-xl card-hover overflow-hidden">
+                  {/* Accent top bar */}
+                  <div
+                    className="h-[3px] w-full"
+                    style={{
+                      background: exp.current
+                        ? "linear-gradient(90deg, #2EC4A8, #4F8EF7)"
+                        : "linear-gradient(90deg, #C8D5E8, transparent)",
+                    }}
+                  />
 
-                  <ul className="space-y-2.5 mb-5">
-                    {exp.highlights.map((point) => (
-                      <li key={point} className="flex items-start gap-2.5 text-sm text-[#4A5E7A]">
-                        <span className="text-[#2EC4A8] mt-1.5 shrink-0 text-xs">▸</span>
-                        {point}
-                      </li>
-                    ))}
-                  </ul>
+                  <div className="p-6">
+                    {/* Header */}
+                    <div className="flex flex-wrap items-start justify-between gap-3 mb-5">
+                      <div>
+                        <div className="flex items-center gap-2 mb-1.5">
+                          <Building2 size={12} className="text-[#8999BB]" />
+                          <span className="text-xs text-[#8999BB]">{exp.company}</span>
+                          {exp.current && (
+                            <span className="text-[10px] px-2 py-0.5 rounded bg-[#2EC4A8]/12 text-[#2EC4A8] border border-[#2EC4A8]/20 font-medium">
+                              Current
+                            </span>
+                          )}
+                        </div>
+                        <h3 className="font-serif text-xl font-bold text-[#0D1B2E]">{exp.role}</h3>
+                      </div>
+                      <div className="flex flex-col items-end gap-1.5">
+                        <div className="flex items-center gap-1.5 text-xs text-[#4A5E7A]">
+                          <Calendar size={11} />{exp.period}
+                        </div>
+                        <div className="flex items-center gap-1 text-xs text-[#8999BB]">
+                          <MapPin size={10} />{exp.location}
+                        </div>
+                        <div className="label-amber">{exp.num}</div>
+                      </div>
+                    </div>
 
-                  <div className="flex flex-wrap gap-1.5">
-                    {exp.tags.map((tag) => (
-                      <span key={tag} className="text-[11px] px-2.5 py-1 bg-[#EEF3FA] text-[#4A5E7A] rounded border border-[#D8E2F0]">
-                        {tag}
-                      </span>
-                    ))}
+                    {/* Highlights */}
+                    <ul className="space-y-2.5 mb-5">
+                      {exp.highlights.map((point) => (
+                        <li key={point} className="flex items-start gap-2.5 text-sm text-[#4A5E7A]">
+                          <span className="text-[#2EC4A8] mt-1.5 shrink-0 text-xs">▸</span>
+                          {point}
+                        </li>
+                      ))}
+                    </ul>
+
+                    {/* Key result callout */}
+                    <div className="flex items-start gap-3 px-4 py-3 mb-4 rounded-lg bg-white border border-[#D8E2F0]">
+                      <TrendingUp size={14} className="text-[#2EC4A8] shrink-0 mt-0.5" />
+                      <p className="text-xs text-[#2A3B55] font-medium leading-relaxed">{exp.keyResult}</p>
+                    </div>
+
+                    {/* Tags */}
+                    <div className="flex flex-wrap gap-1.5">
+                      {exp.tags.map((tag) => (
+                        <span key={tag} className="text-[11px] px-2.5 py-1 bg-white text-[#4A5E7A] rounded border border-[#D8E2F0]">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </motion.div>

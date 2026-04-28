@@ -23,7 +23,7 @@ const openTo = [
 export default function Contact() {
   return (
     <>
-      <section id="contact" className="py-28 px-6 bg-[#F7F9FC] topo-bg">
+      <section id="contact" className="py-28 px-6 bg-[#EEF3FA] topo-bg">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
