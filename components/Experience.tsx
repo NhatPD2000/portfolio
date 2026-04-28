@@ -114,11 +114,18 @@ export default function Experience() {
 
                     {/* Highlights */}
                     <ul className="space-y-2.5 mb-5">
-                      {exp.highlights.map((point) => (
-                        <li key={point} className="flex items-start gap-2.5 text-sm text-[#4A5E7A]">
+                      {exp.highlights.map((point, idx) => (
+                        <motion.li
+                          key={point}
+                          initial={{ opacity: 0, x: -12 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.4, delay: idx * 0.08 }}
+                          className="flex items-start gap-2.5 text-sm text-[#4A5E7A]"
+                        >
                           <span className="text-[#2EC4A8] mt-1.5 shrink-0 text-xs">▸</span>
                           {point}
-                        </li>
+                        </motion.li>
                       ))}
                     </ul>
 

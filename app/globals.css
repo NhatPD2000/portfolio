@@ -18,11 +18,35 @@ body {
   background: #F7F9FC;
   color: #0D1B2E;
   font-family: var(--font-sans), Arial, sans-serif;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Dark mode */
+.dark body {
+  background: #0D1B2E;
+  color: #E8EDF8;
+}
+
+/* Dark mode color overrides */
+.dark {
+  --bg-primary: #0D1B2E;
+  --bg-secondary: #1A2332;
+  --bg-tertiary: #243050;
+  --surface: #1A2332;
+  --surface-elevated: #243050;
+  --border: #2A3B55;
+  --border-hover: #3A4870;
+  --text-primary: #E8EDF8;
+  --text-secondary: #B0BFDA;
+  --text-muted: #6B7E9A;
 }
 
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: #EEF3FA; }
 ::-webkit-scrollbar-thumb { background: #2EC4A8; border-radius: 2px; }
+
+.dark ::-webkit-scrollbar-track { background: #1A2332; }
+.dark ::-webkit-scrollbar-thumb { background: #2EC4A8; }
 
 /* Serif utility */
 .font-serif { font-family: var(--font-serif), Georgia, serif; }
@@ -38,6 +62,20 @@ body {
     repeating-radial-gradient(ellipse at 30% 70%,
       transparent 0, transparent 80px,
       rgba(46,196,168,0.045) 81px, rgba(46,196,168,0.045) 82px,
+      transparent 83px
+    );
+}
+
+.dark .topo-bg {
+  background-image:
+    repeating-radial-gradient(ellipse at 60% 50%,
+      transparent 0, transparent 58px,
+      rgba(99,130,200,0.04) 59px, rgba(99,130,200,0.04) 60px,
+      transparent 61px
+    ),
+    repeating-radial-gradient(ellipse at 30% 70%,
+      transparent 0, transparent 80px,
+      rgba(46,196,168,0.03) 81px, rgba(46,196,168,0.03) 82px,
       transparent 83px
     );
 }
@@ -65,6 +103,10 @@ body {
   background: linear-gradient(90deg, transparent, #D8E2F0 20%, #D8E2F0 80%, transparent);
 }
 
+.dark .section-line {
+  background: linear-gradient(90deg, transparent, #2A3B55 20%, #2A3B55 80%, transparent);
+}
+
 /* Card glow on hover */
 .card-hover {
   transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
@@ -73,4 +115,9 @@ body {
   border-color: #C8D5E8;
   box-shadow: 0 8px 40px rgba(13,27,46,0.08), 0 0 0 1px rgba(46,196,168,0.1);
   transform: translateY(-2px);
+}
+
+.dark .card-hover:hover {
+  border-color: #3A4870;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.3), 0 0 0 1px rgba(46,196,168,0.15);
 }

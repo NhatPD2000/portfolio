@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import ThemeToggle from "./ThemeToggle";
 
 const navLinks = [
   { href: "#about", label: "About" },
@@ -98,6 +99,7 @@ export default function Navbar() {
         </div>
 
         <div className="flex items-center gap-3">
+          <ThemeToggle />
           <a
             href="#contact"
             className="hidden md:block px-5 py-2 text-xs font-semibold tracking-widest uppercase text-white bg-[#2EC4A8] hover:bg-[#25A890] rounded-md transition-colors duration-200"
