@@ -9,6 +9,11 @@
 
 html { scroll-behavior: smooth; }
 
+/* Smooth scroll offset for anchor links — prevents navbar overlap */
+section[id] {
+  scroll-margin-top: 80px;
+}
+
 body {
   background: #F7F9FC;
   color: #0D1B2E;

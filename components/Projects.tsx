@@ -5,7 +5,7 @@ import Image from "next/image";
 
 function BrowserFrame({ src, alt, url }: { src: string; alt: string; url: string }) {
   return (
-    <div className="rounded-xl overflow-hidden border border-[#D8E2F0] shadow-lg shadow-black/5">
+    <div className="rounded-xl overflow-hidden border border-[#D8E2F0] shadow-lg shadow-black/5 group">
       <div className="flex items-center gap-1.5 px-3 py-2.5 bg-[#F0F4FA] border-b border-[#D8E2F0]">
         <div className="w-2.5 h-2.5 rounded-full bg-[#FF5F57]/70" />
         <div className="w-2.5 h-2.5 rounded-full bg-[#FEBC2E]/70" />
@@ -15,8 +15,17 @@ function BrowserFrame({ src, alt, url }: { src: string; alt: string; url: string
         </div>
       </div>
       <div className="relative overflow-hidden" style={{ maxHeight: "260px" }}>
-        <Image src={src} alt={alt} width={1200} height={800} className="w-full object-cover object-top" style={{ maxHeight: "260px" }} />
-        <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-[#F0F4FA] to-transparent" />
+        <Image
+          src={src}
+          alt={alt}
+          width={1200}
+          height={800}
+          className="w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+          style={{ maxHeight: "260px" }}
+        />
+        <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-[#F0F4FA] to-transparent pointer-events-none" />
+        {/* Hover overlay hint */}
+        <div className="absolute inset-0 bg-[#0D1B2E]/0 group-hover:bg-[#0D1B2E]/5 transition-colors duration-300 pointer-events-none" />
       </div>
     </div>
   );

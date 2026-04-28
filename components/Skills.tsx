@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import CountUp from "./CountUp";
 import {
   ClipboardList, PenTool, Code2, Users, ChevronDown,
   ListChecks, FileText, BookOpen, RefreshCw, CheckSquare, GitBranch,
@@ -443,7 +444,7 @@ export default function Skills() {
                       {/* Footer */}
                       <div className="px-5 py-3 bg-white flex items-center justify-between border-t border-[#D8E2F0]">
                         <p className="text-[#0D1B2E] text-[10px] tracking-[0.2em] uppercase font-semibold">
-                          {cat.skills.length} skills
+                          <CountUp end={cat.skills.length} isActive={isActive} /> skills
                         </p>
                         <p className="text-[#8999BB] text-[10px]">hover to explore</p>
                       </div>
