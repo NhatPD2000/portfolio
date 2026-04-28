@@ -19,7 +19,7 @@
   --text-primary: #0D1B2E;
   --text-secondary: #4A5E7A;
   --text-muted: #8999BB;
-  --accent: #2EC4A8;
+  --accent: #4F46E5;
 }
 
 .dark {
@@ -34,7 +34,7 @@
   --text-primary: #E8EDF8;
   --text-secondary: #B0BFDA;
   --text-muted: #6B7E9A;
-  --accent: #2EC4A8;
+  --accent: #4F46E5;
 }
 
 html { scroll-behavior: smooth; }
@@ -65,7 +65,7 @@ body {
     ),
     repeating-radial-gradient(ellipse at 30% 70%,
       transparent 0, transparent 80px,
-      rgba(46,196,168,0.045) 81px, rgba(46,196,168,0.045) 82px,
+      rgba(79,70,229,0.045) 81px, rgba(79,70,229,0.045) 82px,
       transparent 83px
     );
 }
@@ -79,7 +79,7 @@ body {
     ),
     repeating-radial-gradient(ellipse at 30% 70%,
       transparent 0, transparent 80px,
-      rgba(46,196,168,0.03) 81px, rgba(46,196,168,0.03) 82px,
+      rgba(79,70,229,0.03) 81px, rgba(79,70,229,0.03) 82px,
       transparent 83px
     );
 }

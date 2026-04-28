@@ -121,14 +121,14 @@ export default function Projects() {
               <div className="px-8 pt-8 pb-6 border-b border-[#D8E2F0]">
                 <div className="flex flex-wrap items-start justify-between gap-4">
                   <div className="flex items-start gap-4">
-                    <div className="p-3 rounded-xl bg-[#2EC4A8]/10 text-[#2EC4A8] shrink-0">
+                    <div className="p-3 rounded-xl bg-[#4F46E5]/10 text-[#4F46E5] shrink-0">
                       <project.icon size={22} />
                     </div>
                     <div>
                       <div className="flex items-center gap-2 mb-1.5">
                         <span className="text-xs text-[#8999BB]">{project.company}</span>
                         <span className="text-[#D8E2F0]">·</span>
-                        <span className="text-xs font-semibold text-[#2EC4A8]">{project.client}</span>
+                        <span className="text-xs font-semibold text-[#4F46E5]">{project.client}</span>
                       </div>
                       <h3 className="font-serif text-xl font-bold text-[#0D1B2E]">{project.title}</h3>
                       <p className="text-sm text-[#8999BB] mt-0.5">{project.subtitle}</p>
@@ -162,7 +162,7 @@ export default function Projects() {
                   <ul className="space-y-2.5">
                     {project.approach.map((step) => (
                       <li key={step} className="flex items-start gap-2 text-sm text-[#4A5E7A]">
-                        <span className="text-[#2EC4A8] mt-1.5 shrink-0 text-xs">▸</span>
+                        <span className="text-[#4F46E5] mt-1.5 shrink-0 text-xs">▸</span>
                         {step}
                       </li>
                     ))}
@@ -200,7 +200,7 @@ export default function Projects() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="mt-6 p-6 bg-white border border-[#D8E2F0] rounded-xl flex items-start gap-4"
         >
-          <div className="p-2.5 rounded-lg bg-[#2EC4A8]/10 text-[#2EC4A8] shrink-0">
+          <div className="p-2.5 rounded-lg bg-[#4F46E5]/10 text-[#4F46E5] shrink-0">
             <TrendingUp size={18} />
           </div>
           <div>

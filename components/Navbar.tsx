@@ -59,14 +59,14 @@ export default function Navbar() {
     >
       {/* Scroll progress bar */}
       <div
-        className="absolute bottom-0 left-0 h-[2px] bg-[#2EC4A8] transition-all duration-100 ease-linear"
+        className="absolute bottom-0 left-0 h-[2px] bg-[#4F46E5] transition-all duration-100 ease-linear"
         style={{ width: `${progress}%` }}
       />
 
       <div className="max-w-6xl mx-auto px-8 py-5 flex items-center justify-between">
         {/* Logo */}
         <a href="#" className="flex items-center gap-2">
-          <span className="font-serif text-base font-bold text-[#0D1B2E] tracking-wide">PDN</span>
+          <span className="font-serif text-base font-bold text-[#0D1B2E] tracking-wide">Phan Dinh Nhat</span>
           <span className="text-[10px] text-[#8999BB] tracking-[0.25em] uppercase hidden sm:block">
             Portfolio
           </span>
@@ -88,7 +88,7 @@ export default function Navbar() {
                 {/* Active underline */}
                 <motion.span
                   layoutId="nav-underline"
-                  className="absolute -bottom-0.5 left-0 right-0 h-[1.5px] bg-[#2EC4A8] rounded-full"
+                  className="absolute -bottom-0.5 left-0 right-0 h-[1.5px] bg-[#4F46E5] rounded-full"
                   initial={false}
                   animate={{ opacity: isActive ? 1 : 0 }}
                   transition={{ duration: 0.2 }}
@@ -102,7 +102,7 @@ export default function Navbar() {
           <ThemeToggle />
           <a
             href="#contact"
-            className="hidden md:block px-5 py-2 text-xs font-semibold tracking-widest uppercase text-white bg-[#2EC4A8] hover:bg-[#25A890] rounded-md transition-colors duration-200"
+            className="hidden md:block px-5 py-2 text-xs font-semibold tracking-widest uppercase text-white bg-[#4F46E5] hover:bg-[#3730A3] rounded-md transition-colors duration-200"
           >
             Hire Me
           </a>
@@ -134,7 +134,7 @@ export default function Navbar() {
               >
                 {link.label}
                 {isActive && (
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#2EC4A8]" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#4F46E5]" />
                 )}
               </a>
             );

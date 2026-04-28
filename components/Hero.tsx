@@ -28,7 +28,7 @@ const steps = [
     title: "Analysis & BPMN",
     hint: "Process mapping · FIT/GAP",
     icon: GitBranch,
-    color: "#2EC4A8",
+    color: "#4F46E5",
   },
   {
     num: "03",
@@ -49,7 +49,7 @@ const steps = [
     title: "Go-Live & UAT",
     hint: "Training · Testing · Support",
     icon: CheckCircle,
-    color: "#2EC4A8",
+    color: "#4F46E5",
   },
 ];
 
@@ -183,8 +183,8 @@ function ProcessFlow() {
       <div className="mt-5 pt-4 border-t border-[#D8E2F0] flex items-center justify-between">
         <p className="text-[11px] text-[#8999BB]">End-to-end BA delivery</p>
         <div className="flex items-center gap-1.5">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#2EC4A8]" />
-          <span className="text-[11px] text-[#2EC4A8] font-medium">AES Vietnam · Active</span>
+          <span className="w-1.5 h-1.5 rounded-full bg-[#4F46E5]" />
+          <span className="text-[11px] text-[#4F46E5] font-medium">AES Vietnam · Active</span>
         </div>
       </div>
     </div>
@@ -216,8 +216,8 @@ export default function Hero() {
               className="flex items-center gap-2 mb-5"
             >
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#2EC4A8] opacity-60" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#2EC4A8]" />
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#4F46E5] opacity-60" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#4F46E5]" />
               </span>
               <span className="text-xs text-[#4A5E7A] font-medium tracking-wide">
                 Open to opportunities
@@ -251,8 +251,8 @@ export default function Hero() {
               transition={{ duration: 0.5, delay: 0.38 }}
               className="flex items-center gap-3 mb-5"
             >
-              <div className="h-px w-5 bg-[#2EC4A8]" />
-              <span className="text-[#2EC4A8] text-xs tracking-[0.2em] uppercase font-medium">
+              <div className="h-px w-5 bg-[#4F46E5]" />
+              <span className="text-[#4F46E5] text-xs tracking-[0.2em] uppercase font-medium">
                 Manufacturing Intelligence
               </span>
             </motion.div>
@@ -294,7 +294,7 @@ export default function Hero() {
             >
               <a
                 href="#projects"
-                className="flex items-center justify-center gap-2 px-7 py-3 bg-[#2EC4A8] hover:bg-[#25A890] text-white font-semibold rounded-lg transition-colors duration-200 text-sm"
+                className="flex items-center justify-center gap-2 px-7 py-3 bg-[#4F46E5] hover:bg-[#3730A3] text-white font-semibold rounded-lg transition-colors duration-200 text-sm"
               >
                 <Layers size={15} />
                 View Projects

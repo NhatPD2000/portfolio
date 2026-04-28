@@ -71,7 +71,7 @@ export default function Experience() {
                 {/* Timeline dot */}
                 <div className={`absolute left-[15px] top-6 w-3.5 h-3.5 rounded-full border-2 hidden sm:block ${
                   exp.current
-                    ? "bg-[#2EC4A8] border-[#2EC4A8] shadow-[0_0_0_4px_rgba(46,196,168,0.15)]"
+                    ? "bg-[#4F46E5] border-[#4F46E5] shadow-[0_0_0_4px_rgba(79,70,229,0.15)]"
                     : "bg-[#D8E2F0] border-[#C8D5E8]"
                 }`} />
 
@@ -81,7 +81,7 @@ export default function Experience() {
                     className="h-[3px] w-full"
                     style={{
                       background: exp.current
-                        ? "linear-gradient(90deg, #2EC4A8, #4F8EF7)"
+                        ? "linear-gradient(90deg, #4F46E5, #818CF8)"
                         : "linear-gradient(90deg, #C8D5E8, transparent)",
                     }}
                   />
@@ -94,7 +94,7 @@ export default function Experience() {
                           <Building2 size={12} className="text-[#8999BB]" />
                           <span className="text-xs text-[#8999BB]">{exp.company}</span>
                           {exp.current && (
-                            <span className="text-[10px] px-2 py-0.5 rounded bg-[#2EC4A8]/12 text-[#2EC4A8] border border-[#2EC4A8]/20 font-medium">
+                            <span className="text-[10px] px-2 py-0.5 rounded bg-[#4F46E5]/10 text-[#4F46E5] border border-[#4F46E5]/20 font-medium">
                               Current
                             </span>
                           )}
@@ -123,7 +123,7 @@ export default function Experience() {
                           transition={{ duration: 0.4, delay: idx * 0.08 }}
                           className="flex items-start gap-2.5 text-sm text-[#4A5E7A]"
                         >
-                          <span className="text-[#2EC4A8] mt-1.5 shrink-0 text-xs">▸</span>
+                          <span className="text-[#4F46E5] mt-1.5 shrink-0 text-xs">▸</span>
                           {point}
                         </motion.li>
                       ))}
@@ -131,7 +131,7 @@ export default function Experience() {
 
                     {/* Key result callout */}
                     <div className="flex items-start gap-3 px-4 py-3 mb-4 rounded-lg bg-white border border-[#D8E2F0]">
-                      <TrendingUp size={14} className="text-[#2EC4A8] shrink-0 mt-0.5" />
+                      <TrendingUp size={14} className="text-[#4F46E5] shrink-0 mt-0.5" />
                       <p className="text-xs text-[#2A3B55] font-medium leading-relaxed">{exp.keyResult}</p>
                     </div>
 

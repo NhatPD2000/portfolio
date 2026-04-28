@@ -221,7 +221,7 @@ export default function Skills() {
                 style={{ flexShrink: 1, flexBasis: "0%", minWidth: "72px" }}
                 className={`relative overflow-hidden rounded-2xl cursor-pointer bg-white transition-colors duration-300 ${
                   isActive
-                    ? "border border-[#2EC4A8]/40 shadow-lg shadow-[#2EC4A8]/10"
+                    ? "border border-[#4F46E5]/40 shadow-lg shadow-[#4F46E5]/10"
                     : "border border-[#D8E2F0] hover:border-[#C8D5E8] shadow-sm"
                 }`}
                 onMouseEnter={() => !isTouchDevice && setActive(cat.num)}
@@ -475,7 +475,7 @@ export default function Skills() {
         >
           <a
             href="#projects"
-            className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium text-[#4A5E7A] hover:text-[#2EC4A8] transition-colors duration-200 group"
+            className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium text-[#4A5E7A] hover:text-[#4F46E5] transition-colors duration-200 group"
           >
             <span>See these skills in action</span>
             <svg

@@ -52,13 +52,13 @@ export default function Contact() {
             >
               {contactItems.map((item) => (
                 <div key={item.label} className="flex items-center gap-4 p-4 bg-white border border-[#D8E2F0] rounded-xl">
-                  <div className="p-2 rounded-lg bg-[#2EC4A8]/10 text-[#2EC4A8] shrink-0">
+                  <div className="p-2 rounded-lg bg-[#4F46E5]/10 text-[#4F46E5] shrink-0">
                     <item.icon size={16} />
                   </div>
                   <div>
                     <p className="text-[10px] text-[#8999BB] mb-0.5 uppercase tracking-widest">{item.label}</p>
                     {item.href ? (
-                      <a href={item.href} className="text-[#0D1B2E] hover:text-[#2EC4A8] transition-colors text-sm font-medium">
+                      <a href={item.href} className="text-[#0D1B2E] hover:text-[#4F46E5] transition-colors text-sm font-medium">
                         {item.value}
                       </a>
                     ) : (
@@ -75,7 +75,7 @@ export default function Contact() {
                     href={s.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-3 border border-[#D8E2F0] hover:border-[#2EC4A8]/40 hover:text-[#2EC4A8] rounded-xl text-sm text-[#4A5E7A] transition-all duration-200 flex-1 justify-center"
+                    className="flex items-center gap-2 px-4 py-3 border border-[#D8E2F0] hover:border-[#4F46E5]/40 hover:text-[#4F46E5] rounded-xl text-sm text-[#4A5E7A] transition-all duration-200 flex-1 justify-center"
                   >
                     <s.icon size={14} />
                     <span className="text-xs tracking-wide">{s.label}</span>
@@ -108,7 +108,7 @@ export default function Contact() {
                 <div className="space-y-2 mb-8">
                   {openTo.map((item) => (
                     <div key={item} className="flex items-center gap-2 text-sm text-[#4A5E7A]">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#2EC4A8]/60 shrink-0" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#4F46E5]/60 shrink-0" />
                       {item}
                     </div>
                   ))}
@@ -117,7 +117,7 @@ export default function Contact() {
 
               <a
                 href="mailto:phandinhnhat806@gmail.com"
-                className="relative inline-flex items-center gap-2 px-6 py-3 bg-[#2EC4A8] hover:bg-[#25A890] text-white font-semibold rounded-lg transition-colors duration-200 w-fit text-sm"
+                className="relative inline-flex items-center gap-2 px-6 py-3 bg-[#4F46E5] hover:bg-[#3730A3] text-white font-semibold rounded-lg transition-colors duration-200 w-fit text-sm"
               >
                 Send a message
                 <ArrowUpRight size={15} />
