@@ -137,13 +137,75 @@ export default function Skills() {
           </p>
         </motion.div>
 
-        {/* Cards */}
+        {/* Mobile accordion */}
+        <div className="md:hidden space-y-3 mb-12">
+          {categories.map((cat) => {
+            const isOpen = active === cat.num;
+            const Icon = cat.icon;
+            return (
+              <div key={cat.num} className="bg-white border border-[#D8E2F0] rounded-2xl overflow-hidden">
+                <button
+                  onClick={() => setActive(isOpen ? null : cat.num)}
+                  className="w-full flex items-center gap-4 p-5 text-left"
+                >
+                  <div className="p-2 rounded-xl shrink-0" style={{ background: `${cat.accentColor}15` }}>
+                    <Icon size={20} style={{ color: cat.accentColor }} />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="font-semibold text-[#0D1B2E] text-sm">{cat.title}</p>
+                    <p className="text-xs text-[#8999BB]">{cat.skills.length} skills</p>
+                  </div>
+                  <div className="flex items-center gap-3 shrink-0">
+                    <span className="label-amber">{cat.num}</span>
+                    <ChevronDown
+                      size={16}
+                      className="text-[#8999BB] transition-transform duration-300"
+                      style={{ transform: isOpen ? "rotate(180deg)" : "rotate(0deg)" }}
+                    />
+                  </div>
+                </button>
+                <AnimatePresence>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-5 pb-5 pt-3 grid grid-cols-2 gap-2 border-t border-[#D8E2F0]">
+                        {cat.skills.map((skill) => {
+                          const SkillIcon = skill.icon;
+                          return (
+                            <div
+                              key={skill.name}
+                              className="flex items-center gap-2 px-3 py-2 rounded-lg"
+                              style={{
+                                background: `${cat.accentColor}12`,
+                                border: `1px solid ${cat.accentColor}30`,
+                              }}
+                            >
+                              <SkillIcon size={12} strokeWidth={1.5} style={{ color: cat.accentColor, flexShrink: 0 }} />
+                              <span className="text-xs text-[#2A3B55] font-medium truncate">{skill.name}</span>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Desktop cards */}
         <motion.div
           initial={{ opacity: 0, y: 32 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.1 }}
-          className="flex gap-3 overflow-x-auto md:overflow-x-visible"
+          className="hidden md:flex gap-3"
           style={{ height: "640px" }}
         >
           {categories.map((cat) => {
