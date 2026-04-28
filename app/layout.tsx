@@ -17,8 +17,25 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   title: "Phan Dinh Nhat — Business Analyst",
   description:
-    "Business Analyst specializing in MES/MOM, ERP systems, and manufacturing digitalization. 3 years of experience bridging industrial processes with smart technology.",
-  keywords: ["Business Analyst", "MES", "ERP", "Manufacturing", "Vietnam"],
+    "Business Analyst specializing in MES/MOM, ERP systems, and manufacturing digitalization. 3+ years delivering factory go-lives, BPMN workflows, and IoT integrations.",
+  keywords: ["Business Analyst", "MES", "ERP", "Manufacturing", "Vietnam", "Agile", "BPMN", "IoT"],
+  authors: [{ name: "Phan Dinh Nhat" }],
+  metadataBase: new URL("https://nhatphan2000.vercel.app"),
+  openGraph: {
+    title: "Phan Dinh Nhat — Business Analyst",
+    description:
+      "3+ years in manufacturing tech — MES, ERP, IoT integrations and factory go-lives. Based in Ho Chi Minh City.",
+    url: "https://nhatphan2000.vercel.app",
+    siteName: "Phan Dinh Nhat Portfolio",
+    type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Phan Dinh Nhat — Business Analyst",
+    description:
+      "3+ years in manufacturing tech — MES, ERP, IoT integrations and factory go-lives.",
+  },
 };
 
 export default function RootLayout({

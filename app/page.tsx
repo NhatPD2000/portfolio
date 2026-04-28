@@ -5,10 +5,11 @@ import Skills from "@/components/Skills";
 import Experience from "@/components/Experience";
 import Projects from "@/components/Projects";
 import Contact from "@/components/Contact";
+import BackToTop from "@/components/BackToTop";
 
 export default function Home() {
   return (
-    <main className="bg-[#070C18]">
+    <main className="bg-[#F7F9FC]">
       <Navbar />
       <Hero />
       <About />
@@ -16,6 +17,7 @@ export default function Home() {
       <Experience />
       <Projects />
       <Contact />
+      <BackToTop />
     </main>
   );
 }
