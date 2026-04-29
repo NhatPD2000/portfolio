@@ -1,15 +1,7 @@
 "use client";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Building2, Calendar, MapPin, TrendingUp, ChevronDown, FileText, ExternalLink, Workflow, Users } from "lucide-react";
-
-type Deliverable = {
-  name: string;
-  description: string;
-  link?: string;
-  pages?: number;
-  screens?: number;
-};
+import { Building2, Calendar, MapPin, TrendingUp, ChevronDown } from "lucide-react";
 
 type Client = {
   name: string;
@@ -17,9 +9,6 @@ type Client = {
   outcome: string;
   scope: string[];
   tags: string[];
-  problem?: string;
-  analysis?: string[];
-  deliverables?: Deliverable[];
 };
 
 type Experience = {
@@ -64,43 +53,6 @@ const experiences: Experience[] = [
           "Go-live support and operator training",
         ],
         tags: ["MES", "IoT", "BRD/FSD", "Figma"],
-        problem: "Manual shop floor tracking caused 40% data loss, 2-day reporting delays, and inability to trace quality issues back to production batches",
-        analysis: [
-          "Conducted 7 stakeholder interviews (5 operators, 2 supervisors, 1 plant manager)",
-          "Mapped 5 core workflows using BPMN swimlane diagrams",
-          "Identified 12 critical pain points in current manual process",
-          "Performed gap analysis between As-Is and To-Be states",
-        ],
-        deliverables: [
-          {
-            name: "Business Requirement Document (BRD)",
-            description: "Complete requirements specification with stakeholder sign-off",
-            pages: 45,
-            link: "#",
-          },
-          {
-            name: "Functional Specification Design (FSD)",
-            description: "Detailed system design with mockups and data flow diagrams",
-            pages: 120,
-            link: "#",
-          },
-          {
-            name: "Figma Prototype",
-            description: "Interactive UI/UX prototype for operator workflows",
-            screens: 45,
-            link: "#",
-          },
-          {
-            name: "Process Flowcharts",
-            description: "BPMN diagrams for 5 core manufacturing workflows",
-            link: "#",
-          },
-          {
-            name: "Use Case Diagrams",
-            description: "12 actors, 28 use cases covering all system interactions",
-            link: "#",
-          },
-        ],
       },
       {
         name: "PNJ — Phú Nhuận Jewelry",
@@ -113,37 +65,6 @@ const experiences: Experience[] = [
           "Pilot testing and go-live coordination",
         ],
         tags: ["MES", "Figma", "Workflow Design", "Go-live"],
-        problem: "Jewelry production lacked real-time visibility into work-in-progress, causing bottlenecks and quality traceability issues",
-        analysis: [
-          "Shadowed 4 production lines to understand jewelry manufacturing flow",
-          "Interviewed 6 stakeholders across production, QC, and management",
-          "Created value stream map identifying 8 waste points",
-          "Designed 3 workflow prototypes and validated with operators",
-        ],
-        deliverables: [
-          {
-            name: "Business Requirement Document (BRD)",
-            description: "Requirements for jewelry production tracking system",
-            pages: 38,
-            link: "#",
-          },
-          {
-            name: "Figma Prototype",
-            description: "Operator interface for jewelry production workflows",
-            screens: 32,
-            link: "#",
-          },
-          {
-            name: "Process Maps",
-            description: "Value stream mapping and workflow diagrams",
-            link: "#",
-          },
-          {
-            name: "UAT Test Cases",
-            description: "150+ test scenarios for pilot validation",
-            link: "#",
-          },
-        ],
       },
     ],
   },
@@ -173,36 +94,6 @@ const experiences: Experience[] = [
           "Approval workflow — multi-level authorization flows",
         ],
         tags: ["ERP", "Oracle Apex", "Agile", "UAT"],
-        problem: "Disconnected Excel-based processes across sales, warehouse, and service teams led to data inconsistency and 3-day order processing delays",
-        analysis: [
-          "Facilitated 5 requirements workshops with cross-functional teams",
-          "Documented 45 user stories across 4 modules",
-          "Created entity-relationship diagrams for database design",
-          "Defined acceptance criteria for 12 Agile sprints",
-        ],
-        deliverables: [
-          {
-            name: "Business Requirement Specification (BRS)",
-            description: "Complete ERP requirements across 4 modules",
-            pages: 68,
-            link: "#",
-          },
-          {
-            name: "User Stories & Acceptance Criteria",
-            description: "45 user stories with testable acceptance criteria",
-            link: "#",
-          },
-          {
-            name: "Database Schema Design",
-            description: "ERD and data dictionary for Oracle Apex",
-            link: "#",
-          },
-          {
-            name: "UAT Test Plan",
-            description: "Test scenarios and sign-off documentation",
-            link: "#",
-          },
-        ],
       },
     ],
   },
@@ -242,7 +133,7 @@ const experiences: Experience[] = [
   },
 ];
 
-export default function ExperienceEnhanced() {
+export default function Experience() {
   const [expanded, setExpanded] = useState<Set<string>>(new Set());
 
   const toggle = (num: string) => {
@@ -388,7 +279,7 @@ export default function ExperienceEnhanced() {
                       </button>
                     )}
 
-                    {/* Expanded client cards - ENHANCED VERSION */}
+                    {/* Expanded client cards */}
                     <AnimatePresence>
                       {isExpanded && exp.clients.length > 0 && (
                         <motion.div
@@ -398,110 +289,27 @@ export default function ExperienceEnhanced() {
                           transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
                           className="overflow-hidden"
                         >
-                          <div className="px-6 pb-6 pt-3 space-y-4">
+                          <div className="px-6 pb-6 pt-3 grid sm:grid-cols-2 gap-3">
                             {exp.clients.map((client) => (
                               <div
                                 key={client.name}
-                                className="p-5 bg-[var(--bg-secondary)] border border-[var(--border)] rounded-lg space-y-4"
+                                className="p-4 bg-[var(--bg-secondary)] border border-[var(--border)] rounded-lg"
                               >
-                                {/* Client header */}
-                                <div>
-                                  <p className="font-semibold text-[var(--text-primary)] text-base leading-tight">{client.name}</p>
+                                <div className="mb-3">
+                                  <p className="font-semibold text-[var(--text-primary)] text-sm leading-tight">{client.name}</p>
                                   <p className="text-[10px] text-[var(--text-muted)] uppercase tracking-wider mt-0.5">{client.industry}</p>
                                 </div>
-
-                                {/* Problem statement */}
-                                {client.problem && (
-                                  <div className="p-3 bg-red-500/5 border border-red-500/20 rounded">
-                                    <div className="flex items-start gap-2 mb-1.5">
-                                      <span className="text-xs font-semibold text-red-600 dark:text-red-400">Problem</span>
-                                    </div>
-                                    <p className="text-xs text-[var(--text-secondary)] leading-relaxed">{client.problem}</p>
-                                  </div>
-                                )}
-
-                                {/* Analysis process */}
-                                {client.analysis && client.analysis.length > 0 && (
-                                  <div>
-                                    <div className="flex items-center gap-2 mb-2">
-                                      <Users size={12} className="text-[var(--accent)]" />
-                                      <span className="text-xs font-semibold text-[var(--text-primary)]">Analysis Process</span>
-                                    </div>
-                                    <ul className="space-y-1.5">
-                                      {client.analysis.map((item, idx) => (
-                                        <li key={idx} className="flex items-start gap-2 text-xs text-[var(--text-secondary)]">
-                                          <span className="text-[var(--accent)] mt-0.5 shrink-0">▸</span>
-                                          {item}
-                                        </li>
-                                      ))}
-                                    </ul>
-                                  </div>
-                                )}
-
-                                {/* Scope */}
-                                <div>
-                                  <div className="flex items-center gap-2 mb-2">
-                                    <Workflow size={12} className="text-[var(--accent)]" />
-                                    <span className="text-xs font-semibold text-[var(--text-primary)]">Solution Scope</span>
-                                  </div>
-                                  <ul className="space-y-1.5">
-                                    {client.scope.map((s) => (
-                                      <li key={s} className="flex items-start gap-2 text-xs text-[var(--text-secondary)]">
-                                        <span className="text-[var(--accent)] mt-0.5 shrink-0">▸</span>
-                                        {s}
-                                      </li>
-                                    ))}
-                                  </ul>
-                                </div>
-
-                                {/* Deliverables */}
-                                {client.deliverables && client.deliverables.length > 0 && (
-                                  <div>
-                                    <div className="flex items-center gap-2 mb-2">
-                                      <FileText size={12} className="text-[var(--accent)]" />
-                                      <span className="text-xs font-semibold text-[var(--text-primary)]">Deliverables</span>
-                                    </div>
-                                    <div className="space-y-2">
-                                      {client.deliverables.map((deliverable) => (
-                                        <div
-                                          key={deliverable.name}
-                                          className="flex items-start justify-between gap-3 p-2.5 bg-[var(--bg-primary)] border border-[var(--border)] rounded"
-                                        >
-                                          <div className="flex-1 min-w-0">
-                                            <p className="text-xs font-medium text-[var(--text-primary)] mb-0.5">{deliverable.name}</p>
-                                            <p className="text-[10px] text-[var(--text-muted)] leading-snug">{deliverable.description}</p>
-                                            {(deliverable.pages || deliverable.screens) && (
-                                              <p className="text-[10px] text-[var(--accent)] mt-1">
-                                                {deliverable.pages && `${deliverable.pages} pages`}
-                                                {deliverable.screens && `${deliverable.screens} screens`}
-                                              </p>
-                                            )}
-                                          </div>
-                                          {deliverable.link && (
-                                            <a
-                                              href={deliverable.link}
-                                              className="shrink-0 p-1.5 hover:bg-[var(--accent)]/10 rounded transition-colors"
-                                              aria-label={`View ${deliverable.name}`}
-                                            >
-                                              <ExternalLink size={12} className="text-[var(--accent)]" />
-                                            </a>
-                                          )}
-                                        </div>
-                                      ))}
-                                    </div>
-                                  </div>
-                                )}
-
-                                {/* Outcome */}
-                                <div className="pt-3 border-t border-[var(--border)]">
-                                  <div className="flex items-start gap-2 mb-2">
-                                    <TrendingUp size={12} className="text-green-600 dark:text-green-400 mt-0.5" />
-                                    <div>
-                                      <span className="text-xs font-semibold text-green-600 dark:text-green-400 block mb-1">Outcome</span>
-                                      <p className="text-xs text-[var(--text-secondary)] leading-relaxed">{client.outcome}</p>
-                                    </div>
-                                  </div>
-                                  <div className="flex flex-wrap gap-1 mt-2">
+                                <ul className="space-y-1.5 mb-3">
+                                  {client.scope.map((s) => (
+                                    <li key={s} className="flex items-start gap-2 text-xs text-[var(--text-secondary)]">
+                                      <span className="text-[var(--accent)] mt-0.5 shrink-0">▸</span>
+                                      {s}
+                                    </li>
+                                  ))}
+                                </ul>
+                                <div className="pt-2.5 border-t border-[var(--border)]">
+                                  <p className="text-[10px] text-[var(--text-muted)] font-medium leading-snug mb-2">{client.outcome}</p>
+                                  <div className="flex flex-wrap gap-1">
                                     {client.tags.map((t) => (
                                       <span
                                         key={t}
