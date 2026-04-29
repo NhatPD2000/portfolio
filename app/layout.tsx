@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import { Playfair_Display } from "next/font/google";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 
 const geist = Geist({
@@ -47,6 +48,7 @@ export default function RootLayout({
       <body className="min-h-full">
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
           {children}
+          <Analytics />
         </ThemeProvider>
       </body>
     </html>

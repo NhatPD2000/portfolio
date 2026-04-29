@@ -1,8 +1,10 @@
 "use client";
+import { useEffect, useState } from "react";
+import { useTheme } from "next-themes";
 import { motion } from "framer-motion";
 import {
   FileText, GitBranch, CheckSquare, ListChecks,
-  Code2, ArrowRight,
+  Code2, ArrowRight, Layout, BookOpen, Wrench,
 } from "lucide-react";
 
 const aiTools = [
@@ -54,9 +56,44 @@ const workflows = [
     impact: "Zero missed reqs",
     impactColor: "#F59E0B",
   },
+  {
+    icon: Layout,
+    category: "HTML Prototyping",
+    input: "Approved wireframes & interaction notes",
+    tool: "Claude Code",
+    toolColor: "#F59E0B",
+    output: "Clickable HTML/CSS prototype for stakeholder demo",
+    impact: "Same-day demo",
+    impactColor: "#C084FC",
+  },
+  {
+    icon: BookOpen,
+    category: "Domain Knowledge Base",
+    input: "Process docs, SOPs & tribal knowledge",
+    tool: "Claude",
+    toolColor: "#D97706",
+    output: "Structured HTML reference — searchable & shareable",
+    impact: "Zero onboarding lag",
+    impactColor: "#10B981",
+  },
+  {
+    icon: Wrench,
+    category: "BA Mini-Apps",
+    input: "Repetitive calculation or template need",
+    tool: "Claude Code",
+    toolColor: "#F59E0B",
+    output: "Custom web tool deployed for the team (e.g. effort estimator, UAT tracker)",
+    impact: "Reusable toolkit",
+    impactColor: "#06B6D4",
+  },
 ];
 
 export default function AIWorkflows() {
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  const isDark = !mounted || resolvedTheme === "dark";
+
   return (
     <section className="py-16 px-6">
       <div className="max-w-6xl mx-auto">
@@ -67,24 +104,48 @@ export default function AIWorkflows() {
           transition={{ duration: 0.65 }}
           className="rounded-2xl overflow-hidden"
           style={{
-            background: "linear-gradient(145deg, #0D1B2E 0%, #152235 60%, #0D1B2E 100%)",
-            border: "1px solid rgba(79,70,229,0.25)",
+            background: isDark
+              ? "linear-gradient(145deg, #0D1B2E 0%, #152235 60%, #0D1B2E 100%)"
+              : "linear-gradient(145deg, #EEF2FF 0%, #F0F9FF 55%, #ECFDF5 100%)",
+            border: isDark
+              ? "1px solid rgba(79,70,229,0.25)"
+              : "1px solid rgba(79,70,229,0.2)",
+            boxShadow: isDark
+              ? "none"
+              : "0 8px 40px rgba(79,70,229,0.08), 0 1px 0 rgba(255,255,255,0.8) inset",
           }}
         >
           {/* Header */}
-          <div className="px-8 pt-8 pb-6 border-b border-white/10 flex flex-wrap items-start justify-between gap-6">
+          <div
+            className="px-8 pt-8 pb-6 flex flex-wrap items-start justify-between gap-6"
+            style={{
+              borderBottom: isDark
+                ? "1px solid rgba(255,255,255,0.1)"
+                : "1px solid rgba(79,70,229,0.12)",
+            }}
+          >
             <div>
               <div className="flex items-center gap-2 mb-3">
-                <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
-                <p className="text-[10px] font-semibold tracking-[0.25em] uppercase text-cyan-400">
+                <div className="w-1.5 h-1.5 rounded-full bg-cyan-500 animate-pulse" />
+                <p
+                  className="text-[10px] font-semibold tracking-[0.25em] uppercase"
+                  style={{ color: isDark ? "#22D3EE" : "#0891B2" }}
+                >
                   AI-Augmented Workflows
                 </p>
               </div>
-              <h2 className="font-serif text-2xl sm:text-3xl font-bold text-white mb-2 leading-tight">
+              <h2
+                className="font-serif text-2xl sm:text-3xl font-bold mb-2 leading-tight"
+                style={{ color: isDark ? "white" : "var(--text-primary)" }}
+              >
                 I don&apos;t just use AI —<br className="hidden sm:block" /> I build workflows with it
               </h2>
-              <p className="text-white/50 text-sm max-w-md leading-relaxed">
-                Every stage of the BA process, accelerated: from raw meeting notes to signed-off documentation.
+              <p
+                className="text-sm max-w-md leading-relaxed"
+                style={{ color: isDark ? "rgba(255,255,255,0.5)" : "var(--text-secondary)" }}
+              >
+                Every stage of the BA process, accelerated — from raw meeting notes to signed-off
+                documentation, prototypes, and team tools.
               </p>
             </div>
 
@@ -95,9 +156,9 @@ export default function AIWorkflows() {
                   key={tool.name}
                   className="text-[11px] font-semibold px-3 py-1.5 rounded-full"
                   style={{
-                    background: `${tool.color}18`,
+                    background: `${tool.color}${isDark ? "18" : "14"}`,
                     color: tool.color,
-                    border: `1px solid ${tool.color}35`,
+                    border: `1px solid ${tool.color}${isDark ? "35" : "45"}`,
                   }}
                 >
                   {tool.name}
@@ -107,7 +168,7 @@ export default function AIWorkflows() {
           </div>
 
           {/* Workflow rows */}
-          <div className="px-8 py-6 space-y-3">
+          <div className="px-8 py-6 space-y-2.5">
             {workflows.map((wf, i) => {
               const Icon = wf.icon;
               return (
@@ -116,31 +177,57 @@ export default function AIWorkflows() {
                   initial={{ opacity: 0, x: -16 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.45, delay: i * 0.08 }}
-                  className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 px-5 py-4 rounded-xl"
+                  transition={{ duration: 0.45, delay: i * 0.06 }}
+                  className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 px-5 py-3.5 rounded-xl"
                   style={{
-                    background: "rgba(255,255,255,0.04)",
-                    border: "1px solid rgba(255,255,255,0.07)",
+                    background: isDark
+                      ? "rgba(255,255,255,0.04)"
+                      : "rgba(255,255,255,0.75)",
+                    border: isDark
+                      ? "1px solid rgba(255,255,255,0.07)"
+                      : "1px solid rgba(79,70,229,0.1)",
+                    backdropFilter: isDark ? "none" : "blur(8px)",
                   }}
                 >
                   {/* Category label */}
-                  <div className="flex items-center gap-2.5 sm:w-48 shrink-0">
+                  <div className="flex items-center gap-2.5 sm:w-52 shrink-0">
                     <div
                       className="p-1.5 rounded-lg shrink-0"
-                      style={{ background: "rgba(255,255,255,0.08)" }}
+                      style={{
+                        background: isDark
+                          ? "rgba(255,255,255,0.08)"
+                          : `${wf.toolColor}18`,
+                      }}
                     >
                       <Icon size={12} style={{ color: wf.toolColor }} />
                     </div>
-                    <span className="text-[11px] font-semibold text-white/70 leading-tight">
+                    <span
+                      className="text-[11px] font-semibold leading-tight"
+                      style={{ color: isDark ? "rgba(255,255,255,0.7)" : "var(--text-primary)" }}
+                    >
                       {wf.category}
                     </span>
                   </div>
 
                   {/* Flow chain */}
                   <div className="flex flex-wrap items-center gap-2 flex-1 min-w-0">
-                    <span className="text-xs text-white/35 shrink-0 hidden sm:block">Input:</span>
-                    <span className="text-xs text-white/50 truncate max-w-[160px]">{wf.input}</span>
-                    <ArrowRight size={11} className="text-white/20 shrink-0" />
+                    <span
+                      className="text-xs shrink-0 hidden sm:block"
+                      style={{ color: isDark ? "rgba(255,255,255,0.3)" : "var(--text-muted)" }}
+                    >
+                      Input:
+                    </span>
+                    <span
+                      className="text-xs"
+                      style={{ color: isDark ? "rgba(255,255,255,0.5)" : "var(--text-secondary)" }}
+                    >
+                      {wf.input}
+                    </span>
+                    <ArrowRight
+                      size={11}
+                      className="shrink-0"
+                      style={{ color: isDark ? "rgba(255,255,255,0.2)" : "rgba(79,70,229,0.35)" }}
+                    />
                     <span
                       className="text-[11px] font-bold px-2 py-0.5 rounded shrink-0"
                       style={{
@@ -150,8 +237,17 @@ export default function AIWorkflows() {
                     >
                       {wf.tool}
                     </span>
-                    <ArrowRight size={11} className="text-white/20 shrink-0" />
-                    <span className="text-xs text-white/65">{wf.output}</span>
+                    <ArrowRight
+                      size={11}
+                      className="shrink-0"
+                      style={{ color: isDark ? "rgba(255,255,255,0.2)" : "rgba(79,70,229,0.35)" }}
+                    />
+                    <span
+                      className="text-xs"
+                      style={{ color: isDark ? "rgba(255,255,255,0.6)" : "var(--text-secondary)" }}
+                    >
+                      {wf.output}
+                    </span>
                   </div>
 
                   {/* Impact badge */}
@@ -161,7 +257,7 @@ export default function AIWorkflows() {
                       style={{
                         background: `${wf.impactColor}15`,
                         color: wf.impactColor,
-                        border: `1px solid ${wf.impactColor}30`,
+                        border: `1px solid ${wf.impactColor}35`,
                       }}
                     >
                       {wf.impact}
@@ -172,13 +268,21 @@ export default function AIWorkflows() {
             })}
           </div>
 
-          {/* Footer — portfolio meta */}
+          {/* Footer */}
           <div
-            className="px-8 py-4 flex items-center gap-3 border-t border-white/10"
-            style={{ background: "rgba(0,0,0,0.2)" }}
+            className="px-8 py-4 flex items-center gap-3"
+            style={{
+              background: isDark ? "rgba(0,0,0,0.2)" : "rgba(79,70,229,0.04)",
+              borderTop: isDark
+                ? "1px solid rgba(255,255,255,0.1)"
+                : "1px solid rgba(79,70,229,0.12)",
+            }}
           >
             <Code2 size={13} style={{ color: "#D97706" }} className="shrink-0" />
-            <p className="text-xs text-white/40 leading-relaxed">
+            <p
+              className="text-xs leading-relaxed"
+              style={{ color: isDark ? "rgba(255,255,255,0.4)" : "var(--text-muted)" }}
+            >
               This portfolio was designed and built using{" "}
               <span style={{ color: "#D97706" }} className="font-semibold">Claude Code</span>
               {" "}— a direct demonstration of AI-augmented development workflow in practice.

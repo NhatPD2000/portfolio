@@ -172,9 +172,9 @@ const levelBadgeClass: Record<Level, string> = {
 };
 
 const levelIdleClass: Record<Level, string> = {
-  Core:       "text-[var(--text-primary)]",
-  Proficient: "text-[var(--text-secondary)]",
-  Familiar:   "text-[var(--text-muted)]",
+  Core:       "text-white/80",
+  Proficient: "text-white/55",
+  Familiar:   "text-white/35",
 };
 
 export default function Skills() {
@@ -213,24 +213,47 @@ export default function Skills() {
             return (
               <div
                 key={cat.num}
-                className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-2xl overflow-hidden"
+                className="rounded-2xl overflow-hidden"
+                style={{
+                  background: cat.gradient,
+                  borderWidth: "1px",
+                  borderStyle: "solid",
+                  borderColor: `${cat.accentColor}50`,
+                }}
               >
                 <button
                   onClick={() => setActive(isOpen ? null : cat.num)}
                   className="w-full flex items-center gap-4 p-5 text-left"
                 >
-                  <div className="p-2 rounded-xl shrink-0" style={{ background: `${cat.accentColor}15` }}>
-                    <Icon size={20} style={{ color: cat.accentColor }} />
+                  <div
+                    className="p-2 rounded-xl shrink-0"
+                    style={{
+                      background: "rgba(0,0,0,0.35)",
+                      border: "1px solid rgba(255,255,255,0.18)",
+                      boxShadow: `0 0 12px ${cat.accentColor}40`,
+                    }}
+                  >
+                    {cat.num === "05" ? (
+                      <Image
+                        src="/claudecode-color.svg"
+                        alt="Claude Code"
+                        width={20}
+                        height={20}
+                        style={{ filter: "drop-shadow(0 0 6px #D97757)" }}
+                      />
+                    ) : (
+                      <Icon size={20} style={{ color: cat.accentColor, filter: `drop-shadow(0 0 4px ${cat.accentColor})` }} />
+                    )}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="font-semibold text-[var(--text-primary)] text-sm">{cat.title}</p>
-                    <p className="text-xs text-[var(--text-muted)]">{cat.skills.length} skills</p>
+                    <p className="font-semibold text-white/90 text-sm">{cat.title}</p>
+                    <p className="text-xs text-white/45">{cat.skills.length} skills</p>
                   </div>
                   <div className="flex items-center gap-3 shrink-0">
                     <span className="label-amber">{cat.num}</span>
                     <ChevronDown
                       size={16}
-                      className="text-[var(--text-muted)] transition-transform duration-300"
+                      className="text-white/40 transition-transform duration-300"
                       style={{ transform: isOpen ? "rotate(180deg)" : "rotate(0deg)" }}
                     />
                   </div>
@@ -244,7 +267,7 @@ export default function Skills() {
                       transition={{ duration: 0.3 }}
                       className="overflow-hidden"
                     >
-                      <div className="px-5 pb-5 pt-3 grid grid-cols-2 gap-2 border-t border-[var(--border)]">
+                      <div className="px-5 pb-5 pt-3 grid grid-cols-2 gap-2 border-t border-white/10">
                         {cat.skills.map((skill) => {
                           const SkillIcon = skill.icon;
                           return (
@@ -252,8 +275,8 @@ export default function Skills() {
                               key={skill.name}
                               className="flex items-center gap-2 px-3 py-2 rounded-lg"
                               style={{
-                                background: `${cat.accentColor}12`,
-                                border: `1px solid ${cat.accentColor}30`,
+                                background: "rgba(0,0,0,0.28)",
+                                border: "1px solid rgba(255,255,255,0.1)",
                               }}
                             >
                               <SkillIcon size={12} strokeWidth={1.5} style={{ color: cat.accentColor, flexShrink: 0 }} />
@@ -290,12 +313,17 @@ export default function Skills() {
                 key={cat.num}
                 animate={{ flexGrow: isActive ? 2.6 : 1 }}
                 transition={{ duration: 0.45, ease: [0.4, 0, 0.2, 1] }}
-                style={{ flexShrink: 1, flexBasis: "0%", minWidth: "72px" }}
-                className={`relative overflow-hidden rounded-2xl cursor-pointer bg-[var(--bg-secondary)] transition-colors duration-300 ${
-                  isActive
-                    ? "border border-[#4F46E5]/40 shadow-lg shadow-[#4F46E5]/10"
-                    : "border border-[var(--border)] hover:border-[var(--border-hover)] shadow-sm"
-                }`}
+                style={{
+                  flexShrink: 1,
+                  flexBasis: "0%",
+                  minWidth: "72px",
+                  background: cat.gradient,
+                  borderWidth: "1px",
+                  borderStyle: "solid",
+                  borderColor: isActive ? `${cat.accentColor}70` : `${cat.accentColor}40`,
+                  boxShadow: isActive ? `0 8px 40px ${cat.accentColor}25` : `0 2px 12px ${cat.accentColor}12`,
+                }}
+                className="relative overflow-hidden rounded-2xl cursor-pointer transition-[border-color,box-shadow] duration-300"
                 onMouseEnter={() => !isTouchDevice && setActive(cat.num)}
                 onMouseLeave={() => !isTouchDevice && setActive(null)}
                 onClick={() => setActive(isActive ? null : cat.num)}
@@ -319,25 +347,48 @@ export default function Skills() {
                             : cat.num === "02" ? "/skill-design-icon.svg"
                             : cat.num === "03" ? "/skill-tech-icon.svg"
                             : cat.num === "04" ? "/skill-soft-icon.svg"
-                            : "/skill-tech-icon.svg"
+                            : "/skill-ai-icon.svg"
                           }
                           alt={`${cat.title} illustration`}
                           width={180}
                           height={160}
-                          className="opacity-50"
+                          className="opacity-90"
+                          style={{ filter: `brightness(1.8) drop-shadow(0 0 24px ${cat.accentColor})` }}
                         />
                       </div>
 
-                      <ChevronDown size={10} className="text-[var(--border-hover)] mb-4 shrink-0 relative z-10" />
+                      <ChevronDown size={10} className="text-white/30 mb-4 shrink-0 relative z-10" />
 
-                      <Icon
-                        size={40}
-                        strokeWidth={1.2}
-                        className="shrink-0 mb-3"
-                        style={{ color: cat.accentColor, opacity: 0.8 }}
-                      />
-                      <div className="w-1 h-1 rounded-full bg-[var(--border-hover)] mb-4 shrink-0" />
-                      <div className="w-6 h-px bg-[var(--border)] mb-3 shrink-0" />
+                      {/* Glass icon badge */}
+                      <div
+                        className="relative z-10 shrink-0 mb-3 p-3 rounded-2xl"
+                        style={{
+                          background: "rgba(0,0,0,0.35)",
+                          border: "1px solid rgba(255,255,255,0.18)",
+                          boxShadow: `0 0 24px ${cat.num === "05" ? "#D97757" : cat.accentColor}40, inset 0 1px 0 rgba(255,255,255,0.12)`,
+                        }}
+                      >
+                        {cat.num === "05" ? (
+                          <Image
+                            src="/claudecode-color.svg"
+                            alt="Claude Code"
+                            width={40}
+                            height={40}
+                            style={{ filter: "drop-shadow(0 0 10px #D97757)" }}
+                          />
+                        ) : (
+                          <Icon
+                            size={40}
+                            strokeWidth={1.2}
+                            style={{
+                              color: cat.accentColor,
+                              filter: `drop-shadow(0 0 8px ${cat.accentColor})`,
+                            }}
+                          />
+                        )}
+                      </div>
+                      <div className="w-1 h-1 rounded-full bg-white/20 mb-4 shrink-0 relative z-10" />
+                      <div className="w-6 h-px bg-white/15 mb-3 shrink-0 relative z-10" />
 
                       {/* Skill pills */}
                       <div className="flex flex-col gap-1.5 flex-1 overflow-hidden w-full px-3">
@@ -348,8 +399,8 @@ export default function Skills() {
                               key={skill.name}
                               className="flex items-center gap-2 w-full px-2.5 py-1.5 rounded-md"
                               style={{
-                                background: `${cat.accentColor}14`,
-                                border: `1px solid ${cat.accentColor}35`,
+                                background: "rgba(0,0,0,0.28)",
+                                border: "1px solid rgba(255,255,255,0.1)",
                               }}
                             >
                               <SkillIcon
@@ -366,7 +417,7 @@ export default function Skills() {
                       </div>
 
                       <div className="flex flex-col items-center gap-1.5 mt-3 shrink-0">
-                        <p className="text-[var(--text-muted)] text-[9px] tracking-[0.2em] uppercase font-medium text-center leading-tight px-1">
+                        <p className="text-white/40 text-[9px] tracking-[0.2em] uppercase font-medium text-center leading-tight px-1">
                           {cat.shortTitle}
                         </p>
                         <p className="label-amber">{cat.num}</p>
@@ -386,10 +437,7 @@ export default function Skills() {
                       transition={{ duration: 0.25, delay: 0.08 }}
                       className="absolute inset-0 flex flex-col"
                     >
-                      <div
-                        className="flex-1 relative overflow-hidden"
-                        style={{ background: cat.gradient }}
-                      >
+                      <div className="flex-1 relative overflow-hidden">
                         {/* Noise texture */}
                         <div
                           className="absolute inset-0 pointer-events-none"
@@ -403,7 +451,17 @@ export default function Skills() {
                         <div className="relative z-10 flex items-center justify-between px-5 pt-5 pb-3">
                           <div className="flex items-center gap-2.5">
                             <div className="p-1.5 rounded-lg" style={{ background: "rgba(0,0,0,0.3)" }}>
-                              <Icon size={16} style={{ color: cat.accentColor }} />
+                              {cat.num === "05" ? (
+                                <Image
+                                  src="/claudecode-color.svg"
+                                  alt="Claude Code"
+                                  width={16}
+                                  height={16}
+                                  style={{ filter: "drop-shadow(0 0 4px #D97757)" }}
+                                />
+                              ) : (
+                                <Icon size={16} style={{ color: cat.accentColor }} />
+                              )}
                             </div>
                             <p className="text-white/90 text-[11px] font-semibold tracking-[0.15em] uppercase">
                               {cat.title}
@@ -466,7 +524,7 @@ export default function Skills() {
                                 : cat.num === "02" ? "/skill-design-icon.svg"
                                 : cat.num === "03" ? "/skill-tech-icon.svg"
                                 : cat.num === "04" ? "/skill-soft-icon.svg"
-                                : "/skill-tech-icon.svg"
+                                : "/skill-ai-icon.svg"
                               }
                               alt={`${cat.title} illustration`}
                               width={140}
