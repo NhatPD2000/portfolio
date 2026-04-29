@@ -16,7 +16,7 @@ const highlights = [
   {
     icon: GraduationCap,
     title: "Background",
-    desc: "B.A. English Language — HCMUT · Translates complex technical systems into language stakeholders understand",
+    desc: "B.A. English Language — HUTECH · Translates complex technical systems into language stakeholders understand",
   },
 ];
 
@@ -29,10 +29,9 @@ const metrics = [
 
 export default function About() {
   return (
-    <section id="about" className="py-28 px-6 bg-white">
+    <section id="about" className="py-28 px-6">
       <div className="max-w-6xl mx-auto">
 
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -42,26 +41,25 @@ export default function About() {
         >
           <p className="label-amber mb-4">About Me</p>
           <div className="grid md:grid-cols-2 gap-12 items-end">
-            <h2 className="font-serif text-4xl sm:text-5xl font-bold text-[#0D1B2E] leading-tight">
+            <h2 className="font-serif text-4xl sm:text-5xl font-bold text-[var(--text-primary)] leading-tight">
               Turning complex processes into{" "}
-              <span className="text-[#4F46E5]">clear digital systems</span>
+              <span className="text-[var(--accent)]">clear digital systems</span>
             </h2>
             <div>
-              <p className="text-[#4A5E7A] leading-relaxed mb-4 text-[15px]">
+              <p className="text-[var(--text-secondary)] leading-relaxed mb-4 text-[15px]">
                 I&apos;m a Business Analyst with 3+ years of experience in manufacturing technology — implementing MES systems on factory floors and digitizing ERP workflows for enterprise clients.
               </p>
-              <p className="text-[#4A5E7A] leading-relaxed text-[15px]">
+              <p className="text-[var(--text-secondary)] leading-relaxed text-[15px]">
                 I speak both the language of the shop floor and the boardroom, translating production realities into requirements that developers can build and operators can adopt.
               </p>
-              <div className="flex items-center gap-2 text-[#8999BB] text-sm mt-5">
-                <MapPin size={13} className="text-[#4F46E5]" />
+              <div className="flex items-center gap-2 text-[var(--text-muted)] text-sm mt-5">
+                <MapPin size={13} className="text-[var(--accent)]" />
                 Ho Chi Minh City, Vietnam
               </div>
             </div>
           </div>
         </motion.div>
 
-        {/* Key metrics strip */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -78,21 +76,20 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.1 + i * 0.08 }}
-                className="p-5 bg-[#F7F9FC] border border-[#D8E2F0] rounded-xl"
+                className="p-5 bg-[var(--surface-elevated)] border border-[var(--border)] rounded-xl"
               >
                 <div className="flex items-center gap-2 mb-3">
                   <div className="p-1.5 rounded-lg bg-[#4F46E5]/10">
-                    <Icon size={14} className="text-[#4F46E5]" />
+                    <Icon size={14} className="text-[var(--accent)]" />
                   </div>
                 </div>
-                <div className="font-serif text-3xl font-bold text-[#0D1B2E] mb-1">{m.value}</div>
-                <p className="text-xs text-[#8999BB] leading-snug">{m.label}</p>
+                <div className="font-serif text-3xl font-bold text-[var(--text-primary)] mb-1">{m.value}</div>
+                <p className="text-xs text-[var(--text-muted)] leading-snug">{m.label}</p>
               </motion.div>
             );
           })}
         </motion.div>
 
-        {/* Highlight cards */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -107,14 +104,14 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
-              className="flex flex-col gap-3 p-6 bg-white border border-[#D8E2F0] rounded-xl card-hover"
+              className="flex flex-col gap-3 p-6 bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl card-hover"
             >
-              <div className="p-2.5 rounded-xl bg-[#4F46E5]/10 text-[#4F46E5] w-fit">
+              <div className="p-2.5 rounded-xl bg-[#4F46E5]/10 text-[var(--accent)] w-fit">
                 <item.icon size={18} />
               </div>
               <div>
-                <h3 className="font-semibold text-[#0D1B2E] mb-1.5 text-sm">{item.title}</h3>
-                <p className="text-xs text-[#4A5E7A] leading-relaxed">{item.desc}</p>
+                <h3 className="font-semibold text-[var(--text-primary)] mb-1.5 text-sm">{item.title}</h3>
+                <p className="text-xs text-[var(--text-secondary)] leading-relaxed">{item.desc}</p>
               </div>
             </motion.div>
           ))}

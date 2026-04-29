@@ -5,12 +5,12 @@ import Image from "next/image";
 
 function BrowserFrame({ src, alt, url }: { src: string; alt: string; url: string }) {
   return (
-    <div className="rounded-xl overflow-hidden border border-[#D8E2F0] shadow-lg shadow-black/5 group">
-      <div className="flex items-center gap-1.5 px-3 py-2.5 bg-[#F0F4FA] border-b border-[#D8E2F0]">
+    <div className="rounded-xl overflow-hidden border border-[var(--border)] shadow-lg shadow-black/5 group">
+      <div className="flex items-center gap-1.5 px-3 py-2.5 bg-[var(--bg-tertiary)] border-b border-[var(--border)]">
         <div className="w-2.5 h-2.5 rounded-full bg-[#FF5F57]/70" />
         <div className="w-2.5 h-2.5 rounded-full bg-[#FEBC2E]/70" />
         <div className="w-2.5 h-2.5 rounded-full bg-[#28C840]/70" />
-        <div className="ml-3 flex-1 h-5 bg-white rounded text-[11px] flex items-center px-2.5 text-[#8999BB] font-mono truncate border border-[#D8E2F0]">
+        <div className="ml-3 flex-1 h-5 bg-[var(--bg-secondary)] rounded text-[11px] flex items-center px-2.5 text-[var(--text-muted)] font-mono truncate border border-[var(--border)]">
           {url}
         </div>
       </div>
@@ -23,8 +23,10 @@ function BrowserFrame({ src, alt, url }: { src: string; alt: string; url: string
           className="w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
           style={{ maxHeight: "260px" }}
         />
-        <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-[#F0F4FA] to-transparent pointer-events-none" />
-        {/* Hover overlay hint */}
+        <div
+          className="absolute bottom-0 left-0 right-0 h-20 pointer-events-none"
+          style={{ background: "linear-gradient(to top, var(--bg-tertiary), transparent)" }}
+        />
         <div className="absolute inset-0 bg-[#0D1B2E]/0 group-hover:bg-[#0D1B2E]/5 transition-colors duration-300 pointer-events-none" />
       </div>
     </div>
@@ -54,8 +56,8 @@ const projects = [
     ],
     results: [
       { metric: "Real-time", label: "SMT production monitoring" },
-      { metric: "100%", label: "Product traceability" },
-      { metric: "IoT", label: "FPC device integration" },
+      { metric: "100%",      label: "Product traceability" },
+      { metric: "IoT",       label: "FPC device integration" },
     ],
     tags: ["MES / MOM", "IoT", "BPMN", "Figma", "BRD / FSD", "Traceability", "QC"],
   },
@@ -79,8 +81,8 @@ const projects = [
       "Iterative testing with floor operators across 4 sprint cycles",
     ],
     results: [
-      { metric: "40%", label: "Fewer manual operations" },
-      { metric: "25%", label: "Reduction in rework errors" },
+      { metric: "40%",  label: "Fewer manual operations" },
+      { metric: "25%",  label: "Reduction in rework errors" },
       { metric: "Live", label: "SCADA data integration" },
     ],
     tags: ["Apriso", "SCADA", "BPMN", "Process Automation", "MES"],
@@ -89,7 +91,7 @@ const projects = [
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-28 px-6 bg-[#F7F9FC]">
+    <section id="projects" className="py-28 px-6">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -99,10 +101,10 @@ export default function Projects() {
           className="text-center mb-16"
         >
           <p className="label-amber mb-4">Featured Work</p>
-          <h2 className="font-serif text-4xl sm:text-5xl font-bold text-[#0D1B2E] mb-4">
+          <h2 className="font-serif text-4xl sm:text-5xl font-bold text-[var(--text-primary)] mb-4">
             Real problems. Real results.
           </h2>
-          <p className="text-[#4A5E7A] max-w-lg mx-auto text-sm leading-relaxed">
+          <p className="text-[var(--text-secondary)] max-w-lg mx-auto text-sm leading-relaxed">
             Structured BA process: understand the problem, map the flow, document requirements, validate with users.
           </p>
         </motion.div>
@@ -115,27 +117,27 @@ export default function Projects() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.65, delay: i * 0.1 }}
-              className="bg-white border border-[#D8E2F0] rounded-2xl overflow-hidden card-hover"
+              className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-2xl overflow-hidden card-hover"
             >
               {/* Card header */}
-              <div className="px-8 pt-8 pb-6 border-b border-[#D8E2F0]">
+              <div className="px-8 pt-8 pb-6 border-b border-[var(--border)]">
                 <div className="flex flex-wrap items-start justify-between gap-4">
                   <div className="flex items-start gap-4">
-                    <div className="p-3 rounded-xl bg-[#4F46E5]/10 text-[#4F46E5] shrink-0">
+                    <div className="p-3 rounded-xl bg-[#4F46E5]/10 text-[var(--accent)] shrink-0">
                       <project.icon size={22} />
                     </div>
                     <div>
                       <div className="flex items-center gap-2 mb-1.5">
-                        <span className="text-xs text-[#8999BB]">{project.company}</span>
-                        <span className="text-[#D8E2F0]">·</span>
-                        <span className="text-xs font-semibold text-[#4F46E5]">{project.client}</span>
+                        <span className="text-xs text-[var(--text-muted)]">{project.company}</span>
+                        <span className="text-[var(--border)]">·</span>
+                        <span className="text-xs font-semibold text-[var(--accent)]">{project.client}</span>
                       </div>
-                      <h3 className="font-serif text-xl font-bold text-[#0D1B2E]">{project.title}</h3>
-                      <p className="text-sm text-[#8999BB] mt-0.5">{project.subtitle}</p>
+                      <h3 className="font-serif text-xl font-bold text-[var(--text-primary)]">{project.title}</h3>
+                      <p className="text-sm text-[var(--text-muted)] mt-0.5">{project.subtitle}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-4">
-                    <span className="text-xs px-3 py-1.5 rounded border border-[#D8E2F0] text-[#4A5E7A] shrink-0">
+                    <span className="text-xs px-3 py-1.5 rounded border border-[var(--border)] text-[var(--text-secondary)] shrink-0">
                       {project.period}
                     </span>
                     <span className="label-amber shrink-0">{project.num}</span>
@@ -144,25 +146,25 @@ export default function Projects() {
               </div>
 
               {/* Screenshots */}
-              <div className={`px-8 py-6 bg-[#F7F9FC] border-b border-[#D8E2F0] ${project.screenshots.length === 2 ? "grid md:grid-cols-2 gap-4" : ""}`}>
+              <div className={`px-8 py-6 bg-[var(--surface-elevated)] border-b border-[var(--border)] ${project.screenshots.length === 2 ? "grid md:grid-cols-2 gap-4" : ""}`}>
                 {project.screenshots.map((shot) => (
                   <BrowserFrame key={shot.src} {...shot} />
                 ))}
               </div>
 
               {/* 3-col content */}
-              <div className="grid lg:grid-cols-3 divide-y lg:divide-y-0 lg:divide-x divide-[#D8E2F0]">
+              <div className="grid lg:grid-cols-3 divide-y lg:divide-y-0 lg:divide-x divide-[var(--border)]">
                 <div className="px-8 py-6">
                   <h4 className="label-amber mb-3">Challenge</h4>
-                  <p className="text-sm text-[#4A5E7A] leading-relaxed">{project.challenge}</p>
+                  <p className="text-sm text-[var(--text-secondary)] leading-relaxed">{project.challenge}</p>
                 </div>
 
                 <div className="px-8 py-6">
                   <h4 className="label-amber mb-3">BA Approach</h4>
                   <ul className="space-y-2.5">
                     {project.approach.map((step) => (
-                      <li key={step} className="flex items-start gap-2 text-sm text-[#4A5E7A]">
-                        <span className="text-[#4F46E5] mt-1.5 shrink-0 text-xs">▸</span>
+                      <li key={step} className="flex items-start gap-2 text-sm text-[var(--text-secondary)]">
+                        <span className="text-[var(--accent)] mt-1.5 shrink-0 text-xs">▸</span>
                         {step}
                       </li>
                     ))}
@@ -173,15 +175,15 @@ export default function Projects() {
                   <h4 className="label-amber mb-3">Results</h4>
                   <div className="space-y-2.5 mb-5">
                     {project.results.map((r) => (
-                      <div key={r.metric} className="flex items-center gap-3 p-3 bg-[#F7F9FC] rounded-lg border border-[#D8E2F0]">
+                      <div key={r.metric} className="flex items-center gap-3 p-3 bg-[var(--surface-elevated)] rounded-lg border border-[var(--border)]">
                         <span className="font-serif text-xl font-bold text-[#E8960C]">{r.metric}</span>
-                        <span className="text-xs text-[#4A5E7A] leading-tight">{r.label}</span>
+                        <span className="text-xs text-[var(--text-secondary)] leading-tight">{r.label}</span>
                       </div>
                     ))}
                   </div>
                   <div className="flex flex-wrap gap-1.5">
                     {project.tags.map((tag) => (
-                      <span key={tag} className="text-[11px] px-2 py-0.5 rounded bg-[#EEF3FA] text-[#4A5E7A] border border-[#D8E2F0]">
+                      <span key={tag} className="text-[11px] px-2 py-0.5 rounded bg-[var(--bg-tertiary)] text-[var(--text-secondary)] border border-[var(--border)]">
                         {tag}
                       </span>
                     ))}
@@ -198,22 +200,22 @@ export default function Projects() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="mt-6 p-6 bg-white border border-[#D8E2F0] rounded-xl flex items-start gap-4"
+          className="mt-6 p-6 bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl flex items-start gap-4"
         >
-          <div className="p-2.5 rounded-lg bg-[#4F46E5]/10 text-[#4F46E5] shrink-0">
+          <div className="p-2.5 rounded-lg bg-[#4F46E5]/10 text-[var(--accent)] shrink-0">
             <TrendingUp size={18} />
           </div>
           <div>
             <div className="flex items-center gap-3 mb-1">
-              <h4 className="font-semibold text-[#0D1B2E] text-sm">ERP Implementation — Lumos IS</h4>
+              <h4 className="font-semibold text-[var(--text-primary)] text-sm">ERP Implementation — Lumos IS</h4>
               <span className="label-amber">03</span>
             </div>
-            <p className="text-sm text-[#4A5E7A] leading-relaxed">
+            <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
               Implemented ERP solutions on Oracle Apex for enterprise clients via Agile sprints. Delivered custom dashboards, reports, and features. Managed UAT cycles and post-deployment support.
             </p>
             <div className="flex flex-wrap gap-1.5 mt-3">
               {["Oracle Apex", "ERP", "Agile", "Dashboard Design", "UAT"].map((t) => (
-                <span key={t} className="text-[11px] px-2 py-0.5 rounded bg-[#EEF3FA] text-[#4A5E7A] border border-[#D8E2F0]">{t}</span>
+                <span key={t} className="text-[11px] px-2 py-0.5 rounded bg-[var(--bg-tertiary)] text-[var(--text-secondary)] border border-[var(--border)]">{t}</span>
               ))}
             </div>
           </div>

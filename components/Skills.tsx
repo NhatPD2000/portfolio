@@ -11,7 +11,26 @@ import {
   MessageCircle, Lightbulb, Zap, Monitor, MessageSquare,
 } from "lucide-react";
 
-const categories = [
+type Level = "Core" | "Proficient" | "Familiar";
+
+type Skill = {
+  name: string;
+  icon: React.ElementType;
+  level: Level;
+};
+
+type Category = {
+  num: string;
+  title: string;
+  shortTitle: string;
+  icon: React.ElementType;
+  accentColor: string;
+  illustration: string;
+  gradient: string;
+  skills: Skill[];
+};
+
+const categories: Category[] = [
   {
     num: "01",
     title: "Business Analysis",
@@ -26,14 +45,14 @@ const categories = [
       linear-gradient(145deg, #0F172A 0%, #1E1B4B 45%, #0C4A6E 100%)
     `,
     skills: [
-      { name: "Requirement Gathering", icon: ListChecks },
-      { name: "BRD / FSD Docs", icon: FileText },
-      { name: "User Stories", icon: BookOpen },
-      { name: "Agile & Scrum", icon: RefreshCw },
-      { name: "FIT/GAP Analysis", icon: GitMerge },
-      { name: "UAT Management", icon: CheckSquare },
-      { name: "Stakeholder Mgmt", icon: Users },
-      { name: "BPMN Mapping", icon: GitBranch },
+      { name: "Requirement Gathering", icon: ListChecks,  level: "Core" },
+      { name: "BRD / FSD Docs",        icon: FileText,    level: "Core" },
+      { name: "User Stories",           icon: BookOpen,    level: "Core" },
+      { name: "Agile & Scrum",          icon: RefreshCw,   level: "Core" },
+      { name: "FIT/GAP Analysis",       icon: GitMerge,    level: "Proficient" },
+      { name: "UAT Management",         icon: CheckSquare, level: "Proficient" },
+      { name: "Stakeholder Mgmt",       icon: Users,       level: "Core" },
+      { name: "BPMN Mapping",           icon: GitBranch,   level: "Proficient" },
     ],
   },
   {
@@ -50,14 +69,14 @@ const categories = [
       linear-gradient(145deg, #0F0B1A 0%, #1A0533 55%, #2D1B4B 100%)
     `,
     skills: [
-      { name: "Wireframing", icon: Layout },
-      { name: "Figma Prototyping", icon: PenTool },
-      { name: "UML Diagrams", icon: Share2 },
-      { name: "BPMN Flowcharts", icon: GitMerge },
-      { name: "Visio", icon: Layers },
-      { name: "Draw.io", icon: Pencil },
-      { name: "User Flow Design", icon: Monitor },
-      { name: "System Architecture", icon: Server },
+      { name: "Wireframing",        icon: Layout,   level: "Core" },
+      { name: "Figma Prototyping",  icon: PenTool,  level: "Core" },
+      { name: "UML Diagrams",       icon: Share2,   level: "Proficient" },
+      { name: "BPMN Flowcharts",    icon: GitMerge, level: "Proficient" },
+      { name: "Visio",              icon: Layers,   level: "Proficient" },
+      { name: "Draw.io",            icon: Pencil,   level: "Proficient" },
+      { name: "User Flow Design",   icon: Monitor,  level: "Core" },
+      { name: "System Architecture", icon: Server,  level: "Familiar" },
     ],
   },
   {
@@ -74,14 +93,14 @@ const categories = [
       linear-gradient(145deg, #022C22 0%, #0C4A6E 55%, #0F172A 100%)
     `,
     skills: [
-      { name: "SQL", icon: Database },
-      { name: "Power BI", icon: BarChart2 },
-      { name: "Oracle Apex", icon: Globe },
-      { name: "MES / MOM Systems", icon: Settings },
-      { name: "Apriso — Dassault", icon: Cpu },
-      { name: "SCADA Integration", icon: Activity },
-      { name: "IoT Concepts", icon: Wifi },
-      { name: "Low-Code Dev", icon: Code2 },
+      { name: "SQL",              icon: Database,  level: "Proficient" },
+      { name: "Power BI",         icon: BarChart2, level: "Proficient" },
+      { name: "Oracle Apex",      icon: Globe,     level: "Proficient" },
+      { name: "MES / MOM Systems", icon: Settings, level: "Core" },
+      { name: "Apriso — Dassault", icon: Cpu,      level: "Familiar" },
+      { name: "SCADA Integration", icon: Activity, level: "Familiar" },
+      { name: "IoT Concepts",     icon: Wifi,      level: "Familiar" },
+      { name: "Low-Code Dev",     icon: Code2,     level: "Proficient" },
     ],
   },
   {
@@ -98,28 +117,76 @@ const categories = [
       linear-gradient(145deg, #1C0A00 0%, #451A03 50%, #78350F 100%)
     `,
     skills: [
-      { name: "Vietnamese", icon: MessageCircle },
-      { name: "English", icon: Globe },
-      { name: "Chinese", icon: MessageSquare },
-      { name: "Communication", icon: Share2 },
-      { name: "Critical Thinking", icon: Lightbulb },
-      { name: "Problem Solving", icon: Zap },
-      { name: "Presentation", icon: Monitor },
-      { name: "Cross-team Collab", icon: Users },
+      { name: "Vietnamese",       icon: MessageCircle, level: "Core" },
+      { name: "English",          icon: Globe,         level: "Core" },
+      { name: "Chinese",          icon: MessageSquare, level: "Proficient" },
+      { name: "Communication",    icon: Share2,        level: "Core" },
+      { name: "Critical Thinking", icon: Lightbulb,   level: "Core" },
+      { name: "Problem Solving",  icon: Zap,           level: "Core" },
+      { name: "Presentation",     icon: Monitor,       level: "Core" },
+      { name: "Cross-team Collab", icon: Users,        level: "Core" },
+    ],
+  },
+  {
+    num: "05",
+    title: "AI-Augmented BA",
+    shortTitle: "AI",
+    icon: Zap,
+    accentColor: "#06B6D4",
+    illustration: "/skill-tech-icon.svg",
+    gradient: `
+      radial-gradient(ellipse at 20% 30%, rgba(6,182,212,0.9) 0%, transparent 55%),
+      radial-gradient(ellipse at 78% 70%, rgba(99,102,241,0.75) 0%, transparent 55%),
+      radial-gradient(ellipse at 55% 10%, rgba(16,185,129,0.4) 0%, transparent 45%),
+      linear-gradient(145deg, #042F2E 0%, #083344 50%, #0F172A 100%)
+    `,
+    skills: [
+      { name: "Prompt Engineering",     icon: MessageSquare, level: "Core" },
+      { name: "BRS Drafting w/ AI",     icon: FileText,      level: "Core" },
+      { name: "AI-Assisted BPMN",       icon: GitBranch,     level: "Proficient" },
+      { name: "Meeting → Requirements", icon: ListChecks,    level: "Core" },
+      { name: "UAT Case Generation",    icon: CheckSquare,   level: "Proficient" },
+      { name: "SQL / DAX Assistance",   icon: Database,      level: "Proficient" },
+      { name: "Doc QA & Proofreading",  icon: BookOpen,      level: "Core" },
+      { name: "Claude Code Collab",     icon: Code2,         level: "Core" },
     ],
   },
 ];
+
+const tools = [
+  { name: "Figma",         icon: PenTool },
+  { name: "Jira",          icon: GitBranch },
+  { name: "Power BI",      icon: BarChart2 },
+  { name: "Oracle Apex",   icon: Globe },
+  { name: "Apriso",        icon: Cpu },
+  { name: "Visio",         icon: Share2 },
+  { name: "SQL Server",    icon: Database },
+  { name: "Confluence",    icon: BookOpen },
+  { name: "KNIME",         icon: Activity },
+];
+
+const levelBadgeClass: Record<Level, string> = {
+  Core:       "bg-white/20 text-white/90",
+  Proficient: "bg-white/10 text-white/55",
+  Familiar:   "text-white/30",
+};
+
+const levelIdleClass: Record<Level, string> = {
+  Core:       "text-[var(--text-primary)]",
+  Proficient: "text-[var(--text-secondary)]",
+  Familiar:   "text-[var(--text-muted)]",
+};
 
 export default function Skills() {
   const [active, setActive] = useState<string | null>(null);
   const [isTouchDevice, setIsTouchDevice] = useState(false);
 
   useEffect(() => {
-    setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
+    setIsTouchDevice("ontouchstart" in window || navigator.maxTouchPoints > 0);
   }, []);
 
   return (
-    <section id="skills" className="py-28 px-6 bg-[#EEF3FA]">
+    <section id="skills" className="py-28 px-6 bg-[var(--bg-tertiary)]">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
@@ -130,10 +197,10 @@ export default function Skills() {
           className="text-center mb-16"
         >
           <p className="label-amber mb-4">Skills & Tools</p>
-          <h2 className="font-serif text-4xl sm:text-5xl font-bold text-[#0D1B2E]">
+          <h2 className="font-serif text-4xl sm:text-5xl font-bold text-[var(--text-primary)]">
             What I bring to the table
           </h2>
-          <p className="text-[#8999BB] text-xs mt-3 md:hidden">
+          <p className="text-[var(--text-muted)] text-xs mt-3 md:hidden">
             Tap a card to explore skills
           </p>
         </motion.div>
@@ -144,7 +211,10 @@ export default function Skills() {
             const isOpen = active === cat.num;
             const Icon = cat.icon;
             return (
-              <div key={cat.num} className="bg-white border border-[#D8E2F0] rounded-2xl overflow-hidden">
+              <div
+                key={cat.num}
+                className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-2xl overflow-hidden"
+              >
                 <button
                   onClick={() => setActive(isOpen ? null : cat.num)}
                   className="w-full flex items-center gap-4 p-5 text-left"
@@ -153,14 +223,14 @@ export default function Skills() {
                     <Icon size={20} style={{ color: cat.accentColor }} />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="font-semibold text-[#0D1B2E] text-sm">{cat.title}</p>
-                    <p className="text-xs text-[#8999BB]">{cat.skills.length} skills</p>
+                    <p className="font-semibold text-[var(--text-primary)] text-sm">{cat.title}</p>
+                    <p className="text-xs text-[var(--text-muted)]">{cat.skills.length} skills</p>
                   </div>
                   <div className="flex items-center gap-3 shrink-0">
                     <span className="label-amber">{cat.num}</span>
                     <ChevronDown
                       size={16}
-                      className="text-[#8999BB] transition-transform duration-300"
+                      className="text-[var(--text-muted)] transition-transform duration-300"
                       style={{ transform: isOpen ? "rotate(180deg)" : "rotate(0deg)" }}
                     />
                   </div>
@@ -174,7 +244,7 @@ export default function Skills() {
                       transition={{ duration: 0.3 }}
                       className="overflow-hidden"
                     >
-                      <div className="px-5 pb-5 pt-3 grid grid-cols-2 gap-2 border-t border-[#D8E2F0]">
+                      <div className="px-5 pb-5 pt-3 grid grid-cols-2 gap-2 border-t border-[var(--border)]">
                         {cat.skills.map((skill) => {
                           const SkillIcon = skill.icon;
                           return (
@@ -187,7 +257,9 @@ export default function Skills() {
                               }}
                             >
                               <SkillIcon size={12} strokeWidth={1.5} style={{ color: cat.accentColor, flexShrink: 0 }} />
-                              <span className="text-xs text-[#2A3B55] font-medium truncate">{skill.name}</span>
+                              <span className={`text-xs font-medium truncate ${levelIdleClass[skill.level]}`}>
+                                {skill.name}
+                              </span>
                             </div>
                           );
                         })}
@@ -219,16 +291,16 @@ export default function Skills() {
                 animate={{ flexGrow: isActive ? 2.6 : 1 }}
                 transition={{ duration: 0.45, ease: [0.4, 0, 0.2, 1] }}
                 style={{ flexShrink: 1, flexBasis: "0%", minWidth: "72px" }}
-                className={`relative overflow-hidden rounded-2xl cursor-pointer bg-white transition-colors duration-300 ${
+                className={`relative overflow-hidden rounded-2xl cursor-pointer bg-[var(--bg-secondary)] transition-colors duration-300 ${
                   isActive
                     ? "border border-[#4F46E5]/40 shadow-lg shadow-[#4F46E5]/10"
-                    : "border border-[#D8E2F0] hover:border-[#C8D5E8] shadow-sm"
+                    : "border border-[var(--border)] hover:border-[var(--border-hover)] shadow-sm"
                 }`}
                 onMouseEnter={() => !isTouchDevice && setActive(cat.num)}
                 onMouseLeave={() => !isTouchDevice && setActive(null)}
                 onClick={() => setActive(isActive ? null : cat.num)}
               >
-                {/* ── IDLE STATE ── */}
+                {/* IDLE STATE */}
                 <AnimatePresence>
                   {!isActive && (
                     <motion.div
@@ -239,17 +311,15 @@ export default function Skills() {
                       transition={{ duration: 0.2 }}
                       className="absolute inset-0 flex flex-col items-center py-6 px-2"
                     >
-                      {/* Illustration at bottom */}
+                      {/* Illustration */}
                       <div className="absolute bottom-0 left-0 right-0 flex items-end justify-center pointer-events-none pb-16">
                         <Image
                           src={
-                            cat.num === "01"
-                              ? "/skill-ba-icon.svg"
-                              : cat.num === "02"
-                              ? "/skill-design-icon.svg"
-                              : cat.num === "03"
-                              ? "/skill-tech-icon.svg"
-                              : "/skill-soft-icon.svg"
+                            cat.num === "01" ? "/skill-ba-icon.svg"
+                            : cat.num === "02" ? "/skill-design-icon.svg"
+                            : cat.num === "03" ? "/skill-tech-icon.svg"
+                            : cat.num === "04" ? "/skill-soft-icon.svg"
+                            : "/skill-tech-icon.svg"
                           }
                           alt={`${cat.title} illustration`}
                           width={180}
@@ -258,22 +328,18 @@ export default function Skills() {
                         />
                       </div>
 
-                      {/* Top indicator */}
-                      <ChevronDown size={10} className="text-[#C8D5E8] mb-4 shrink-0 relative z-10" />
+                      <ChevronDown size={10} className="text-[var(--border-hover)] mb-4 shrink-0 relative z-10" />
 
-                      {/* Category icon */}
                       <Icon
                         size={40}
                         strokeWidth={1.2}
                         className="shrink-0 mb-3"
                         style={{ color: cat.accentColor, opacity: 0.8 }}
                       />
-                      <div className="w-1 h-1 rounded-full bg-[#C8D5E8] mb-4 shrink-0" />
+                      <div className="w-1 h-1 rounded-full bg-[var(--border-hover)] mb-4 shrink-0" />
+                      <div className="w-6 h-px bg-[var(--border)] mb-3 shrink-0" />
 
-                      {/* Divider */}
-                      <div className="w-6 h-px bg-[#D8E2F0] mb-3 shrink-0" />
-
-                      {/* Skill bars */}
+                      {/* Skill pills */}
                       <div className="flex flex-col gap-1.5 flex-1 overflow-hidden w-full px-3">
                         {cat.skills.map((skill) => {
                           const SkillIcon = skill.icon;
@@ -291,7 +357,7 @@ export default function Skills() {
                                 strokeWidth={1.5}
                                 style={{ color: cat.accentColor, flexShrink: 0 }}
                               />
-                              <span className="text-[11px] text-[#2A3B55] truncate leading-tight font-medium">
+                              <span className={`text-[11px] truncate leading-tight font-medium ${levelIdleClass[skill.level]}`}>
                                 {skill.name}
                               </span>
                             </div>
@@ -299,9 +365,8 @@ export default function Skills() {
                         })}
                       </div>
 
-                      {/* Title + number */}
                       <div className="flex flex-col items-center gap-1.5 mt-3 shrink-0">
-                        <p className="text-[#4A5E7A] text-[9px] tracking-[0.2em] uppercase font-medium text-center leading-tight px-1">
+                        <p className="text-[var(--text-muted)] text-[9px] tracking-[0.2em] uppercase font-medium text-center leading-tight px-1">
                           {cat.shortTitle}
                         </p>
                         <p className="label-amber">{cat.num}</p>
@@ -310,7 +375,7 @@ export default function Skills() {
                   )}
                 </AnimatePresence>
 
-                {/* ── ACTIVE STATE — keeps dark gradient for contrast ── */}
+                {/* ACTIVE STATE */}
                 <AnimatePresence>
                   {isActive && (
                     <motion.div
@@ -321,7 +386,6 @@ export default function Skills() {
                       transition={{ duration: 0.25, delay: 0.08 }}
                       className="absolute inset-0 flex flex-col"
                     >
-                      {/* Gradient top area */}
                       <div
                         className="flex-1 relative overflow-hidden"
                         style={{ background: cat.gradient }}
@@ -336,13 +400,9 @@ export default function Skills() {
                           }}
                         />
 
-                        {/* Header inside gradient */}
                         <div className="relative z-10 flex items-center justify-between px-5 pt-5 pb-3">
                           <div className="flex items-center gap-2.5">
-                            <div
-                              className="p-1.5 rounded-lg"
-                              style={{ background: "rgba(0,0,0,0.3)" }}
-                            >
+                            <div className="p-1.5 rounded-lg" style={{ background: "rgba(0,0,0,0.3)" }}>
                               <Icon size={16} style={{ color: cat.accentColor }} />
                             </div>
                             <p className="text-white/90 text-[11px] font-semibold tracking-[0.15em] uppercase">
@@ -352,7 +412,7 @@ export default function Skills() {
                           <p className="label-amber">{cat.num}</p>
                         </div>
 
-                        {/* Skill icon matrix */}
+                        {/* Skill matrix with proficiency labels */}
                         <motion.div
                           initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
@@ -372,15 +432,18 @@ export default function Skills() {
                                   strokeWidth={1.5}
                                   style={{ color: cat.accentColor, flexShrink: 0 }}
                                 />
-                                <span className="text-white/80 text-[10px] leading-tight truncate">
+                                <span className="text-white/80 text-[10px] leading-tight truncate flex-1">
                                   {skill.name}
+                                </span>
+                                <span className={`text-[8px] shrink-0 px-1 py-0.5 rounded font-medium ${levelBadgeClass[skill.level]}`}>
+                                  {skill.level}
                                 </span>
                               </div>
                             );
                           })}
                         </motion.div>
 
-                        {/* Animated icon with glow + particles */}
+                        {/* Animated icon */}
                         <motion.div
                           initial={{ opacity: 0, scale: 0.9 }}
                           animate={{ opacity: 1, scale: 1 }}
@@ -399,13 +462,11 @@ export default function Skills() {
                           >
                             <Image
                               src={
-                                cat.num === "01"
-                                  ? "/skill-ba-icon.svg"
-                                  : cat.num === "02"
-                                  ? "/skill-design-icon.svg"
-                                  : cat.num === "03"
-                                  ? "/skill-tech-icon.svg"
-                                  : "/skill-soft-icon.svg"
+                                cat.num === "01" ? "/skill-ba-icon.svg"
+                                : cat.num === "02" ? "/skill-design-icon.svg"
+                                : cat.num === "03" ? "/skill-tech-icon.svg"
+                                : cat.num === "04" ? "/skill-soft-icon.svg"
+                                : "/skill-tech-icon.svg"
                               }
                               alt={`${cat.title} illustration`}
                               width={140}
@@ -414,42 +475,31 @@ export default function Skills() {
                               style={{ filter: `drop-shadow(0 0 20px ${cat.accentColor}40)` }}
                             />
                           </motion.div>
-                          <motion.div
-                            animate={{ y: [0, -15, 0], x: [0, 10, 0], opacity: [0.4, 0.7, 0.4] }}
-                            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                            className="absolute left-[20%] top-[20%] w-2 h-2 rounded-full"
-                            style={{ background: cat.accentColor, boxShadow: `0 0 10px ${cat.accentColor}` }}
-                          />
-                          <motion.div
-                            animate={{ y: [0, -20, 0], x: [0, -8, 0], opacity: [0.5, 0.8, 0.5] }}
-                            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                            className="absolute right-[25%] top-[30%] w-1.5 h-1.5 rounded-full"
-                            style={{ background: cat.accentColor, boxShadow: `0 0 8px ${cat.accentColor}` }}
-                          />
-                          <motion.div
-                            animate={{ y: [0, -12, 0], x: [0, 15, 0], opacity: [0.3, 0.6, 0.3] }}
-                            transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                            className="absolute left-[35%] bottom-[20%] w-1 h-1 rounded-full"
-                            style={{ background: cat.accentColor, boxShadow: `0 0 6px ${cat.accentColor}` }}
-                          />
-                          <motion.div
-                            animate={{ y: [0, -18, 0], x: [0, -12, 0], opacity: [0.4, 0.7, 0.4] }}
-                            transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
-                            className="absolute right-[30%] bottom-[25%] w-1.5 h-1.5 rounded-full"
-                            style={{ background: cat.accentColor, boxShadow: `0 0 8px ${cat.accentColor}` }}
-                          />
+                          {[
+                            { y: [0, -15, 0], x: [0, 10, 0], cls: "left-[20%] top-[20%] w-2 h-2", d: 0 },
+                            { y: [0, -20, 0], x: [0, -8, 0], cls: "right-[25%] top-[30%] w-1.5 h-1.5", d: 0.5 },
+                            { y: [0, -12, 0], x: [0, 15, 0], cls: "left-[35%] bottom-[20%] w-1 h-1", d: 1 },
+                            { y: [0, -18, 0], x: [0, -12, 0], cls: "right-[30%] bottom-[25%] w-1.5 h-1.5", d: 1.5 },
+                          ].map((p, idx) => (
+                            <motion.div
+                              key={idx}
+                              animate={{ y: p.y, x: p.x, opacity: [0.4, 0.7, 0.4] }}
+                              transition={{ duration: 4 + idx * 0.5, repeat: Infinity, ease: "easeInOut", delay: p.d }}
+                              className={`absolute ${p.cls} rounded-full`}
+                              style={{ background: cat.accentColor, boxShadow: `0 0 10px ${cat.accentColor}` }}
+                            />
+                          ))}
                         </motion.div>
                       </div>
 
                       {/* Footer */}
-                      <div className="px-5 py-3 bg-white flex items-center justify-between border-t border-[#D8E2F0]">
-                        <p className="text-[#0D1B2E] text-[10px] tracking-[0.2em] uppercase font-semibold">
+                      <div className="px-5 py-3 bg-[var(--surface)] flex items-center justify-between border-t border-[var(--border)]">
+                        <p className="text-[var(--text-primary)] text-[10px] tracking-[0.2em] uppercase font-semibold">
                           <CountUp end={cat.skills.length} isActive={isActive} /> skills
                         </p>
-                        <p className="text-[#8999BB] text-[10px]">hover to explore</p>
+                        <p className="text-[var(--text-muted)] text-[10px]">hover to explore</p>
                       </div>
 
-                      {/* Accent progress bar */}
                       <motion.div
                         initial={{ scaleX: 0 }}
                         animate={{ scaleX: 1 }}
@@ -465,17 +515,41 @@ export default function Skills() {
           })}
         </motion.div>
 
+        {/* Tools strip */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="mt-10"
+        >
+          <p className="text-center text-[10px] text-[var(--text-muted)] uppercase tracking-[0.25em] mb-4 font-medium">
+            Tools I work with
+          </p>
+          <div className="flex flex-wrap justify-center gap-2">
+            {tools.map(({ name, icon: Icon }) => (
+              <div
+                key={name}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[var(--bg-secondary)] border border-[var(--border)] text-xs text-[var(--text-secondary)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors duration-200 cursor-default"
+              >
+                <Icon size={11} />
+                {name}
+              </div>
+            ))}
+          </div>
+        </motion.div>
+
         {/* CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-12 text-center"
+          className="mt-10 text-center"
         >
           <a
             href="#projects"
-            className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium text-[#4A5E7A] hover:text-[#4F46E5] transition-colors duration-200 group"
+            className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors duration-200 group"
           >
             <span>See these skills in action</span>
             <svg
@@ -497,7 +571,7 @@ export default function Skills() {
         </motion.div>
       </div>
 
-      <div className="section-line mt-28 max-w-6xl mx-auto" />
+      <div className="section-line mt-20 max-w-6xl mx-auto" />
     </section>
   );
 }

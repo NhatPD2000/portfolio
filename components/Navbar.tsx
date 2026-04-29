@@ -8,6 +8,7 @@ const navLinks = [
   { href: "#about", label: "About" },
   { href: "#skills", label: "Skills" },
   { href: "#experience", label: "Experience" },
+  { href: "#education", label: "Education" },
   { href: "#projects", label: "Work" },
   { href: "#contact", label: "Contact" },
 ];
@@ -53,7 +54,7 @@ export default function Navbar() {
       transition={{ duration: 0.6, ease: "easeOut" }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-[#F7F9FC]/95 backdrop-blur-md border-b border-[#D8E2F0]"
+          ? "bg-[#F7F9FC]/95 dark:bg-[#0D1B2E]/95 backdrop-blur-md border-b border-[#D8E2F0] dark:border-[#2A3B55]"
           : "bg-transparent"
       }`}
     >
@@ -66,8 +67,8 @@ export default function Navbar() {
       <div className="max-w-6xl mx-auto px-8 py-5 flex items-center justify-between">
         {/* Logo */}
         <a href="#" className="flex items-center gap-2">
-          <span className="font-serif text-base font-bold text-[#0D1B2E] tracking-wide">Phan Dinh Nhat</span>
-          <span className="text-[10px] text-[#8999BB] tracking-[0.25em] uppercase hidden sm:block">
+          <span className="font-serif text-base font-bold text-[#0D1B2E] dark:text-[#E8EDF8] tracking-wide">Phan Dinh Nhat</span>
+          <span className="text-[10px] text-[#8999BB] dark:text-[#6B7E9A] tracking-[0.25em] uppercase hidden sm:block">
             Portfolio
           </span>
         </a>
@@ -82,7 +83,7 @@ export default function Navbar() {
                 key={link.href}
                 href={link.href}
                 className="relative text-[11px] tracking-[0.15em] uppercase transition-colors duration-200 font-medium pb-0.5"
-                style={{ color: isActive ? "#0D1B2E" : "#4A5E7A" }}
+                style={{ color: isActive ? "var(--text-primary)" : "var(--text-secondary)" }}
               >
                 {link.label}
                 {/* Active underline */}
@@ -107,7 +108,7 @@ export default function Navbar() {
             Hire Me
           </a>
           <button
-            className="md:hidden text-[#4A5E7A] p-1"
+            className="md:hidden text-[#4A5E7A] dark:text-[#B0BFDA] p-1"
             onClick={() => setMobileOpen(!mobileOpen)}
           >
             {mobileOpen ? <X size={18} /> : <Menu size={18} />}
@@ -120,7 +121,7 @@ export default function Navbar() {
         <motion.div
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: "auto" }}
-          className="md:hidden bg-[#F7F9FC] border-b border-[#D8E2F0] px-8 pb-5"
+          className="md:hidden bg-[#F7F9FC] dark:bg-[#0D1B2E] border-b border-[#D8E2F0] dark:border-[#2A3B55] px-8 pb-5"
         >
           {navLinks.map((link) => {
             const isActive = activeSection === link.href.slice(1);
@@ -129,8 +130,8 @@ export default function Navbar() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
-                className="flex items-center justify-between py-3 text-[11px] tracking-[0.15em] uppercase border-b border-[#D8E2F0] last:border-0 transition-colors duration-200"
-                style={{ color: isActive ? "#0D1B2E" : "#4A5E7A" }}
+                className="flex items-center justify-between py-3 text-[11px] tracking-[0.15em] uppercase border-b border-[#D8E2F0] dark:border-[#2A3B55] last:border-0 transition-colors duration-200"
+                style={{ color: isActive ? "var(--text-primary)" : "var(--text-secondary)" }}
               >
                 {link.label}
                 {isActive && (
