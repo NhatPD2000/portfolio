@@ -6,35 +6,25 @@ import {
   FileText, Layers, ListChecks, GitBranch, PenTool,
   Code2, CheckCircle, ArrowDown,
 } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { translations } from "@/lib/i18n";
 
-const stats = [
-  { value: "3+", label: "Years" },
-  { value: "2", label: "Companies" },
-  { value: "5+", label: "Projects" },
-  { value: "3", label: "Languages" },
-];
-
-const domains = ["MES / MOM", "ERP Systems", "IoT Integration", "Agile / Scrum", "BPMN"];
-
-const steps = [
-  { num: "01", title: "Requirement Gathering", hint: "Workshops · BRS · Interviews", icon: ListChecks, color: "#818CF8" },
-  { num: "02", title: "Analysis & BPMN",       hint: "Process mapping · FIT/GAP",    icon: GitBranch,  color: "#4F46E5" },
-  { num: "03", title: "Design & Prototype",    hint: "Figma · Wireframes · UML",     icon: PenTool,    color: "#C084FC" },
-  { num: "04", title: "Implementation",        hint: "Dev collab · Sprint reviews",  icon: Code2,      color: "#F59E0B" },
-  { num: "05", title: "Go-Live & UAT",         hint: "Training · Testing · Support", icon: CheckCircle, color: "#4F46E5" },
-];
+const stepIcons = [ListChecks, GitBranch, PenTool, Code2, CheckCircle];
+const stepColors = ["#818CF8", "#4F46E5", "#C084FC", "#F59E0B", "#4F46E5"];
 
 function ProcessFlow() {
   const [activeStep, setActiveStep] = useState(0);
   const { resolvedTheme } = useTheme();
+  const { lang } = useLanguage();
+  const t = translations[lang].hero.process;
   const isDark = resolvedTheme === "dark";
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setActiveStep((prev) => (prev + 1) % steps.length);
+      setActiveStep((prev) => (prev + 1) % t.steps.length);
     }, 2000);
     return () => clearInterval(interval);
-  }, []);
+  }, [t.steps.length]);
 
   const borderInactive = isDark ? "#2A3B55" : "#D8E2F0";
   const bgInactive     = isDark ? "#1A2332" : "#FFFFFF";
@@ -47,38 +37,38 @@ function ProcessFlow() {
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
-        <p className="label-amber">BA Delivery Process</p>
-        <span className="text-[11px] text-[var(--text-muted)]">Step {activeStep + 1} / {steps.length}</span>
+        <p className="label-amber">{t.title}</p>
+        <span className="text-[11px] text-[var(--text-muted)]">{t.stepOf(activeStep + 1, t.steps.length)}</span>
       </div>
 
       <div className="relative">
-        {steps.map((step, i) => {
+        {t.steps.map((step, i) => {
           const isActive = activeStep === i;
           const isPast   = i < activeStep;
-          const Icon     = step.icon;
+          const Icon     = stepIcons[i];
+          const color    = stepColors[i];
 
           return (
             <div key={step.num}>
               <motion.div
                 animate={{
-                  borderColor:     isActive ? `${step.color}55` : isPast ? `${step.color}25` : borderInactive,
-                  backgroundColor: isActive ? `${step.color}0A` : bgInactive,
-                  boxShadow:       isActive ? `0 4px 24px ${step.color}18, 0 0 0 1px ${step.color}25` : "none",
+                  borderColor:     isActive ? `${color}55` : isPast ? `${color}25` : borderInactive,
+                  backgroundColor: isActive ? `${color}0A` : bgInactive,
+                  boxShadow:       isActive ? `0 4px 24px ${color}18, 0 0 0 1px ${color}25` : "none",
                 }}
                 transition={{ duration: 0.35 }}
                 className="flex items-center gap-3.5 px-4 py-3 rounded-xl border"
               >
-                {/* Number badge */}
                 <motion.div
                   animate={{
-                    backgroundColor: isActive ? step.color : isPast ? `${step.color}20` : "transparent",
-                    borderColor:     isActive ? step.color : isPast ? `${step.color}40` : borderInactive,
+                    backgroundColor: isActive ? color : isPast ? `${color}20` : "transparent",
+                    borderColor:     isActive ? color : isPast ? `${color}40` : borderInactive,
                   }}
                   transition={{ duration: 0.35 }}
                   className="w-7 h-7 rounded-full border-2 flex items-center justify-center shrink-0"
                 >
                   <motion.span
-                    animate={{ color: isActive ? "#FFFFFF" : isPast ? step.color : numInactive }}
+                    animate={{ color: isActive ? "#FFFFFF" : isPast ? color : numInactive }}
                     transition={{ duration: 0.35 }}
                     className="text-[9px] font-bold leading-none"
                   >
@@ -86,16 +76,14 @@ function ProcessFlow() {
                   </motion.span>
                 </motion.div>
 
-                {/* Icon */}
                 <motion.div
-                  animate={{ color: isActive ? step.color : isPast ? `${step.color}80` : iconInactive }}
+                  animate={{ color: isActive ? color : isPast ? `${color}80` : iconInactive }}
                   transition={{ duration: 0.35 }}
                   className="shrink-0"
                 >
                   <Icon size={17} strokeWidth={1.5} />
                 </motion.div>
 
-                {/* Text */}
                 <div className="flex-1 min-w-0">
                   <motion.p
                     animate={{ color: isActive ? titleActive : isPast ? titlePast : titleInactive }}
@@ -107,7 +95,6 @@ function ProcessFlow() {
                   <p className="text-[11px] text-[var(--text-muted)] mt-0.5 truncate">{step.hint}</p>
                 </div>
 
-                {/* Active pulse dot */}
                 <AnimatePresence>
                   {isActive && (
                     <motion.div
@@ -117,19 +104,18 @@ function ProcessFlow() {
                       transition={{ duration: 0.2 }}
                       className="shrink-0 relative flex h-2 w-2"
                     >
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-60" style={{ backgroundColor: step.color }} />
-                      <span className="relative inline-flex rounded-full h-2 w-2" style={{ backgroundColor: step.color }} />
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-60" style={{ backgroundColor: color }} />
+                      <span className="relative inline-flex rounded-full h-2 w-2" style={{ backgroundColor: color }} />
                     </motion.div>
                   )}
                 </AnimatePresence>
               </motion.div>
 
-              {/* Connector line */}
-              {i < steps.length - 1 && (
+              {i < t.steps.length - 1 && (
                 <div className="flex items-center ml-[22px] h-3.5">
                   <div className="w-px h-full relative overflow-hidden mx-auto" style={{ backgroundColor: borderInactive }}>
                     <motion.div
-                      animate={{ backgroundColor: i < activeStep ? step.color : borderInactive, scaleY: i < activeStep ? 1 : 0 }}
+                      animate={{ backgroundColor: i < activeStep ? color : borderInactive, scaleY: i < activeStep ? 1 : 0 }}
                       style={{ transformOrigin: "top" }}
                       transition={{ duration: 0.3 }}
                       className="absolute inset-0"
@@ -143,10 +129,10 @@ function ProcessFlow() {
       </div>
 
       <div className="mt-5 pt-4 border-t border-[var(--border)] flex items-center justify-between">
-        <p className="text-[11px] text-[var(--text-muted)]">End-to-end BA delivery</p>
+        <p className="text-[11px] text-[var(--text-muted)]">{t.endLabel}</p>
         <div className="flex items-center gap-1.5">
           <span className="w-1.5 h-1.5 rounded-full bg-[#4F46E5]" />
-          <span className="text-[11px] text-[var(--accent)] font-medium">AES Vietnam · Active</span>
+          <span className="text-[11px] text-[var(--accent)] font-medium">{t.activeLabel}</span>
         </div>
       </div>
     </div>
@@ -154,9 +140,11 @@ function ProcessFlow() {
 }
 
 export default function Hero() {
+  const { lang } = useLanguage();
+  const t = translations[lang].hero;
+
   return (
     <section className="relative min-h-screen flex items-center bg-[#F7F9FC] dark:bg-[#0D1B2E] topo-bg overflow-hidden">
-      {/* Watermark */}
       <div
         className="absolute right-[-2vw] top-1/2 -translate-y-1/2 font-serif font-bold select-none pointer-events-none leading-none text-[#0D1B2E]/[0.025] dark:text-white/[0.025]"
         style={{ fontSize: "22vw" }}
@@ -170,7 +158,6 @@ export default function Hero() {
 
           {/* LEFT COLUMN */}
           <div>
-            {/* Status */}
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
@@ -182,21 +169,19 @@ export default function Hero() {
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-[#4F46E5]" />
               </span>
               <span className="text-xs text-[var(--text-secondary)] font-medium tracking-wide">
-                Open to opportunities
+                {t.status}
               </span>
             </motion.div>
 
-            {/* Role */}
             <motion.p
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.18 }}
               className="label-amber mb-3"
             >
-              Business Analyst
+              {t.role}
             </motion.p>
 
-            {/* Name */}
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -206,7 +191,6 @@ export default function Hero() {
               Phan Dinh<br />Nhat
             </motion.h1>
 
-            {/* Specialization */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -215,29 +199,26 @@ export default function Hero() {
             >
               <div className="h-px w-5 bg-[#4F46E5]" />
               <span className="text-[var(--accent)] text-xs tracking-[0.2em] uppercase font-medium">
-                Manufacturing Intelligence
+                {t.specialization}
               </span>
             </motion.div>
 
-            {/* Tagline */}
             <motion.p
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.44 }}
               className="text-[var(--text-secondary)] text-[15px] leading-relaxed mb-8 max-w-md"
             >
-              Turning complex factory operations into clear, digital systems.
-              MES, MOM, ERP — from first workshop to go-live.
+              {t.taglineL1}<br />{t.taglineL2}
             </motion.p>
 
-            {/* Domain tags */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.5 }}
               className="flex flex-wrap gap-2 mb-10"
             >
-              {domains.map((tag) => (
+              {t.domains.map((tag) => (
                 <span
                   key={tag}
                   className="text-xs px-3 py-1.5 rounded-full bg-[var(--bg-secondary)] border border-[var(--border)] text-[var(--text-secondary)] font-medium shadow-sm"
@@ -247,7 +228,6 @@ export default function Hero() {
               ))}
             </motion.div>
 
-            {/* CTAs */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -259,7 +239,7 @@ export default function Hero() {
                 className="flex items-center justify-center gap-2 px-7 py-3 bg-[#4F46E5] hover:bg-[#3730A3] text-white font-semibold rounded-lg transition-colors duration-200 text-sm"
               >
                 <Layers size={15} />
-                View Projects
+                {t.viewProjects}
               </a>
               <a
                 href="/phan-dinh-nhat-cv.pdf"
@@ -268,18 +248,17 @@ export default function Hero() {
                 className="flex items-center justify-center gap-2 px-7 py-3 bg-[var(--bg-secondary)] border border-[var(--border)] hover:border-[var(--border-hover)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] font-medium rounded-lg transition-all duration-200 text-sm"
               >
                 <FileText size={15} />
-                Download CV
+                {t.downloadCV}
               </a>
             </motion.div>
 
-            {/* Stats */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.68 }}
               className="flex gap-8 pt-8 border-t border-[var(--border)]"
             >
-              {stats.map((s) => (
+              {t.stats.map((s) => (
                 <div key={s.label}>
                   <div className="font-serif text-2xl font-bold text-[var(--text-primary)]">{s.value}</div>
                   <div className="text-[10px] text-[var(--text-muted)] tracking-widest uppercase mt-0.5">{s.label}</div>
@@ -310,7 +289,7 @@ export default function Hero() {
         transition={{ delay: 1.3 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-[var(--text-muted)]"
       >
-        <span className="text-[10px] tracking-[0.25em] uppercase">Scroll</span>
+        <span className="text-[10px] tracking-[0.25em] uppercase">{t.scroll}</span>
         <motion.div animate={{ y: [0, 6, 0] }} transition={{ duration: 1.8, repeat: Infinity }}>
           <ArrowDown size={13} />
         </motion.div>

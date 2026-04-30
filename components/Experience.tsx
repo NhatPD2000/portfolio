@@ -2,248 +2,13 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Building2, Calendar, MapPin, TrendingUp, ChevronDown, FileText, ExternalLink, Workflow, Users } from "lucide-react";
-
-type Deliverable = {
-  name: string;
-  description: string;
-  link?: string;
-  pages?: number;
-  screens?: number;
-};
-
-type Client = {
-  name: string;
-  industry: string;
-  outcome: string;
-  scope: string[];
-  tags: string[];
-  problem?: string;
-  analysis?: string[];
-  deliverables?: Deliverable[];
-};
-
-type Experience = {
-  num: string;
-  company: string;
-  role: string;
-  period: string;
-  location: string;
-  current: boolean;
-  keyResult: string;
-  highlights: string[];
-  tags: string[];
-  clients: Client[];
-};
-
-const experiences: Experience[] = [
-  {
-    num: "01",
-    company: "AES Vietnam",
-    role: "Business Analyst",
-    period: "April 2024 – Present",
-    location: "Ho Chi Minh City",
-    current: true,
-    keyResult: "3 factory go-lives · 15% operational efficiency gain · 2 MES projects delivered end-to-end",
-    highlights: [
-      "Delivered BRD & FSD for 2 major MES projects, ensuring full alignment between client operations and system design",
-      "Implemented MES for 3 factory clients — improved operational efficiency by 15% through workflow optimization and smart factory solutions",
-      "Designed mockups, wireframes, and Figma prototypes to visualize system workflows and operator UX",
-      "Led go-live activities, user training, and pilot testing at manufacturing sites",
-      "Collaborated with Developers, QA Testers, and IoT engineering team throughout the full project lifecycle",
-    ],
-    tags: ["MES / MOM", "IoT", "BRD / FSD", "Figma", "Agile", "Apriso"],
-    clients: [
-      {
-        name: "Spartronics Vietnam",
-        industry: "Electronics Manufacturing Services (EMS)",
-        outcome: "15% operational efficiency improvement through MES workflow optimization",
-        scope: [
-          "Full MES implementation for shop floor management",
-          "BRD & FSD documentation and client sign-off",
-          "IoT integration for real-time production monitoring",
-          "Go-live support and operator training",
-        ],
-        tags: ["MES", "IoT", "BRD/FSD", "Figma"],
-        problem: "Manual shop floor tracking caused 40% data loss, 2-day reporting delays, and inability to trace quality issues back to production batches",
-        analysis: [
-          "Conducted 7 stakeholder interviews (5 operators, 2 supervisors, 1 plant manager)",
-          "Mapped 5 core workflows using BPMN swimlane diagrams",
-          "Identified 12 critical pain points in current manual process",
-          "Performed gap analysis between As-Is and To-Be states",
-        ],
-        deliverables: [
-          {
-            name: "Business Requirement Document (BRD)",
-            description: "Complete requirements specification with stakeholder sign-off",
-            pages: 45,
-            link: "#",
-          },
-          {
-            name: "Functional Specification Design (FSD)",
-            description: "Detailed system design with mockups and data flow diagrams",
-            pages: 120,
-            link: "#",
-          },
-          {
-            name: "Figma Prototype",
-            description: "Interactive UI/UX prototype for operator workflows",
-            screens: 45,
-            link: "#",
-          },
-          {
-            name: "Process Flowcharts",
-            description: "BPMN diagrams for 5 core manufacturing workflows",
-            link: "#",
-          },
-          {
-            name: "Use Case Diagrams",
-            description: "12 actors, 28 use cases covering all system interactions",
-            link: "#",
-          },
-        ],
-      },
-      {
-        name: "PNJ — Phú Nhuận Jewelry",
-        industry: "Jewelry Manufacturing",
-        outcome: "MES deployment for production tracking and quality control workflows",
-        scope: [
-          "Manufacturing execution system rollout",
-          "Production workflow digitization and process mapping",
-          "Operator UX design and prototype validation",
-          "Pilot testing and go-live coordination",
-        ],
-        tags: ["MES", "Figma", "Workflow Design", "Go-live"],
-        problem: "Jewelry production lacked real-time visibility into work-in-progress, causing bottlenecks and quality traceability issues",
-        analysis: [
-          "Shadowed 4 production lines to understand jewelry manufacturing flow",
-          "Interviewed 6 stakeholders across production, QC, and management",
-          "Created value stream map identifying 8 waste points",
-          "Designed 3 workflow prototypes and validated with operators",
-        ],
-        deliverables: [
-          {
-            name: "Business Requirement Document (BRD)",
-            description: "Requirements for jewelry production tracking system",
-            pages: 38,
-            link: "#",
-          },
-          {
-            name: "Figma Prototype",
-            description: "Operator interface for jewelry production workflows",
-            screens: 32,
-            link: "#",
-          },
-          {
-            name: "Process Maps",
-            description: "Value stream mapping and workflow diagrams",
-            link: "#",
-          },
-          {
-            name: "UAT Test Cases",
-            description: "150+ test scenarios for pilot validation",
-            link: "#",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    num: "02",
-    company: "Lumos IS",
-    role: "Business Analyst",
-    period: "June 2023 – March 2024",
-    location: "Ho Chi Minh City",
-    current: false,
-    keyResult: "Full ERP delivered — requirements to UAT sign-off across Agile sprints",
-    highlights: [
-      "Gathered, refined, and documented user requirements in Business Requirement Specifications for ERP implementation",
-      "Built ERP system functionalities on Oracle Apex using Agile — dashboards, reports, and custom features per client spec",
-      "Deployed software during testing phases, provided end-user training, and resolved post-go-live system issues",
-    ],
-    tags: ["ERP", "Oracle Apex", "Agile / Scrum", "SQL", "Power BI"],
-    clients: [
-      {
-        name: "VT Technical",
-        industry: "Engineering & Technical Services",
-        outcome: "Complete ERP system delivered from requirement gathering to UAT sign-off",
-        scope: [
-          "Sales module — order management and pipeline tracking",
-          "Warehouse module — inventory and stock control",
-          "Service module — field service and ticket management",
-          "Approval workflow — multi-level authorization flows",
-        ],
-        tags: ["ERP", "Oracle Apex", "Agile", "UAT"],
-        problem: "Disconnected Excel-based processes across sales, warehouse, and service teams led to data inconsistency and 3-day order processing delays",
-        analysis: [
-          "Facilitated 5 requirements workshops with cross-functional teams",
-          "Documented 45 user stories across 4 modules",
-          "Created entity-relationship diagrams for database design",
-          "Defined acceptance criteria for 12 Agile sprints",
-        ],
-        deliverables: [
-          {
-            name: "Business Requirement Specification (BRS)",
-            description: "Complete ERP requirements across 4 modules",
-            pages: 68,
-            link: "#",
-          },
-          {
-            name: "User Stories & Acceptance Criteria",
-            description: "45 user stories with testable acceptance criteria",
-            link: "#",
-          },
-          {
-            name: "Database Schema Design",
-            description: "ERD and data dictionary for Oracle Apex",
-            link: "#",
-          },
-          {
-            name: "UAT Test Plan",
-            description: "Test scenarios and sign-off documentation",
-            link: "#",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    num: "03",
-    company: "Four Hands LLC (Rep. Office)",
-    role: "Business Intelligence Analyst",
-    period: "September 2022 – May 2023",
-    location: "Ho Chi Minh City",
-    current: false,
-    keyResult: "Power BI dashboards delivered · Supply chain data quality improved ahead of product relaunch",
-    highlights: [
-      "Executed data queries on supply chain datasets using Microsoft SQL Server for business reporting",
-      "Built Power BI dashboards and interactive reports for sales performance tracking and trend forecasting",
-      "Used KNIME Analytics Platform to build ETL workflows identifying missing data fields prior to product relaunch",
-      "Conducted data validation and quality checks to ensure accurate, reliable business insights",
-    ],
-    tags: ["Power BI", "SQL", "KNIME", "Data Analysis", "Supply Chain"],
-    clients: [],
-  },
-  {
-    num: "04",
-    company: "Skale Asia",
-    role: "Business Analyst Intern",
-    period: "May 2022 – August 2022",
-    location: "Ho Chi Minh City",
-    current: false,
-    keyResult: "BRS finalized on Jira & Confluence · User testing sessions completed with actionable findings",
-    highlights: [
-      "Analyzed user behavior and product logic to generate data-driven recommendations for product improvement",
-      "Facilitated user testing sessions and synthesized usability findings into actionable product feedback",
-      "Gathered and documented requirements from stakeholders on Jira & Confluence throughout the SDLC",
-      "Collaborated with developers, testers, and project managers to ensure requirements were clearly communicated",
-    ],
-    tags: ["Agile", "Jira", "Confluence", "User Testing", "Requirements"],
-    clients: [],
-  },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
+import { translations } from "@/lib/i18n";
 
 export default function ExperienceEnhanced() {
   const [expanded, setExpanded] = useState<Set<string>>(new Set());
+  const { lang } = useLanguage();
+  const t = translations[lang].experience;
 
   const toggle = (num: string) => {
     setExpanded((prev) => {
@@ -264,9 +29,9 @@ export default function ExperienceEnhanced() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <p className="label-amber mb-4">Work Experience</p>
+          <p className="label-amber mb-4">{t.label}</p>
           <h2 className="font-serif text-4xl sm:text-5xl font-bold text-[var(--text-primary)]">
-            Where I&apos;ve made an impact
+            {t.heading}
           </h2>
         </motion.div>
 
@@ -274,7 +39,7 @@ export default function ExperienceEnhanced() {
           <div className="absolute left-[22px] top-6 bottom-6 w-px bg-[var(--border)] hidden sm:block" />
 
           <div className="space-y-5">
-            {experiences.map((exp, i) => {
+            {t.items.map((exp, i) => {
               const isExpanded = expanded.has(exp.num);
               return (
                 <motion.div
@@ -285,7 +50,6 @@ export default function ExperienceEnhanced() {
                   transition={{ duration: 0.6, delay: i * 0.1 }}
                   className="relative sm:pl-14"
                 >
-                  {/* Timeline dot */}
                   <div
                     className={`absolute left-[15px] top-6 w-3.5 h-3.5 rounded-full border-2 hidden sm:block ${
                       exp.current
@@ -295,18 +59,9 @@ export default function ExperienceEnhanced() {
                   />
 
                   <div className="bg-[var(--surface-elevated)] border border-[var(--border)] rounded-xl overflow-hidden card-hover">
-                    {/* Accent top bar */}
-                    <div
-                      className="h-[3px] w-full"
-                      style={{
-                        background: exp.current
-                          ? "linear-gradient(90deg, #4F46E5, #818CF8)"
-                          : "linear-gradient(90deg, var(--border), transparent)",
-                      }}
-                    />
+                    <div className="h-[3px] w-full" style={{ background: exp.current ? "linear-gradient(90deg, #4F46E5, #818CF8)" : "linear-gradient(90deg, var(--border), transparent)" }} />
 
                     <div className="p-6">
-                      {/* Header */}
                       <div className="flex flex-wrap items-start justify-between gap-3 mb-5">
                         <div>
                           <div className="flex items-center gap-2 mb-1.5">
@@ -314,7 +69,7 @@ export default function ExperienceEnhanced() {
                             <span className="text-xs text-[var(--text-muted)]">{exp.company}</span>
                             {exp.current && (
                               <span className="text-[10px] px-2 py-0.5 rounded bg-[#4F46E5]/10 text-[var(--accent)] border border-[#4F46E5]/20 font-medium">
-                                Current
+                                {t.current}
                               </span>
                             )}
                           </div>
@@ -331,11 +86,10 @@ export default function ExperienceEnhanced() {
                         </div>
                       </div>
 
-                      {/* Highlights */}
                       <ul className="space-y-2.5 mb-5">
                         {exp.highlights.map((point, idx) => (
                           <motion.li
-                            key={point}
+                            key={idx}
                             initial={{ opacity: 0, x: -12 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
@@ -348,47 +102,28 @@ export default function ExperienceEnhanced() {
                         ))}
                       </ul>
 
-                      {/* Key result */}
                       <div className="flex items-start gap-3 px-4 py-3 mb-4 rounded-lg bg-[var(--bg-secondary)] border border-[var(--border)]">
                         <TrendingUp size={14} className="text-[var(--accent)] shrink-0 mt-0.5" />
                         <p className="text-xs text-[var(--text-primary)] font-medium leading-relaxed">{exp.keyResult}</p>
                       </div>
 
-                      {/* Tags */}
                       <div className="flex flex-wrap gap-1.5">
                         {exp.tags.map((tag) => (
-                          <span
-                            key={tag}
-                            className="text-[11px] px-2.5 py-1 bg-[var(--bg-secondary)] text-[var(--text-secondary)] rounded border border-[var(--border)]"
-                          >
-                            {tag}
-                          </span>
+                          <span key={tag} className="text-[11px] px-2.5 py-1 bg-[var(--bg-secondary)] text-[var(--text-secondary)] rounded border border-[var(--border)]">{tag}</span>
                         ))}
                       </div>
                     </div>
 
-                    {/* Client details toggle */}
                     {exp.clients.length > 0 && (
                       <button
                         onClick={() => toggle(exp.num)}
                         className="w-full flex items-center justify-between px-6 py-3 border-t border-[var(--border)] text-xs font-medium text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors duration-200"
                       >
-                        <span>
-                          {isExpanded
-                            ? "Hide client details"
-                            : `View ${exp.clients.length} client project${exp.clients.length > 1 ? "s" : ""}`}
-                        </span>
-                        <ChevronDown
-                          size={14}
-                          style={{
-                            transform: isExpanded ? "rotate(180deg)" : "rotate(0deg)",
-                            transition: "transform 0.3s ease",
-                          }}
-                        />
+                        <span>{isExpanded ? t.hideClients : t.viewClients(exp.clients.length)}</span>
+                        <ChevronDown size={14} style={{ transform: isExpanded ? "rotate(180deg)" : "rotate(0deg)", transition: "transform 0.3s ease" }} />
                       </button>
                     )}
 
-                    {/* Expanded client cards - ENHANCED VERSION */}
                     <AnimatePresence>
                       {isExpanded && exp.clients.length > 0 && (
                         <motion.div
@@ -400,32 +135,26 @@ export default function ExperienceEnhanced() {
                         >
                           <div className="px-6 pb-6 pt-3 space-y-4">
                             {exp.clients.map((client) => (
-                              <div
-                                key={client.name}
-                                className="p-5 bg-[var(--bg-secondary)] border border-[var(--border)] rounded-lg space-y-4"
-                              >
-                                {/* Client header */}
+                              <div key={client.name} className="p-5 bg-[var(--bg-secondary)] border border-[var(--border)] rounded-lg space-y-4">
                                 <div>
                                   <p className="font-semibold text-[var(--text-primary)] text-base leading-tight">{client.name}</p>
                                   <p className="text-[10px] text-[var(--text-muted)] uppercase tracking-wider mt-0.5">{client.industry}</p>
                                 </div>
 
-                                {/* Problem statement */}
                                 {client.problem && (
                                   <div className="p-3 bg-red-500/5 border border-red-500/20 rounded">
                                     <div className="flex items-start gap-2 mb-1.5">
-                                      <span className="text-xs font-semibold text-red-600 dark:text-red-400">Problem</span>
+                                      <span className="text-xs font-semibold text-red-600 dark:text-red-400">{t.sections.problem}</span>
                                     </div>
                                     <p className="text-xs text-[var(--text-secondary)] leading-relaxed">{client.problem}</p>
                                   </div>
                                 )}
 
-                                {/* Analysis process */}
                                 {client.analysis && client.analysis.length > 0 && (
                                   <div>
                                     <div className="flex items-center gap-2 mb-2">
                                       <Users size={12} className="text-[var(--accent)]" />
-                                      <span className="text-xs font-semibold text-[var(--text-primary)]">Analysis Process</span>
+                                      <span className="text-xs font-semibold text-[var(--text-primary)]">{t.sections.analysis}</span>
                                     </div>
                                     <ul className="space-y-1.5">
                                       {client.analysis.map((item, idx) => (
@@ -438,15 +167,14 @@ export default function ExperienceEnhanced() {
                                   </div>
                                 )}
 
-                                {/* Scope */}
                                 <div>
                                   <div className="flex items-center gap-2 mb-2">
                                     <Workflow size={12} className="text-[var(--accent)]" />
-                                    <span className="text-xs font-semibold text-[var(--text-primary)]">Solution Scope</span>
+                                    <span className="text-xs font-semibold text-[var(--text-primary)]">{t.sections.scope}</span>
                                   </div>
                                   <ul className="space-y-1.5">
-                                    {client.scope.map((s) => (
-                                      <li key={s} className="flex items-start gap-2 text-xs text-[var(--text-secondary)]">
+                                    {client.scope.map((s, idx) => (
+                                      <li key={idx} className="flex items-start gap-2 text-xs text-[var(--text-secondary)]">
                                         <span className="text-[var(--accent)] mt-0.5 shrink-0">▸</span>
                                         {s}
                                       </li>
@@ -454,35 +182,27 @@ export default function ExperienceEnhanced() {
                                   </ul>
                                 </div>
 
-                                {/* Deliverables */}
                                 {client.deliverables && client.deliverables.length > 0 && (
                                   <div>
                                     <div className="flex items-center gap-2 mb-2">
                                       <FileText size={12} className="text-[var(--accent)]" />
-                                      <span className="text-xs font-semibold text-[var(--text-primary)]">Deliverables</span>
+                                      <span className="text-xs font-semibold text-[var(--text-primary)]">{t.sections.deliverables}</span>
                                     </div>
                                     <div className="space-y-2">
                                       {client.deliverables.map((deliverable) => (
-                                        <div
-                                          key={deliverable.name}
-                                          className="flex items-start justify-between gap-3 p-2.5 bg-[var(--bg-primary)] border border-[var(--border)] rounded"
-                                        >
+                                        <div key={deliverable.name} className="flex items-start justify-between gap-3 p-2.5 bg-[var(--bg-primary)] border border-[var(--border)] rounded">
                                           <div className="flex-1 min-w-0">
                                             <p className="text-xs font-medium text-[var(--text-primary)] mb-0.5">{deliverable.name}</p>
                                             <p className="text-[10px] text-[var(--text-muted)] leading-snug">{deliverable.description}</p>
                                             {(deliverable.pages || deliverable.screens) && (
                                               <p className="text-[10px] text-[var(--accent)] mt-1">
-                                                {deliverable.pages && `${deliverable.pages} pages`}
-                                                {deliverable.screens && `${deliverable.screens} screens`}
+                                                {deliverable.pages && `${deliverable.pages} ${t.pages}`}
+                                                {deliverable.screens && `${deliverable.screens} ${t.screens}`}
                                               </p>
                                             )}
                                           </div>
                                           {deliverable.link && (
-                                            <a
-                                              href={deliverable.link}
-                                              className="shrink-0 p-1.5 hover:bg-[var(--accent)]/10 rounded transition-colors"
-                                              aria-label={`View ${deliverable.name}`}
-                                            >
+                                            <a href={deliverable.link} className="shrink-0 p-1.5 hover:bg-[var(--accent)]/10 rounded transition-colors" aria-label={`View ${deliverable.name}`}>
                                               <ExternalLink size={12} className="text-[var(--accent)]" />
                                             </a>
                                           )}
@@ -492,23 +212,17 @@ export default function ExperienceEnhanced() {
                                   </div>
                                 )}
 
-                                {/* Outcome */}
                                 <div className="pt-3 border-t border-[var(--border)]">
                                   <div className="flex items-start gap-2 mb-2">
                                     <TrendingUp size={12} className="text-green-600 dark:text-green-400 mt-0.5" />
                                     <div>
-                                      <span className="text-xs font-semibold text-green-600 dark:text-green-400 block mb-1">Outcome</span>
+                                      <span className="text-xs font-semibold text-green-600 dark:text-green-400 block mb-1">{t.sections.outcome}</span>
                                       <p className="text-xs text-[var(--text-secondary)] leading-relaxed">{client.outcome}</p>
                                     </div>
                                   </div>
                                   <div className="flex flex-wrap gap-1 mt-2">
-                                    {client.tags.map((t) => (
-                                      <span
-                                        key={t}
-                                        className="text-[10px] px-1.5 py-0.5 bg-[#4F46E5]/10 text-[var(--accent)] rounded"
-                                      >
-                                        {t}
-                                      </span>
+                                    {client.tags.map((tag) => (
+                                      <span key={tag} className="text-[10px] px-1.5 py-0.5 bg-[#4F46E5]/10 text-[var(--accent)] rounded">{tag}</span>
                                     ))}
                                   </div>
                                 </div>

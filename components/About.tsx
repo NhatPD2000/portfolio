@@ -1,33 +1,16 @@
 "use client";
 import { motion } from "framer-motion";
 import { MapPin, Briefcase, Globe, GraduationCap, TrendingUp, Factory, Users, Layers } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { translations } from "@/lib/i18n";
 
-const highlights = [
-  {
-    icon: Briefcase,
-    title: "Domain Expertise",
-    desc: "Manufacturing (MES/MOM), ERP Systems, Smart Factory & IoT integration across production environments",
-  },
-  {
-    icon: Globe,
-    title: "Trilingual Communicator",
-    desc: "Vietnamese (Native) · English (Fluent) · Chinese (Intermediate) — bridges teams across language barriers",
-  },
-  {
-    icon: GraduationCap,
-    title: "Background",
-    desc: "B.A. English Language — HUTECH · Translates complex technical systems into language stakeholders understand",
-  },
-];
-
-const metrics = [
-  { icon: TrendingUp, value: "15%", label: "Efficiency gain delivered at Spartronics MES" },
-  { icon: Factory,   value: "3",    label: "Factory go-lives completed end-to-end" },
-  { icon: Layers,    value: "2",    label: "MES platforms: custom-built & Apriso/Dassault" },
-  { icon: Users,     value: "3",    label: "Languages — bridges cross-cultural teams" },
-];
+const highlightIcons = [Briefcase, Globe, GraduationCap];
+const metricIcons    = [TrendingUp, Factory, Layers, Users];
 
 export default function About() {
+  const { lang } = useLanguage();
+  const t = translations[lang].about;
+
   return (
     <section id="about" className="py-28 px-6">
       <div className="max-w-6xl mx-auto">
@@ -39,22 +22,18 @@ export default function About() {
           transition={{ duration: 0.6 }}
           className="mb-16"
         >
-          <p className="label-amber mb-4">About Me</p>
+          <p className="label-amber mb-4">{t.label}</p>
           <div className="grid md:grid-cols-2 gap-12 items-end">
             <h2 className="font-serif text-4xl sm:text-5xl font-bold text-[var(--text-primary)] leading-tight">
-              Turning complex processes into{" "}
-              <span className="text-[var(--accent)]">clear digital systems</span>
+              {t.headingPlain}{" "}
+              <span className="text-[var(--accent)]">{t.headingAccent}</span>
             </h2>
             <div>
-              <p className="text-[var(--text-secondary)] leading-relaxed mb-4 text-[15px]">
-                I&apos;m a Business Analyst with 3+ years of experience in manufacturing technology — implementing MES systems on factory floors and digitizing ERP workflows for enterprise clients.
-              </p>
-              <p className="text-[var(--text-secondary)] leading-relaxed text-[15px]">
-                I speak both the language of the shop floor and the boardroom, translating production realities into requirements that developers can build and operators can adopt.
-              </p>
+              <p className="text-[var(--text-secondary)] leading-relaxed mb-4 text-[15px]">{t.para1}</p>
+              <p className="text-[var(--text-secondary)] leading-relaxed text-[15px]">{t.para2}</p>
               <div className="flex items-center gap-2 text-[var(--text-muted)] text-sm mt-5">
                 <MapPin size={13} className="text-[var(--accent)]" />
-                Ho Chi Minh City, Vietnam
+                {t.location}
               </div>
             </div>
           </div>
@@ -67,8 +46,8 @@ export default function About() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-16"
         >
-          {metrics.map((m, i) => {
-            const Icon = m.icon;
+          {t.metrics.map((m, i) => {
+            const Icon = metricIcons[i];
             return (
               <motion.div
                 key={m.label}
@@ -97,24 +76,27 @@ export default function About() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="grid md:grid-cols-3 gap-4"
         >
-          {highlights.map((item, i) => (
-            <motion.div
-              key={item.title}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
-              className="flex flex-col gap-3 p-6 bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl card-hover"
-            >
-              <div className="p-2.5 rounded-xl bg-[#4F46E5]/10 text-[var(--accent)] w-fit">
-                <item.icon size={18} />
-              </div>
-              <div>
-                <h3 className="font-semibold text-[var(--text-primary)] mb-1.5 text-sm">{item.title}</h3>
-                <p className="text-xs text-[var(--text-secondary)] leading-relaxed">{item.desc}</p>
-              </div>
-            </motion.div>
-          ))}
+          {t.highlights.map((item, i) => {
+            const Icon = highlightIcons[i];
+            return (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
+                className="flex flex-col gap-3 p-6 bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl card-hover"
+              >
+                <div className="p-2.5 rounded-xl bg-[#4F46E5]/10 text-[var(--accent)] w-fit">
+                  <Icon size={18} />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-[var(--text-primary)] mb-1.5 text-sm">{item.title}</h3>
+                  <p className="text-xs text-[var(--text-secondary)] leading-relaxed">{item.desc}</p>
+                </div>
+              </motion.div>
+            );
+          })}
         </motion.div>
 
       </div>

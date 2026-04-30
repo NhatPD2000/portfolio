@@ -2,6 +2,8 @@
 import { motion } from "framer-motion";
 import { TrendingUp, Zap, Factory } from "lucide-react";
 import Image from "next/image";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { translations } from "@/lib/i18n";
 
 function BrowserFrame({ src, alt, url }: { src: string; alt: string; url: string }) {
   return (
@@ -15,81 +17,41 @@ function BrowserFrame({ src, alt, url }: { src: string; alt: string; url: string
         </div>
       </div>
       <div className="relative overflow-hidden" style={{ maxHeight: "260px" }}>
-        <Image
-          src={src}
-          alt={alt}
-          width={1200}
-          height={800}
-          className="w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
-          style={{ maxHeight: "260px" }}
-        />
-        <div
-          className="absolute bottom-0 left-0 right-0 h-20 pointer-events-none"
-          style={{ background: "linear-gradient(to top, var(--bg-tertiary), transparent)" }}
-        />
+        <Image src={src} alt={alt} width={1200} height={800} className="w-full object-cover object-top transition-transform duration-500 group-hover:scale-105" style={{ maxHeight: "260px" }} />
+        <div className="absolute bottom-0 left-0 right-0 h-20 pointer-events-none" style={{ background: "linear-gradient(to top, var(--bg-tertiary), transparent)" }} />
         <div className="absolute inset-0 bg-[#0D1B2E]/0 group-hover:bg-[#0D1B2E]/5 transition-colors duration-300 pointer-events-none" />
       </div>
     </div>
   );
 }
 
-const projects = [
+// Static config: icons, screenshots, tags, company/client names (non-translatable)
+const PROJECT_CONFIG = [
   {
-    id: "smes",
-    icon: Factory,
-    num: "01",
-    company: "AES Vietnam",
-    client: "Spartronics",
-    title: "Spartronics Manufacturing Execution System",
-    subtitle: "Custom MES — built from scratch with IoT integration",
-    period: "Dec 2024 – Present",
+    id: "smes", num: "01", icon: Factory,
+    company: "AES Vietnam", client: "Spartronics",
     screenshots: [
       { src: "/smes-workcenter.png", alt: "SMES Work Order & Production Line", url: "smes.spartronics.com/work-center" },
-      { src: "/smes-iqc.png", alt: "SMES Incoming Quality Control", url: "smes.spartronics.com/iqc" },
+      { src: "/smes-iqc.png",        alt: "SMES Incoming Quality Control",      url: "smes.spartronics.com/iqc"         },
     ],
-    challenge: "Spartronics had zero real-time visibility into their SMT production lines. Manual tracking created blind spots — product traceability didn't exist, and quality defects were only caught late in the cycle.",
-    approach: [
-      "On-site workshops to map existing workflows in BPMN, identifying 8 key process gaps",
-      "System architecture integrating IoT (FPC devices) for real-time machine data collection",
-      "BRD & FSD covering Work Order management, process routes, traceability, and QC modules",
-      "Figma prototypes for operator dashboards — validated through 3 UAT rounds on the factory floor",
-    ],
-    results: [
-      { metric: "Real-time", label: "SMT production monitoring" },
-      { metric: "100%",      label: "Product traceability" },
-      { metric: "IoT",       label: "FPC device integration" },
-    ],
-    tags: ["MES / MOM", "IoT", "BPMN", "Figma", "BRD / FSD", "Traceability", "QC"],
+    tags: ["MES / MOM","IoT","BPMN","Figma","BRD / FSD","Traceability","QC"],
   },
   {
-    id: "pnj",
-    icon: Zap,
-    num: "02",
-    company: "AES Vietnam",
-    client: "PNJ — Phu Nhuan Jewelry",
-    title: "Apriso Integration for Electroplating Process",
-    subtitle: "MES digitalization — Apriso / Dassault Systèmes",
-    period: "Dec 2023 – Dec 2024",
+    id: "pnj", num: "02", icon: Zap,
+    company: "AES Vietnam", client: "PNJ — Phu Nhuan Jewelry",
     screenshots: [
       { src: "/pnj-production.png", alt: "PNJ Production Execution Screen", url: "pnj-mes.apriso.com/production" },
     ],
-    challenge: "PNJ's electroplating line ran on manual calculations and paper logs. Frequent coating errors, high rework rates, and zero SCADA-to-report integration were costing production time and quality.",
-    approach: [
-      "BPMN mapping of full electroplating workflow — identified 6 bottlenecks for automation",
-      "Functional specs for automated surface area calculation engine in Apriso",
-      "SCADA-to-Apriso integration requirements for real-time parameter tracking",
-      "Iterative testing with floor operators across 4 sprint cycles",
-    ],
-    results: [
-      { metric: "40%",  label: "Fewer manual operations" },
-      { metric: "25%",  label: "Reduction in rework errors" },
-      { metric: "Live", label: "SCADA data integration" },
-    ],
-    tags: ["Apriso", "SCADA", "BPMN", "Process Automation", "MES"],
+    tags: ["Apriso","SCADA","BPMN","Process Automation","MES"],
   },
 ];
 
 export default function Projects() {
+  const { lang } = useLanguage();
+  const t = translations[lang].projects;
+
+  const projects = PROJECT_CONFIG.map((cfg, i) => ({ ...cfg, ...t.items[i] }));
+
   return (
     <section id="projects" className="py-28 px-6">
       <div className="max-w-6xl mx-auto">
@@ -100,12 +62,12 @@ export default function Projects() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <p className="label-amber mb-4">Featured Work</p>
+          <p className="label-amber mb-4">{t.label}</p>
           <h2 className="font-serif text-4xl sm:text-5xl font-bold text-[var(--text-primary)] mb-4">
-            Real problems. Real results.
+            {t.heading}
           </h2>
           <p className="text-[var(--text-secondary)] max-w-lg mx-auto text-sm leading-relaxed">
-            Structured BA process: understand the problem, map the flow, document requirements, validate with users.
+            {t.description}
           </p>
         </motion.div>
 
@@ -119,7 +81,6 @@ export default function Projects() {
               transition={{ duration: 0.65, delay: i * 0.1 }}
               className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-2xl overflow-hidden card-hover"
             >
-              {/* Card header */}
               <div className="px-8 pt-8 pb-6 border-b border-[var(--border)]">
                 <div className="flex flex-wrap items-start justify-between gap-4">
                   <div className="flex items-start gap-4">
@@ -137,33 +98,29 @@ export default function Projects() {
                     </div>
                   </div>
                   <div className="flex items-center gap-4">
-                    <span className="text-xs px-3 py-1.5 rounded border border-[var(--border)] text-[var(--text-secondary)] shrink-0">
-                      {project.period}
-                    </span>
+                    <span className="text-xs px-3 py-1.5 rounded border border-[var(--border)] text-[var(--text-secondary)] shrink-0">{project.period}</span>
                     <span className="label-amber shrink-0">{project.num}</span>
                   </div>
                 </div>
               </div>
 
-              {/* Screenshots */}
               <div className={`px-8 py-6 bg-[var(--surface-elevated)] border-b border-[var(--border)] ${project.screenshots.length === 2 ? "grid md:grid-cols-2 gap-4" : ""}`}>
                 {project.screenshots.map((shot) => (
                   <BrowserFrame key={shot.src} {...shot} />
                 ))}
               </div>
 
-              {/* 3-col content */}
               <div className="grid lg:grid-cols-3 divide-y lg:divide-y-0 lg:divide-x divide-[var(--border)]">
                 <div className="px-8 py-6">
-                  <h4 className="label-amber mb-3">Challenge</h4>
+                  <h4 className="label-amber mb-3">{t.challenge}</h4>
                   <p className="text-sm text-[var(--text-secondary)] leading-relaxed">{project.challenge}</p>
                 </div>
 
                 <div className="px-8 py-6">
-                  <h4 className="label-amber mb-3">BA Approach</h4>
+                  <h4 className="label-amber mb-3">{t.approach}</h4>
                   <ul className="space-y-2.5">
-                    {project.approach.map((step) => (
-                      <li key={step} className="flex items-start gap-2 text-sm text-[var(--text-secondary)]">
+                    {project.approach.map((step, idx) => (
+                      <li key={idx} className="flex items-start gap-2 text-sm text-[var(--text-secondary)]">
                         <span className="text-[var(--accent)] mt-1.5 shrink-0 text-xs">▸</span>
                         {step}
                       </li>
@@ -172,7 +129,7 @@ export default function Projects() {
                 </div>
 
                 <div className="px-8 py-6">
-                  <h4 className="label-amber mb-3">Results</h4>
+                  <h4 className="label-amber mb-3">{t.results}</h4>
                   <div className="space-y-2.5 mb-5">
                     {project.results.map((r) => (
                       <div key={r.metric} className="flex items-center gap-3 p-3 bg-[var(--surface-elevated)] rounded-lg border border-[var(--border)]">
@@ -183,9 +140,7 @@ export default function Projects() {
                   </div>
                   <div className="flex flex-wrap gap-1.5">
                     {project.tags.map((tag) => (
-                      <span key={tag} className="text-[11px] px-2 py-0.5 rounded bg-[var(--bg-tertiary)] text-[var(--text-secondary)] border border-[var(--border)]">
-                        {tag}
-                      </span>
+                      <span key={tag} className="text-[11px] px-2 py-0.5 rounded bg-[var(--bg-tertiary)] text-[var(--text-secondary)] border border-[var(--border)]">{tag}</span>
                     ))}
                   </div>
                 </div>
@@ -207,15 +162,13 @@ export default function Projects() {
           </div>
           <div>
             <div className="flex items-center gap-3 mb-1">
-              <h4 className="font-semibold text-[var(--text-primary)] text-sm">ERP Implementation — Lumos IS</h4>
+              <h4 className="font-semibold text-[var(--text-primary)] text-sm">{t.erpTitle}</h4>
               <span className="label-amber">03</span>
             </div>
-            <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
-              Implemented ERP solutions on Oracle Apex for enterprise clients via Agile sprints. Delivered custom dashboards, reports, and features. Managed UAT cycles and post-deployment support.
-            </p>
+            <p className="text-sm text-[var(--text-secondary)] leading-relaxed">{t.erpDesc}</p>
             <div className="flex flex-wrap gap-1.5 mt-3">
-              {["Oracle Apex", "ERP", "Agile", "Dashboard Design", "UAT"].map((t) => (
-                <span key={t} className="text-[11px] px-2 py-0.5 rounded bg-[var(--bg-tertiary)] text-[var(--text-secondary)] border border-[var(--border)]">{t}</span>
+              {["Oracle Apex","ERP","Agile","Dashboard Design","UAT"].map((tag) => (
+                <span key={tag} className="text-[11px] px-2 py-0.5 rounded bg-[var(--bg-tertiary)] text-[var(--text-secondary)] border border-[var(--border)]">{tag}</span>
               ))}
             </div>
           </div>

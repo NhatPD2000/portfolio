@@ -3,21 +3,17 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
-
-const navLinks = [
-  { href: "#about", label: "About" },
-  { href: "#skills", label: "Skills" },
-  { href: "#experience", label: "Experience" },
-  { href: "#education", label: "Education" },
-  { href: "#projects", label: "Work" },
-  { href: "#contact", label: "Contact" },
-];
+import LanguageToggle from "./LanguageToggle";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { translations } from "@/lib/i18n";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
   const [progress, setProgress] = useState(0);
+  const { lang } = useLanguage();
+  const t = translations[lang].nav;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,15 +26,12 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // IntersectionObserver — highlight current section
   useEffect(() => {
     const sections = document.querySelectorAll("section[id]");
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
+          if (entry.isIntersecting) setActiveSection(entry.target.id);
         });
       },
       { threshold: 0.25, rootMargin: "-80px 0px -55% 0px" }
@@ -75,7 +68,7 @@ export default function Navbar() {
 
         {/* Nav links */}
         <div className="hidden md:flex items-center gap-10">
-          {navLinks.map((link) => {
+          {t.links.map((link) => {
             const sectionId = link.href.slice(1);
             const isActive = activeSection === sectionId;
             return (
@@ -86,7 +79,6 @@ export default function Navbar() {
                 style={{ color: isActive ? "var(--text-primary)" : "var(--text-secondary)" }}
               >
                 {link.label}
-                {/* Active underline */}
                 <motion.span
                   layoutId="nav-underline"
                   className="absolute -bottom-0.5 left-0 right-0 h-[1.5px] bg-[#4F46E5] rounded-full"
@@ -99,13 +91,14 @@ export default function Navbar() {
           })}
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2">
+          <LanguageToggle />
           <ThemeToggle />
           <a
             href="#contact"
             className="hidden md:block px-5 py-2 text-xs font-semibold tracking-widest uppercase text-white bg-[#4F46E5] hover:bg-[#3730A3] rounded-md transition-colors duration-200"
           >
-            Hire Me
+            {t.hireMe}
           </a>
           <button
             className="md:hidden text-[#4A5E7A] dark:text-[#B0BFDA] p-1"
@@ -123,7 +116,7 @@ export default function Navbar() {
           animate={{ opacity: 1, height: "auto" }}
           className="md:hidden bg-[#F7F9FC] dark:bg-[#0D1B2E] border-b border-[#D8E2F0] dark:border-[#2A3B55] px-8 pb-5"
         >
-          {navLinks.map((link) => {
+          {t.links.map((link) => {
             const isActive = activeSection === link.href.slice(1);
             return (
               <a
@@ -134,9 +127,7 @@ export default function Navbar() {
                 style={{ color: isActive ? "var(--text-primary)" : "var(--text-secondary)" }}
               >
                 {link.label}
-                {isActive && (
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#4F46E5]" />
-                )}
+                {isActive && <span className="w-1.5 h-1.5 rounded-full bg-[#4F46E5]" />}
               </a>
             );
           })}

@@ -1,11 +1,13 @@
 "use client";
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Link2, GitBranch, ArrowUpRight } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { translations } from "@/lib/i18n";
 
-const contactItems = [
-  { icon: Mail,   label: "Email",    value: "phandinhnhat806@gmail.com", href: "mailto:phandinhnhat806@gmail.com" },
-  { icon: Phone,  label: "Phone",    value: "(+84) 899 227 940",         href: "tel:+84899227940" },
-  { icon: MapPin, label: "Location", value: "Ho Chi Minh City, Vietnam",  href: null },
+const contactItemsBase = [
+  { icon: Mail,   key: "Email" as const,    value: "phandinhnhat806@gmail.com", href: "mailto:phandinhnhat806@gmail.com" },
+  { icon: Phone,  key: "Phone" as const,    value: "(+84) 899 227 940",         href: "tel:+84899227940" },
+  { icon: MapPin, key: "Location" as const, value: "Ho Chi Minh City, Vietnam",  href: null },
 ];
 
 const socialLinks = [
@@ -13,14 +15,10 @@ const socialLinks = [
   { icon: GitBranch, label: "GitHub",   href: "https://github.com/phandinhnhat" },
 ];
 
-const openTo = [
-  "Manufacturing / Smart Factory",
-  "MES / MOM / ERP Systems",
-  "Digital Transformation",
-  "Vietnam or Remote",
-];
-
 export default function Contact() {
+  const { lang } = useLanguage();
+  const t = translations[lang].contact;
+
   return (
     <>
       <section id="contact" className="py-28 px-6 bg-[var(--bg-tertiary)] topo-bg">
@@ -32,12 +30,12 @@ export default function Contact() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <p className="label-amber mb-4">Get In Touch</p>
+            <p className="label-amber mb-4">{t.label}</p>
             <h2 className="font-serif text-4xl sm:text-5xl font-bold text-[var(--text-primary)] mb-4">
-              Let&apos;s work together
+              {t.heading}
             </h2>
             <p className="text-[var(--text-secondary)] max-w-sm mx-auto text-sm">
-              Looking for a BA who understands both the factory floor and the boardroom?
+              {t.description}
             </p>
           </motion.div>
 
@@ -50,16 +48,15 @@ export default function Contact() {
               transition={{ duration: 0.55 }}
               className="space-y-3"
             >
-              {contactItems.map((item) => (
-                <div
-                  key={item.label}
-                  className="flex items-center gap-4 p-4 bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl"
-                >
+              {contactItemsBase.map((item) => (
+                <div key={item.key} className="flex items-center gap-4 p-4 bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl">
                   <div className="p-2 rounded-lg bg-[#4F46E5]/10 text-[var(--accent)] shrink-0">
                     <item.icon size={16} />
                   </div>
                   <div>
-                    <p className="text-[10px] text-[var(--text-muted)] mb-0.5 uppercase tracking-widest">{item.label}</p>
+                    <p className="text-[10px] text-[var(--text-muted)] mb-0.5 uppercase tracking-widest">
+                      {t.contactLabels[item.key]}
+                    </p>
                     {item.href ? (
                       <a href={item.href} className="text-[var(--text-primary)] hover:text-[var(--accent)] transition-colors text-sm font-medium">
                         {item.value}
@@ -95,22 +92,14 @@ export default function Contact() {
               transition={{ duration: 0.55, delay: 0.1 }}
               className="relative p-8 bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl overflow-hidden flex flex-col justify-between"
             >
-              <div
-                className="absolute top-0 right-0 w-52 h-52 rounded-full pointer-events-none"
-                style={{ background: "radial-gradient(circle, rgba(46,196,168,0.07) 0%, transparent 70%)", filter: "blur(24px)" }}
-              />
+              <div className="absolute top-0 right-0 w-52 h-52 rounded-full pointer-events-none" style={{ background: "radial-gradient(circle, rgba(46,196,168,0.07) 0%, transparent 70%)", filter: "blur(24px)" }} />
 
               <div className="relative">
-                <p className="label-amber mb-3">Open to opportunities</p>
-                <h3 className="font-serif text-2xl font-bold text-[var(--text-primary)] mb-3">
-                  Let&apos;s build something
-                </h3>
-                <p className="text-[var(--text-secondary)] text-sm leading-relaxed mb-6">
-                  Interested in BA roles in manufacturing tech, smart factory,
-                  MES/ERP, or digital transformation.
-                </p>
+                <p className="label-amber mb-3">{t.opportunitiesLabel}</p>
+                <h3 className="font-serif text-2xl font-bold text-[var(--text-primary)] mb-3">{t.ctaHeading}</h3>
+                <p className="text-[var(--text-secondary)] text-sm leading-relaxed mb-6">{t.ctaDesc}</p>
                 <div className="space-y-2 mb-8">
-                  {openTo.map((item) => (
+                  {t.openTo.map((item) => (
                     <div key={item} className="flex items-center gap-2 text-sm text-[var(--text-secondary)]">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#4F46E5]/60 shrink-0" />
                       {item}
@@ -123,7 +112,7 @@ export default function Contact() {
                 href="mailto:phandinhnhat806@gmail.com"
                 className="relative inline-flex items-center gap-2 px-6 py-3 bg-[#4F46E5] hover:bg-[#3730A3] text-white font-semibold rounded-lg transition-colors duration-200 w-fit text-sm"
               >
-                Send a message
+                {t.sendMessage}
                 <ArrowUpRight size={15} />
               </a>
             </motion.div>
@@ -134,7 +123,7 @@ export default function Contact() {
       <footer className="border-t border-[var(--border)] py-8 px-6 bg-[var(--bg-primary)]">
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-3">
           <p className="text-[var(--text-muted)] text-sm">
-            © 2026 <span className="font-serif text-[var(--text-secondary)]">Phan Dinh Nhat</span> — Business Analyst
+            © 2026 <span className="font-serif text-[var(--text-secondary)]">Phan Dinh Nhat</span> — {t.footer}
           </p>
         </div>
       </footer>
