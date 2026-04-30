@@ -207,7 +207,7 @@ Tạo workspace cho feature: add-blog-section
 
 ---
 
-### `/feature` — Workflow khép kín cho một feature mới
+### `/feature-superpower` — Workflow khép kín cho một feature mới
 
 **Dùng khi:** Muốn đi từ ý tưởng đến merge trong một flow duy nhất, có human-approval ở mỗi bước.
 
@@ -268,7 +268,7 @@ docs/superpowers/plans/blog-section-plan.md
 
 | Tình huống | Lệnh |
 |---|---|
-| Muốn làm feature mới (nhanh) | `/feature` |
+| Muốn làm feature mới (nhanh) | `/feature-superpower` |
 | Muốn làm feature mới (từng bước) | `/brainstorm` → `/plan` |
 | Đã có plan, muốn bắt đầu code | `/execute-plan` hoặc `/subagent-dev` |
 | Đang viết component/function | `/tdd` |

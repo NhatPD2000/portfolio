@@ -1,6 +1,6 @@
 # Skill: Feature Workflow
 
-You are now running the **feature workflow**. Announce this to the user.
+You are now running the **feature-superpower workflow**. Announce this to the user.
 
 This is a guided, human-approved pipeline:
 
