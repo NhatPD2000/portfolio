@@ -202,7 +202,20 @@ function ArtifactsPanel({ artifacts }: { artifacts: Artifacts }) {
 // Static config: icons, screenshots, tags, company/client names (non-translatable)
 const PROJECT_CONFIG = [
   {
-    id: "smes", num: "01", icon: Factory, logo: "/spartronics-logo.png",
+    id: "vt-technical", num: "01", icon: TrendingUp, logo: "/vt-technical-logo.png",
+    company: "Lumos IS", client: "VT Technical",
+    screenshots: [
+      { src: "/vt technical/311314982_183116150959857_7860860617042099955_n.jpg", alt: "VT Technical Team Photo", objectPosition: "object-center" },
+    ],
+    tags: ["Oracle Apex","ERP","Agile","UAT","Sales","Inventory","Service"],
+    artifacts: {
+      figma: "",
+      mockups: [],
+      diagrams: [],
+    } as Artifacts,
+  },
+  {
+    id: "smes", num: "02", icon: Factory, logo: "/spartronics-logo.png",
     company: "AES Vietnam", client: "Spartronics",
     screenshots: [
       { src: "/spartronics/image 150.png", alt: "SMES System Interface" },
@@ -224,7 +237,7 @@ const PROJECT_CONFIG = [
     } as Artifacts,
   },
   {
-    id: "pnj", num: "02", icon: Zap, logo: "/pnj-logo.png",
+    id: "pnj", num: "03", icon: Zap, logo: "/pnj-logo.png",
     company: "AES Vietnam", client: "PNJ — Phu Nhuan Jewelry",
     screenshots: [
       { src: "/pnj-production.png", alt: "PNJ Production Execution Screen", url: "pnj-mes.apriso.com/production" },
@@ -246,7 +259,7 @@ const PROJECT_CONFIG = [
     } as Artifacts,
   },
   {
-    id: "unilever", num: "03", icon: Cpu, logo: "/unilever-logo.png",
+    id: "unilever", num: "04", icon: Cpu, logo: "/unilever-logo.png",
     company: "AES Vietnam", client: "Unilever",
     screenshots: [
       { src: "/unilever/z7785199456681_01d637a3c9be9ec1bf279a54f4ea5655.jpg", alt: "Unilever Site Visit", objectPosition: "object-center" },

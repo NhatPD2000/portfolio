@@ -294,6 +294,27 @@ const en = {
     erpDesc: "Implemented ERP solutions on Oracle Apex for enterprise clients via Agile sprints. Delivered custom dashboards, reports, and features. Managed UAT cycles and post-deployment support.",
     items: [
       {
+        title: "ERP Implementation for VT Technical",
+        subtitle: "End-to-end Oracle Apex ERP deployment across Sales, Inventory, Service, and Approval workflows",
+        period: "Jan 2023 – May 2023",
+        challenge: "VT Technical operated with fragmented systems across sales, inventory, and service operations. Data was scattered across multiple sources with no centralized visibility. Manual approval processes created bottlenecks, and the lack of real-time inventory tracking led to frequent stockouts and overstocking issues.",
+        approach: [
+          "Conducted comprehensive stakeholder interviews across Sales, Inventory, Service, Finance, and Management teams to understand current workflows",
+          "Mapped existing processes (AS-IS) and designed optimized workflows (TO-BE) using BPMN swimlane diagrams",
+          "Analyzed historical data to identify pain points and validate requirements",
+          "Designed four integrated modules: Sales Management, Inventory Management, Service Management, and Approval Workflow",
+          "Created detailed functional specifications with UI/UX mockups for each module",
+          "Configured Oracle Apex with custom dashboards, reports, and automated workflows",
+          "Developed data migration strategy and executed clean import of customer, product, and historical order data",
+          "Facilitated UAT sessions with cross-functional teams and refined system based on feedback",
+        ],
+        results: [
+          { metric: "Centralized", label: "Sales, Inventory, and Service management" },
+          { metric: "Automated", label: "Multi-level approval workflows" },
+          { metric: "Real-time", label: "Inventory visibility across warehouses" },
+        ],
+      },
+      {
         title: "Spartronics Manufacturing Execution System",
         subtitle: "Custom MES — built from scratch with IoT integration",
         period: "Dec 2024 – Jun 2025",
@@ -615,6 +636,27 @@ const vi: typeof en = {
     erpTitle: "Triển khai ERP — Lumos IS",
     erpDesc: "Triển khai giải pháp ERP trên Oracle Apex cho khách hàng doanh nghiệp qua các sprint Agile. Bàn giao dashboard, báo cáo và tính năng tùy chỉnh. Quản lý chu kỳ UAT và hỗ trợ sau triển khai.",
     items: [
+      {
+        title: "Triển khai ERP cho VT Technical",
+        subtitle: "Triển khai end-to-end hệ thống ERP Oracle Apex trên các quy trình Bán hàng, Kho, Dịch vụ và Phê duyệt",
+        period: "Tháng 1/2023 – Tháng 5/2023",
+        challenge: "VT Technical vận hành với các hệ thống rời rạc trên các bộ phận bán hàng, kho hàng và dịch vụ. Dữ liệu nằm rải rác trên nhiều nguồn mà không có khả năng hiển thị tập trung. Quy trình phê duyệt thủ công tạo ra các điểm nghẽn, và thiếu theo dõi tồn kho thời gian thực dẫn đến tình trạng thiếu hàng và tồn kho thừa thường xuyên.",
+        approach: [
+          "Phỏng vấn toàn diện các bên liên quan trên các bộ phận Bán hàng, Kho, Dịch vụ, Tài chính và Quản lý để hiểu quy trình hiện tại",
+          "Lập bản đồ quy trình hiện tại (AS-IS) và thiết kế quy trình tối ưu (TO-BE) sử dụng sơ đồ BPMN swimlane",
+          "Phân tích dữ liệu lịch sử để xác định các điểm đau và xác thực yêu cầu",
+          "Thiết kế bốn module tích hợp: Quản lý Bán hàng, Quản lý Kho, Quản lý Dịch vụ và Quy trình Phê duyệt",
+          "Tạo các đặc tả chức năng chi tiết với mockup UI/UX cho từng module",
+          "Cấu hình Oracle Apex với dashboard tùy chỉnh, báo cáo và quy trình tự động",
+          "Phát triển chiến lược di chuyển dữ liệu và thực hiện nhập sạch dữ liệu khách hàng, sản phẩm và đơn hàng lịch sử",
+          "Tổ chức các phiên UAT với các đội đa chức năng và tinh chỉnh hệ thống dựa trên phản hồi",
+        ],
+        results: [
+          { metric: "Tập trung", label: "Quản lý Bán hàng, Kho và Dịch vụ" },
+          { metric: "Tự động", label: "Quy trình phê duyệt đa cấp" },
+          { metric: "Thời gian thực", label: "Khả năng hiển thị tồn kho trên các kho" },
+        ],
+      },
       {
         title: "Spartronics Manufacturing Execution System",
         subtitle: "MES tùy chỉnh — xây dựng từ đầu với tích hợp IoT",
