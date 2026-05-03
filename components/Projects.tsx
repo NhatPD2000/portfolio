@@ -1,35 +1,144 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { TrendingUp, Zap, Factory, ChevronDown, ExternalLink } from "lucide-react";
+import { TrendingUp, Zap, Factory, ChevronDown, ExternalLink, Cpu, X, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { translations } from "@/lib/i18n";
 
-type ArtifactImage = { src: string; caption: string };
+type ArtifactImage = { src: string; caption: string; objectPosition?: string };
 type Artifacts = { figma?: string; mockups: ArtifactImage[]; diagrams: ArtifactImage[] };
 
-function BrowserFrame({ src, alt, url }: { src: string; alt: string; url: string }) {
+// Image Lightbox Component
+function ImageLightbox({
+  images,
+  initialIndex,
+  onClose
+}: {
+  images: { src: string; alt: string; caption?: string }[];
+  initialIndex: number;
+  onClose: () => void;
+}) {
+  const [currentIndex, setCurrentIndex] = useState(initialIndex);
+
+  const next = () => setCurrentIndex((i) => (i + 1) % images.length);
+  const prev = () => setCurrentIndex((i) => (i - 1 + images.length) % images.length);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+      if (e.key === "ArrowLeft") prev();
+      if (e.key === "ArrowRight") next();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [currentIndex, onClose]);
+
+  const currentImage = images[currentIndex];
+
   return (
-    <div className="rounded-xl overflow-hidden border border-[var(--border)] shadow-lg shadow-black/5 group hover:border-[var(--accent)]/30 hover:shadow-xl hover:shadow-[var(--accent)]/10 transition-all duration-300">
-      <div className="flex items-center gap-1.5 px-3 py-2.5 bg-[var(--bg-tertiary)] border-b border-[var(--border)]">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.2 }}
+      className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4"
+      onClick={onClose}
+    >
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.95 }}
+        transition={{ duration: 0.3 }}
+        className="relative max-w-5xl max-h-[90vh] bg-white dark:bg-[var(--bg-secondary)] rounded-2xl shadow-2xl overflow-hidden flex flex-col"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 p-2 rounded-full bg-black/50 hover:bg-black/70 text-white transition-colors duration-200 z-10"
+        >
+          <X size={24} />
+        </button>
+        <div className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-black/50 text-white text-sm font-medium z-10">
+          {currentIndex + 1} / {images.length}
+        </div>
+        <div className="relative flex-1 flex items-center justify-center overflow-hidden bg-[var(--bg-tertiary)]">
+          {images.length > 1 && (
+            <button
+              onClick={(e) => { e.stopPropagation(); prev(); }}
+              className="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/50 hover:bg-black/70 text-white transition-colors duration-200 z-10"
+            >
+              <ChevronLeft size={32} />
+            </button>
+          )}
+          <motion.div
+            key={currentIndex}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.2 }}
+            className="flex items-center justify-center"
+          >
+            <Image
+              src={currentImage.src}
+              alt={currentImage.alt}
+              width={1600}
+              height={1200}
+              className="max-w-full max-h-[75vh] w-auto h-auto object-contain"
+              priority
+            />
+          </motion.div>
+          {images.length > 1 && (
+            <button
+              onClick={(e) => { e.stopPropagation(); next(); }}
+              className="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/50 hover:bg-black/70 text-white transition-colors duration-200 z-10"
+            >
+              <ChevronRight size={32} />
+            </button>
+          )}
+        </div>
+        {currentImage.caption && (
+          <div className="px-6 py-4 bg-[var(--bg-tertiary)] border-t border-[var(--border)]">
+            <p className="text-sm text-[var(--text-secondary)]">{currentImage.caption}</p>
+          </div>
+        )}
+      </motion.div>
+    </motion.div>
+  );
+}
+
+function BrowserFrame({ src, alt, url, objectPosition = "object-top", onClick }: { src: string; alt: string; url?: string; objectPosition?: string; onClick?: () => void }) {
+  return (
+    <div
+      onClick={onClick}
+      className={`rounded-xl overflow-hidden border border-[var(--border)] shadow-lg shadow-black/5 group hover:border-[var(--accent)]/30 hover:shadow-xl hover:shadow-[var(--accent)]/10 transition-all duration-300 flex flex-col ${onClick ? "cursor-pointer" : ""}`}
+    >
+      {/* Chrome bar — always shown for visual consistency */}
+      <div className="flex items-center gap-1.5 px-3 py-2.5 bg-[var(--bg-tertiary)] border-b border-[var(--border)] shrink-0">
         <div className="w-2.5 h-2.5 rounded-full bg-[#FF5F57]/70 group-hover:bg-[#FF5F57] transition-colors duration-200" />
         <div className="w-2.5 h-2.5 rounded-full bg-[#FEBC2E]/70 group-hover:bg-[#FEBC2E] transition-colors duration-200" />
         <div className="w-2.5 h-2.5 rounded-full bg-[#28C840]/70 group-hover:bg-[#28C840] transition-colors duration-200" />
-        <div className="ml-3 flex-1 h-5 bg-[var(--bg-secondary)] rounded text-[11px] flex items-center px-2.5 text-[var(--text-muted)] font-mono truncate border border-[var(--border)]">
-          {url}
-        </div>
+        {url && (
+          <div className="ml-3 flex-1 h-5 bg-[var(--bg-secondary)] rounded text-[11px] flex items-center px-2.5 text-[var(--text-muted)] font-mono truncate border border-[var(--border)]">
+            {url}
+          </div>
+        )}
       </div>
-      <div className="relative overflow-hidden" style={{ maxHeight: "260px" }}>
-        <Image src={src} alt={alt} width={1200} height={800} className="w-full object-cover object-top transition-transform duration-500 group-hover:scale-105" style={{ maxHeight: "260px" }} />
-        <div className="absolute bottom-0 left-0 right-0 h-20 pointer-events-none" style={{ background: "linear-gradient(to top, var(--bg-tertiary), transparent)" }} />
+      <div className="relative overflow-hidden h-[280px] bg-[var(--bg-tertiary)]">
+        <Image src={src} alt={alt} fill className={`object-cover ${objectPosition} transition-transform duration-500 group-hover:scale-105`} />
         <div className="absolute inset-0 bg-[#0D1B2E]/0 group-hover:bg-[#0D1B2E]/5 transition-colors duration-300 pointer-events-none" />
+        {onClick && (
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+            <div className="px-4 py-2 bg-white/90 dark:bg-black/90 rounded-full text-sm font-medium text-[var(--text-primary)]">
+              Click to view
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
 }
 
-function ArtifactTile({ src, caption, index }: ArtifactImage & { index: number }) {
+function ArtifactTile({ src, caption, objectPosition = "object-center", index }: ArtifactImage & { index: number }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 8 }}
@@ -43,7 +152,7 @@ function ArtifactTile({ src, caption, index }: ArtifactImage & { index: number }
           alt={caption}
           width={400}
           height={280}
-          className="w-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.02]"
+          className={`w-full object-cover ${objectPosition} transition-transform duration-300 group-hover:scale-[1.02]`}
           style={{ maxHeight: "180px" }}
         />
       </div>
@@ -93,39 +202,67 @@ function ArtifactsPanel({ artifacts }: { artifacts: Artifacts }) {
 // Static config: icons, screenshots, tags, company/client names (non-translatable)
 const PROJECT_CONFIG = [
   {
-    id: "smes", num: "01", icon: Factory,
+    id: "smes", num: "01", icon: Factory, logo: "/spartronics-logo.png",
     company: "AES Vietnam", client: "Spartronics",
     screenshots: [
+      { src: "/spartronics/image 150.png", alt: "SMES System Interface" },
+      { src: "/spartronics/z7785206000113_5dcfb02404ef84a459ab4d8ad929b913.jpg", alt: "SMES Production Dashboard", objectPosition: "object-center" },
       { src: "/smes-workcenter.png", alt: "SMES Work Order & Production Line", url: "smes.spartronics.com/work-center" },
-      { src: "/smes-iqc.png",        alt: "SMES Incoming Quality Control",      url: "smes.spartronics.com/iqc"         },
     ],
     tags: ["MES / MOM","IoT","BPMN","Figma","BRD / FSD","Traceability","QC"],
     artifacts: {
       figma: "",
       mockups: [
-        { src: "/smes-mockup-workcenter.png", caption: "Work Center UI" },
-        { src: "/smes-mockup-iqc.png",        caption: "IQC Screen" },
+        { src: "/smes-workcenter.png",                  caption: "Work Center" },
+        { src: "/smes-iqc.png",                         caption: "IQC Screen" },
+        { src: "/smes-quality.png",                     caption: "Quality Dashboard" },
+        { src: "/spartronics/Create.png",               caption: "IQC Inspection List" },
+        { src: "/spartronics/IQC.png",                  caption: "Incoming Quality Control" },
+        { src: "/spartronics/Scheduling Assistant.png", caption: "Scheduling Assistant" },
       ],
-      diagrams: [
-        { src: "/smes-bpmn-production.png", caption: "Production Flow" },
-        { src: "/smes-bpmn-quality.png",    caption: "Quality Control Flow" },
-      ],
+      diagrams: [],
     } as Artifacts,
   },
   {
-    id: "pnj", num: "02", icon: Zap,
+    id: "pnj", num: "02", icon: Zap, logo: "/pnj-logo.png",
     company: "AES Vietnam", client: "PNJ — Phu Nhuan Jewelry",
     screenshots: [
       { src: "/pnj-production.png", alt: "PNJ Production Execution Screen", url: "pnj-mes.apriso.com/production" },
+      { src: "/pnj/z7786118722031_48798e639f8598f36b8d70faab31b7f5.jpg", alt: "PNJ Temperature Settings — Electroplating Tanks" },
+      { src: "/pnj/z7786113043539_973e2bb5700d52390bb81ae220f6fd46.jpg", alt: "PNJ Go-live Training at Factory Floor", objectPosition: "object-center" },
     ],
     tags: ["Apriso","SCADA","BPMN","Process Automation","MES"],
     artifacts: {
       figma: "",
       mockups: [
-        { src: "/pnj-mockup-dashboard.png", caption: "Production Dashboard" },
+        { src: "/pnj/Thêm lệnh sản xuấtPNJ.png",       caption: "Thêm lệnh sản xuất" },
+        { src: "/pnj/Kiểm tra độ sạchPNJ.png",          caption: "Kiểm tra độ sạch" },
+        { src: "/pnj/Danh sách ghi nhận lỗi QC.png",    caption: "Ghi nhận lỗi QC" },
+        { src: "/pnj/Kiểm tra độ bềnPNJ.png",           caption: "Kiểm tra độ bền" },
       ],
       diagrams: [
-        { src: "/pnj-bpmn-flow.png", caption: "Process Flow" },
+        { src: "/pnj/z7786105706597_ac9411bb6173e6e6eb3cad912a43b25e.jpg", caption: "Process Flow — Line Xi Vàng & Xi Bạc" },
+      ],
+    } as Artifacts,
+  },
+  {
+    id: "unilever", num: "03", icon: Cpu, logo: "/unilever-logo.png",
+    company: "AES Vietnam", client: "Unilever",
+    screenshots: [
+      { src: "/unilever/z7785199456681_01d637a3c9be9ec1bf279a54f4ea5655.jpg", alt: "Unilever Site Visit", objectPosition: "object-center" },
+      { src: "/unilever/Nhà máy Unilever.png", alt: "Unilever Vietnam Factory — Aerial View", objectPosition: "object-center" },
+      { src: "/unilever/z7786214863074_dcdc1a9c9bf0b58a317d1d3eb7019aaa.jpg", alt: "SCADA Line 3 Deployed on Factory Floor", objectPosition: "object-center" },
+    ],
+    tags: ["ThingWorx","SCADA","IoT","Hardware Integration","Real-time Monitoring"],
+    artifacts: {
+      figma: "",
+      mockups: [
+        { src: "/unilever/Kawa_ver 4.png",                                                                                          caption: "KAWA Line SCADA Dashboard" },
+        { src: "/unilever/z7754208838408_701e0bce3bf38aa9424bd6bdcd4b5141.jpg",                                                     caption: "Posimat2 SCADA Dashboard" },
+      ],
+      diagrams: [
+        { src: "/unilever/z7786192768670_1f44b8273b824995862d471a8caa7933.jpg",                                                     caption: "Safety & Quality Point Map — Case Packer" },
+        { src: "/unilever/Digital journey Mixing - ảnh 1 (2 cái đầu đang làm thì không áp dụng).jpg", caption: "Digital Journey Roadmap — Unilever Home Care", objectPosition: "object-bottom" },
       ],
     } as Artifacts,
   },
@@ -134,6 +271,18 @@ const PROJECT_CONFIG = [
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function ProjectCard({ project, t, i }: { project: any; t: any; i: number }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
+
+  const allImages = [
+    ...project.screenshots.map((s: { src: string; alt: string }) => ({ src: s.src, alt: s.alt, caption: undefined })),
+    ...(project.artifacts?.mockups || []).map((m: ArtifactImage) => ({ src: m.src, alt: m.caption, caption: m.caption })),
+  ];
+
+  const handleImageClick = (index: number) => {
+    setLightboxIndex(index);
+    setLightboxOpen(true);
+  };
 
   return (
     <motion.article
@@ -147,8 +296,12 @@ function ProjectCard({ project, t, i }: { project: any; t: any; i: number }) {
       <div className="px-8 pt-8 pb-6 border-b border-[var(--border)]">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div className="flex items-start gap-4">
-            <div className="p-3 rounded-xl bg-[#4F46E5]/10 text-[var(--accent)] shrink-0">
-              <project.icon size={22} />
+            <div className="p-3 rounded-xl bg-[#4F46E5]/10 shrink-0 flex items-center justify-center" style={{ width: "56px", height: "56px" }}>
+              {project.logo ? (
+                <Image src={project.logo} alt={`${project.client} logo`} width={40} height={40} className="object-contain" />
+              ) : (
+                <project.icon size={22} className="text-[var(--accent)]" />
+              )}
             </div>
             <div>
               <div className="flex items-center gap-2 mb-1.5">
@@ -168,10 +321,16 @@ function ProjectCard({ project, t, i }: { project: any; t: any; i: number }) {
       </div>
 
       {/* Screenshots */}
-      <div className={`px-8 py-6 bg-[var(--surface-elevated)] border-b border-[var(--border)] ${project.screenshots.length === 2 ? "grid md:grid-cols-2 gap-4" : ""}`}>
-        {project.screenshots.map((shot: { src: string; alt: string; url: string }) => (
-          <BrowserFrame key={shot.src} {...shot} />
-        ))}
+      <div className="px-8 py-6 bg-[var(--surface-elevated)] border-b border-[var(--border)]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 items-stretch">
+          {project.screenshots.slice(0, 3).map((shot: { src: string; alt: string; url?: string; objectPosition?: string }, idx: number) => (
+            <BrowserFrame
+              key={shot.src}
+              {...shot}
+              onClick={() => handleImageClick(idx)}
+            />
+          ))}
+        </div>
       </div>
 
       {/* Challenge / Approach / Results */}
@@ -263,6 +422,17 @@ function ProjectCard({ project, t, i }: { project: any; t: any; i: number }) {
           </AnimatePresence>
         </>
       )}
+
+      {/* Image Lightbox */}
+      <AnimatePresence>
+        {lightboxOpen && (
+          <ImageLightbox
+            images={allImages}
+            initialIndex={lightboxIndex}
+            onClose={() => setLightboxOpen(false)}
+          />
+        )}
+      </AnimatePresence>
     </motion.article>
   );
 }

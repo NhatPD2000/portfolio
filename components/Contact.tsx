@@ -1,6 +1,8 @@
 "use client";
-import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Link2, GitBranch, ArrowUpRight } from "lucide-react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Mail, Phone, MapPin, ArrowUpRight, X } from "lucide-react";
+import Image from "next/image";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { translations } from "@/lib/i18n";
 
@@ -10,14 +12,10 @@ const contactItemsBase = [
   { icon: MapPin, key: "Location" as const, value: "Ho Chi Minh City, Vietnam",  href: null },
 ];
 
-const socialLinks = [
-  { icon: Link2,     label: "LinkedIn", href: "https://www.linkedin.com/in/nhatsifo806/" },
-  { icon: GitBranch, label: "GitHub",   href: "https://github.com/phandinhnhat" },
-];
-
 export default function Contact() {
   const { lang } = useLanguage();
   const t = translations[lang].contact;
+  const [zaloOpen, setZaloOpen] = useState(false);
 
   return (
     <>
@@ -69,19 +67,66 @@ export default function Contact() {
               ))}
 
               <div className="flex gap-3 pt-1">
-                {socialLinks.map((s) => (
-                  <a
-                    key={s.label}
-                    href={s.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-3 border border-[var(--border)] hover:border-[#4F46E5]/40 hover:text-[var(--accent)] rounded-xl text-sm text-[var(--text-secondary)] transition-all duration-200 flex-1 justify-center bg-[var(--bg-secondary)]"
-                  >
-                    <s.icon size={14} />
-                    <span className="text-xs tracking-wide">{s.label}</span>
-                  </a>
-                ))}
+                {/* LinkedIn */}
+                <a
+                  href="https://www.linkedin.com/in/nhatsifo806/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-4 py-3 border border-[var(--border)] hover:border-[#0A66C2]/40 hover:text-[#0A66C2] rounded-xl text-sm text-[var(--text-secondary)] transition-all duration-200 flex-1 justify-center bg-[var(--bg-secondary)]"
+                >
+                  <Image src="/linkedin-icon.webp" alt="LinkedIn" width={14} height={14} className="object-contain" />
+                  <span className="text-xs tracking-wide">LinkedIn</span>
+                </a>
+                {/* Zalo — opens QR popup */}
+                <button
+                  onClick={() => setZaloOpen(true)}
+                  className="flex items-center gap-2 px-4 py-3 border border-[var(--border)] hover:border-[#0068FF]/40 hover:text-[#0068FF] rounded-xl text-sm text-[var(--text-secondary)] transition-all duration-200 flex-1 justify-center bg-[var(--bg-secondary)]"
+                >
+                  <Image src="/zalo-icon.png" alt="Zalo" width={14} height={14} className="object-contain" />
+                  <span className="text-xs tracking-wide">Zalo</span>
+                </button>
               </div>
+
+              {/* Zalo QR Modal */}
+              <AnimatePresence>
+                {zaloOpen && (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                    className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4"
+                    onClick={() => setZaloOpen(false)}
+                  >
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.9, y: 16 }}
+                      animate={{ opacity: 1, scale: 1, y: 0 }}
+                      exit={{ opacity: 0, scale: 0.9, y: 16 }}
+                      transition={{ duration: 0.25 }}
+                      className="relative bg-[#3D5176] rounded-2xl p-6 shadow-2xl flex flex-col items-center gap-4 max-w-xs w-full"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <button
+                        onClick={() => setZaloOpen(false)}
+                        className="absolute top-3 right-3 p-1.5 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
+                      >
+                        <X size={16} />
+                      </button>
+                      <Image
+                        src="/z7786295964228_2bc4be9632fc86ba1165fa9464aec950.jpg"
+                        alt="Zalo QR Code — Phan Dinh Nhat"
+                        width={240}
+                        height={240}
+                        className="rounded-xl"
+                      />
+                      <div className="text-center">
+                        <p className="text-white font-bold text-lg">Phan Đình Nhật</p>
+                        <p className="text-white/70 text-sm mt-0.5">Mở Zalo, bấm quét mã QR để kết bạn</p>
+                      </div>
+                    </motion.div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </motion.div>
 
             {/* Right — CTA */}

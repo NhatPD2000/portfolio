@@ -144,7 +144,28 @@ export default function Hero() {
   const t = translations[lang].hero;
 
   return (
-    <section className="relative min-h-screen flex items-center bg-[#F7F9FC] dark:bg-[#0D1B2E] topo-bg overflow-hidden">
+    <section className="relative min-h-screen flex items-center bg-[#F7F9FC] dark:bg-[#0D1B2E] overflow-hidden">
+      {/* Animated gradient mesh background */}
+      <div className="hero-gradient-mesh" />
+
+      {/* Floating particles */}
+      {[...Array(8)].map((_, i) => (
+        <div
+          key={i}
+          className="hero-particle"
+          style={{
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
+            animationDelay: `${i * 0.5}s`,
+            animationDuration: `${8 + i}s`,
+          }}
+        />
+      ))}
+
+      {/* Topo background pattern */}
+      <div className="absolute inset-0 topo-bg pointer-events-none" />
+
+      {/* Large background text */}
       <div
         className="absolute right-[-2vw] top-1/2 -translate-y-1/2 font-serif font-bold select-none pointer-events-none leading-none text-[#0D1B2E]/[0.025] dark:text-white/[0.025]"
         style={{ fontSize: "22vw" }}
@@ -236,7 +257,7 @@ export default function Hero() {
             >
               <a
                 href="#projects"
-                className="flex items-center justify-center gap-2 px-7 py-3 bg-[#4F46E5] hover:bg-[#3730A3] text-white font-semibold rounded-lg transition-colors duration-200 text-sm"
+                className="cta-primary flex items-center justify-center gap-2 px-7 py-3 bg-[#4F46E5] hover:bg-[#3730A3] text-white font-semibold rounded-lg text-sm"
               >
                 <Layers size={15} />
                 {t.viewProjects}
@@ -245,7 +266,7 @@ export default function Hero() {
                 href="/phan-dinh-nhat-cv.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 px-7 py-3 bg-[var(--bg-secondary)] border border-[var(--border)] hover:border-[var(--border-hover)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] font-medium rounded-lg transition-all duration-200 text-sm"
+                className="cta-secondary flex items-center justify-center gap-2 px-7 py-3 bg-[var(--bg-secondary)] border border-[var(--border)] hover:border-[var(--border-hover)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] font-medium rounded-lg text-sm"
               >
                 <FileText size={15} />
                 {t.downloadCV}

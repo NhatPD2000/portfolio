@@ -1,23 +1,12 @@
 "use client";
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Building2, Calendar, MapPin, TrendingUp, ChevronDown, FileText, ExternalLink, Workflow, Users } from "lucide-react";
+import { motion } from "framer-motion";
+import { Building2, Calendar, MapPin, TrendingUp } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { translations } from "@/lib/i18n";
 
 export default function ExperienceEnhanced() {
-  const [expanded, setExpanded] = useState<Set<string>>(new Set());
   const { lang } = useLanguage();
   const t = translations[lang].experience;
-
-  const toggle = (num: string) => {
-    setExpanded((prev) => {
-      const next = new Set(prev);
-      if (next.has(num)) next.delete(num);
-      else next.add(num);
-      return next;
-    });
-  };
 
   return (
     <section id="experience" className="py-28 px-6">
@@ -40,7 +29,6 @@ export default function ExperienceEnhanced() {
 
           <div className="space-y-5">
             {t.items.map((exp, i) => {
-              const isExpanded = expanded.has(exp.num);
               return (
                 <motion.div
                   key={exp.company}
@@ -50,15 +38,28 @@ export default function ExperienceEnhanced() {
                   transition={{ duration: 0.6, delay: i * 0.1 }}
                   className="relative sm:pl-14"
                 >
-                  <div
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: i * 0.1 }}
                     className={`absolute left-[15px] top-6 w-3.5 h-3.5 rounded-full border-2 hidden sm:block ${
                       exp.current
                         ? "bg-[#4F46E5] border-[#4F46E5] shadow-[0_0_0_4px_rgba(79,70,229,0.15)]"
                         : "bg-[var(--border)] border-[var(--border-hover)]"
                     }`}
-                  />
+                  >
+                    {exp.current && (
+                      <motion.div
+                        className="absolute inset-0 rounded-full border-2 border-[#4F46E5]"
+                        animate={{ scale: [1, 1.4, 1] }}
+                        transition={{ duration: 2, repeat: Infinity }}
+                        style={{ opacity: 0.3 }}
+                      />
+                    )}
+                  </motion.div>
 
-                  <div className="bg-[var(--surface-elevated)] border border-[var(--border)] rounded-xl overflow-hidden card-hover">
+                  <div className="bg-[var(--surface-elevated)] border border-[var(--border)] rounded-xl overflow-hidden card-hover transition-all duration-300 hover:border-[var(--accent)]/30 hover:shadow-lg hover:shadow-[var(--accent)]/10">
                     <div className="h-[3px] w-full" style={{ background: exp.current ? "linear-gradient(90deg, #4F46E5, #818CF8)" : "linear-gradient(90deg, var(--border), transparent)" }} />
 
                     <div className="p-6">
@@ -114,124 +115,6 @@ export default function ExperienceEnhanced() {
                       </div>
                     </div>
 
-                    {exp.clients.length > 0 && (
-                      <button
-                        onClick={() => toggle(exp.num)}
-                        className="w-full flex items-center justify-between px-6 py-3 border-t border-[var(--border)] text-xs font-medium text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors duration-200"
-                      >
-                        <span>{isExpanded ? t.hideClients : t.viewClients(exp.clients.length)}</span>
-                        <ChevronDown size={14} style={{ transform: isExpanded ? "rotate(180deg)" : "rotate(0deg)", transition: "transform 0.3s ease" }} />
-                      </button>
-                    )}
-
-                    <AnimatePresence>
-                      {isExpanded && exp.clients.length > 0 && (
-                        <motion.div
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
-                          className="overflow-hidden"
-                        >
-                          <div className="px-6 pb-6 pt-3 space-y-4">
-                            {exp.clients.map((client) => (
-                              <div key={client.name} className="p-5 bg-[var(--bg-secondary)] border border-[var(--border)] rounded-lg space-y-4">
-                                <div>
-                                  <p className="font-semibold text-[var(--text-primary)] text-base leading-tight">{client.name}</p>
-                                  <p className="text-[10px] text-[var(--text-muted)] uppercase tracking-wider mt-0.5">{client.industry}</p>
-                                </div>
-
-                                {client.problem && (
-                                  <div className="p-3 bg-red-500/5 border border-red-500/20 rounded">
-                                    <div className="flex items-start gap-2 mb-1.5">
-                                      <span className="text-xs font-semibold text-red-600 dark:text-red-400">{t.sections.problem}</span>
-                                    </div>
-                                    <p className="text-xs text-[var(--text-secondary)] leading-relaxed">{client.problem}</p>
-                                  </div>
-                                )}
-
-                                {client.analysis && client.analysis.length > 0 && (
-                                  <div>
-                                    <div className="flex items-center gap-2 mb-2">
-                                      <Users size={12} className="text-[var(--accent)]" />
-                                      <span className="text-xs font-semibold text-[var(--text-primary)]">{t.sections.analysis}</span>
-                                    </div>
-                                    <ul className="space-y-1.5">
-                                      {client.analysis.map((item, idx) => (
-                                        <li key={idx} className="flex items-start gap-2 text-xs text-[var(--text-secondary)]">
-                                          <span className="text-[var(--accent)] mt-0.5 shrink-0">▸</span>
-                                          {item}
-                                        </li>
-                                      ))}
-                                    </ul>
-                                  </div>
-                                )}
-
-                                <div>
-                                  <div className="flex items-center gap-2 mb-2">
-                                    <Workflow size={12} className="text-[var(--accent)]" />
-                                    <span className="text-xs font-semibold text-[var(--text-primary)]">{t.sections.scope}</span>
-                                  </div>
-                                  <ul className="space-y-1.5">
-                                    {client.scope.map((s, idx) => (
-                                      <li key={idx} className="flex items-start gap-2 text-xs text-[var(--text-secondary)]">
-                                        <span className="text-[var(--accent)] mt-0.5 shrink-0">▸</span>
-                                        {s}
-                                      </li>
-                                    ))}
-                                  </ul>
-                                </div>
-
-                                {client.deliverables && client.deliverables.length > 0 && (
-                                  <div>
-                                    <div className="flex items-center gap-2 mb-2">
-                                      <FileText size={12} className="text-[var(--accent)]" />
-                                      <span className="text-xs font-semibold text-[var(--text-primary)]">{t.sections.deliverables}</span>
-                                    </div>
-                                    <div className="space-y-2">
-                                      {client.deliverables.map((deliverable) => (
-                                        <div key={deliverable.name} className="flex items-start justify-between gap-3 p-2.5 bg-[var(--bg-primary)] border border-[var(--border)] rounded">
-                                          <div className="flex-1 min-w-0">
-                                            <p className="text-xs font-medium text-[var(--text-primary)] mb-0.5">{deliverable.name}</p>
-                                            <p className="text-[10px] text-[var(--text-muted)] leading-snug">{deliverable.description}</p>
-                                            {(deliverable.pages || deliverable.screens) && (
-                                              <p className="text-[10px] text-[var(--accent)] mt-1">
-                                                {deliverable.pages && `${deliverable.pages} ${t.pages}`}
-                                                {deliverable.screens && `${deliverable.screens} ${t.screens}`}
-                                              </p>
-                                            )}
-                                          </div>
-                                          {deliverable.link && (
-                                            <a href={deliverable.link} className="shrink-0 p-1.5 hover:bg-[var(--accent)]/10 rounded transition-colors" aria-label={`View ${deliverable.name}`}>
-                                              <ExternalLink size={12} className="text-[var(--accent)]" />
-                                            </a>
-                                          )}
-                                        </div>
-                                      ))}
-                                    </div>
-                                  </div>
-                                )}
-
-                                <div className="pt-3 border-t border-[var(--border)]">
-                                  <div className="flex items-start gap-2 mb-2">
-                                    <TrendingUp size={12} className="text-green-600 dark:text-green-400 mt-0.5" />
-                                    <div>
-                                      <span className="text-xs font-semibold text-green-600 dark:text-green-400 block mb-1">{t.sections.outcome}</span>
-                                      <p className="text-xs text-[var(--text-secondary)] leading-relaxed">{client.outcome}</p>
-                                    </div>
-                                  </div>
-                                  <div className="flex flex-wrap gap-1 mt-2">
-                                    {client.tags.map((tag) => (
-                                      <span key={tag} className="text-[10px] px-1.5 py-0.5 bg-[#4F46E5]/10 text-[var(--accent)] rounded">{tag}</span>
-                                    ))}
-                                  </div>
-                                </div>
-                              </div>
-                            ))}
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
                   </div>
                 </motion.div>
               );

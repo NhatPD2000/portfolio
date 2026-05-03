@@ -75,16 +75,17 @@ export default function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                className="relative text-[11px] tracking-[0.15em] uppercase transition-colors duration-200 font-medium pb-0.5"
+                className="relative text-[11px] tracking-[0.15em] uppercase transition-colors duration-200 font-medium pb-0.5 group"
                 style={{ color: isActive ? "var(--text-primary)" : "var(--text-secondary)" }}
               >
                 {link.label}
                 <motion.span
                   layoutId="nav-underline"
-                  className="absolute -bottom-0.5 left-0 right-0 h-[1.5px] bg-[#4F46E5] rounded-full"
+                  className="absolute -bottom-0.5 left-0 right-0 h-[2px] bg-[#4F46E5] rounded-full"
                   initial={false}
-                  animate={{ opacity: isActive ? 1 : 0 }}
-                  transition={{ duration: 0.2 }}
+                  animate={{ opacity: isActive ? 1 : 0, scaleX: isActive ? 1 : 0 }}
+                  transition={{ duration: 0.3, type: "spring", stiffness: 300, damping: 30 }}
+                  style={{ transformOrigin: "left" }}
                 />
               </a>
             );
@@ -96,12 +97,12 @@ export default function Navbar() {
           <ThemeToggle />
           <a
             href="#contact"
-            className="hidden md:block px-5 py-2 text-xs font-semibold tracking-widest uppercase text-white bg-[#4F46E5] hover:bg-[#3730A3] rounded-md transition-colors duration-200"
+            className="hidden md:block px-5 py-2 text-xs font-semibold tracking-widest uppercase text-white bg-[#4F46E5] hover:bg-[#3730A3] rounded-md transition-all duration-200 hover:shadow-lg hover:shadow-[#4F46E5]/30 hover:-translate-y-0.5"
           >
             {t.hireMe}
           </a>
           <button
-            className="md:hidden text-[#4A5E7A] dark:text-[#B0BFDA] p-1"
+            className="md:hidden text-[#4A5E7A] dark:text-[#B0BFDA] p-1 hover:text-[#0D1B2E] dark:hover:text-[#E8EDF8] transition-colors"
             onClick={() => setMobileOpen(!mobileOpen)}
           >
             {mobileOpen ? <X size={18} /> : <Menu size={18} />}
@@ -114,21 +115,32 @@ export default function Navbar() {
         <motion.div
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: "auto" }}
+          exit={{ opacity: 0, height: 0 }}
+          transition={{ duration: 0.3 }}
           className="md:hidden bg-[#F7F9FC] dark:bg-[#0D1B2E] border-b border-[#D8E2F0] dark:border-[#2A3B55] px-8 pb-5"
         >
-          {t.links.map((link) => {
+          {t.links.map((link, i) => {
             const isActive = activeSection === link.href.slice(1);
             return (
-              <a
+              <motion.a
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
-                className="flex items-center justify-between py-3 text-[11px] tracking-[0.15em] uppercase border-b border-[#D8E2F0] dark:border-[#2A3B55] last:border-0 transition-colors duration-200"
-                style={{ color: isActive ? "var(--text-primary)" : "var(--text-secondary)" }}
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: i * 0.05 }}
+                className="flex items-center justify-between py-3 text-[11px] tracking-[0.15em] uppercase border-b border-[#D8E2F0] dark:border-[#2A3B55] last:border-0 transition-colors duration-200 hover:text-[#4F46E5]"
+                style={{ color: isActive ? "#4F46E5" : "var(--text-secondary)" }}
               >
                 {link.label}
-                {isActive && <span className="w-1.5 h-1.5 rounded-full bg-[#4F46E5]" />}
-              </a>
+                {isActive && (
+                  <motion.span
+                    layoutId="mobile-active"
+                    className="w-1.5 h-1.5 rounded-full bg-[#4F46E5]"
+                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  />
+                )}
+              </motion.a>
             );
           })}
         </motion.div>
