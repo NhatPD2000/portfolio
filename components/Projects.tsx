@@ -267,11 +267,9 @@ const PROJECT_CONFIG = [
     } as Artifacts,
   },
   {
-    id: "vt-technical", num: "04", icon: TrendingUp, logo: "/vt-technical-logo.png",
+    id: "vt-technical", num: "04", icon: TrendingUp, logo: "/vt technical/311314982_183116150959857_7860860617042099955_n.jpg",
     company: "Lumos IS", client: "VT Technical",
-    screenshots: [
-      { src: "/vt technical/311314982_183116150959857_7860860617042099955_n.jpg", alt: "VT Technical Team Photo", objectPosition: "object-center" },
-    ],
+    screenshots: [],
     tags: ["Oracle Apex","ERP","Agile","UAT","Sales","Inventory","Service"],
     artifacts: {
       figma: "",
