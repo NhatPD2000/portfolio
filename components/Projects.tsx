@@ -267,7 +267,7 @@ const PROJECT_CONFIG = [
     } as Artifacts,
   },
   {
-    id: "vt-technical", num: "04", icon: TrendingUp, logo: "",
+    id: "vt-technical", num: "04", icon: TrendingUp, logo: "/vt technical/311314982_183116150959857_7860860617042099955_n.jpg",
     company: "Lumos IS", client: "VT Technical",
     screenshots: [
       { src: "/vt technical/portfolio-selected/phe-duyet/screenshot_page071_img04.png", alt: "VT Technical ERP Approval Workflow — Complete System Overview" },
