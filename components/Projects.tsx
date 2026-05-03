@@ -480,31 +480,6 @@ export default function Projects() {
             <ProjectCard key={project.id} project={project} t={t} i={i} />
           ))}
         </div>
-
-        {/* ERP footnote */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="mt-6 p-6 bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl flex items-start gap-4"
-        >
-          <div className="p-2.5 rounded-lg bg-[#4F46E5]/10 text-[var(--accent)] shrink-0">
-            <TrendingUp size={18} />
-          </div>
-          <div>
-            <div className="flex items-center gap-3 mb-1">
-              <h4 className="font-semibold text-[var(--text-primary)] text-sm">{t.erpTitle}</h4>
-              <span className="label-amber">03</span>
-            </div>
-            <p className="text-sm text-[var(--text-secondary)] leading-relaxed">{t.erpDesc}</p>
-            <div className="flex flex-wrap gap-1.5 mt-3">
-              {["Oracle Apex","ERP","Agile","Dashboard Design","UAT"].map((tag) => (
-                <span key={tag} className="text-[11px] px-2 py-0.5 rounded bg-[var(--bg-tertiary)] text-[var(--text-secondary)] border border-[var(--border)]">{tag}</span>
-              ))}
-            </div>
-          </div>
-        </motion.div>
       </div>
       <div className="section-line mt-28 max-w-6xl mx-auto" />
     </section>

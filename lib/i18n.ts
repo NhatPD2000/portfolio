@@ -290,8 +290,6 @@ const en = {
     challenge: "Challenge",
     approach: "BA Approach",
     results: "Results",
-    erpTitle: "ERP Implementation — Lumos IS",
-    erpDesc: "Implemented ERP solutions on Oracle Apex for enterprise clients via Agile sprints. Delivered custom dashboards, reports, and features. Managed UAT cycles and post-deployment support.",
     items: [
       {
         title: "ERP Implementation for VT Technical",
@@ -633,8 +631,6 @@ const vi: typeof en = {
     challenge: "Thách thức",
     approach: "Quy trình BA",
     results: "Kết quả",
-    erpTitle: "Triển khai ERP — Lumos IS",
-    erpDesc: "Triển khai giải pháp ERP trên Oracle Apex cho khách hàng doanh nghiệp qua các sprint Agile. Bàn giao dashboard, báo cáo và tính năng tùy chỉnh. Quản lý chu kỳ UAT và hỗ trợ sau triển khai.",
     items: [
       {
         title: "Triển khai ERP cho VT Technical",
