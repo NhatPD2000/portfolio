@@ -267,13 +267,21 @@ const PROJECT_CONFIG = [
     } as Artifacts,
   },
   {
-    id: "vt-technical", num: "04", icon: TrendingUp, logo: "/vt technical/311314982_183116150959857_7860860617042099955_n.jpg",
+    id: "vt-technical", num: "04", icon: TrendingUp, logo: "",
     company: "Lumos IS", client: "VT Technical",
-    screenshots: [],
-    tags: ["Oracle Apex","ERP","Agile","UAT","Sales","Inventory","Service"],
+    screenshots: [
+      { src: "/vt technical/portfolio-selected/phe-duyet/screenshot_page071_img04.png", alt: "VT Technical ERP Approval Workflow — Complete System Overview" },
+      { src: "/vt technical/portfolio-selected/ban-hang/screenshot_page043_img04.png", alt: "VT Technical Sales Management — Customer Management Interface" },
+      { src: "/vt technical/portfolio-selected/bao-cao/screenshot_page115_img04.png", alt: "VT Technical Reporting — Detailed Analytics Dashboard" },
+    ],
+    tags: ["Oracle Apex","ERP","Agile","UAT","Sales","Inventory","Service","Reporting"],
     artifacts: {
       figma: "",
-      mockups: [],
+      mockups: [
+        { src: "/vt technical/portfolio-selected/kho/screenshot_page021_img03.png", caption: "Inventory Management" },
+        { src: "/vt technical/portfolio-selected/dich-vu/screenshot_page065_img04.png", caption: "Service Management" },
+        { src: "/vt technical/portfolio-selected/dashboard/screenshot_page004_img03.png", caption: "Dashboard Overview" },
+      ],
       diagrams: [],
     } as Artifacts,
   },
