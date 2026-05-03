@@ -323,7 +323,7 @@ function ProjectCard({ project, t, i }: { project: any; t: any; i: number }) {
           <div className="flex items-start gap-4">
             <div className="p-3 rounded-xl bg-[#4F46E5]/10 shrink-0 flex items-center justify-center" style={{ width: "56px", height: "56px" }}>
               {project.logo ? (
-                <Image src={project.logo} alt={`${project.client} logo`} width={40} height={40} className="object-contain" />
+                <Image src={project.logo} alt={`${project.client} logo`} width={50} height={50} className="object-contain" />
               ) : (
                 <project.icon size={22} className="text-[var(--accent)]" />
               )}
