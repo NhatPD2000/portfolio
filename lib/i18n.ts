@@ -311,7 +311,7 @@ const en = {
       {
         title: "Apriso Integration for Electroplating Process",
         subtitle: "MES digitalization — Apriso / Dassault Systèmes",
-        period: "Dec 2023 – Apr 2025",
+        period: "Apr 2024 – Apr 2025",
         challenge: "PNJ's electroplating line ran on manual calculations and paper logs. Frequent coating errors, high rework rates, and zero SCADA-to-report integration were costing production time and quality.",
         approach: [
           "BPMN mapping of full electroplating workflow — identified 6 bottlenecks for automation",
@@ -328,7 +328,7 @@ const en = {
       {
         title: "Machine Integration & ThingWorx Solution for Production Monitoring",
         subtitle: "End-to-end ThingWorx platform deployment with real-time production monitoring",
-        period: "2024 – Present",
+        period: "Dec 2024 – Present",
         challenge: "Unilever's production lines operated with manual monitoring and disconnected machine data. No centralized system for real-time visibility into production status, equipment performance, or quality metrics. Frequent line changeovers caused production delays due to lack of standardized procedures and real-time parameter tracking.",
         approach: [
           "Conducted comprehensive site surveys across 4 production lines to map equipment and sensors",
@@ -348,7 +348,7 @@ const en = {
       {
         title: "ERP Implementation for VT Technical",
         subtitle: "End-to-end Oracle Apex ERP deployment across Sales, Inventory, Service, and Approval workflows",
-        period: "Jan 2023 – May 2023",
+        period: "Jul 2023 – Dec 2023",
         challenge: "VT Technical operated with fragmented systems across sales, inventory, and service operations. Data was scattered across multiple sources with no centralized visibility. Manual approval processes created bottlenecks, and the lack of real-time inventory tracking led to frequent stockouts and overstocking issues.",
         approach: [
           "Conducted comprehensive stakeholder interviews across Sales, Inventory, Service, Finance, and Management teams to understand current workflows",
@@ -652,7 +652,7 @@ const vi: typeof en = {
       {
         title: "Tích hợp Apriso cho Quy trình Mạ điện",
         subtitle: "Số hóa MES — Apriso / Dassault Systèmes",
-        period: "Tháng 12/2023 – Tháng 4/2025",
+        period: "Tháng 4/2024 – Tháng 4/2025",
         challenge: "Dây chuyền mạ điện của PNJ vận hành bằng tính toán thủ công và nhật ký giấy. Lỗi phủ thường xuyên, tỷ lệ làm lại cao và không có tích hợp SCADA-to-report đang làm tốn thời gian sản xuất và ảnh hưởng chất lượng.",
         approach: [
           "Lập BPMN cho quy trình mạ điện toàn diện — xác định 6 điểm nghẽn cần tự động hóa",
@@ -669,7 +669,7 @@ const vi: typeof en = {
       {
         title: "Dự án tích hợp máy và giải pháp ThingWorx cho giám sát sản xuất",
         subtitle: "Triển khai nền tảng ThingWorx toàn diện với giám sát sản xuất thời gian thực",
-        period: "2024 – Nay",
+        period: "Tháng 12/2024 – Nay",
         challenge: "Các dây chuyền sản xuất của Unilever vận hành với giám sát thủ công và dữ liệu máy móc rời rạc. Không có hệ thống tập trung để hiển thị thời gian thực về trạng thái sản xuất, hiệu suất thiết bị hoặc chỉ số chất lượng. Việc chuyển đổi dây chuyền thường xuyên gây ra sự chậm trễ trong sản xuất do thiếu quy trình chuẩn hóa và theo dõi thông số thời gian thực.",
         approach: [
           "Thực hiện khảo sát toàn diện trên 4 dây chuyền sản xuất để lập bản đồ thiết bị và cảm biến",
@@ -689,7 +689,7 @@ const vi: typeof en = {
       {
         title: "Triển khai ERP cho VT Technical",
         subtitle: "Triển khai end-to-end hệ thống ERP Oracle Apex trên các quy trình Bán hàng, Kho, Dịch vụ và Phê duyệt",
-        period: "Tháng 1/2023 – Tháng 5/2023",
+        period: "Tháng 7/2023 – Tháng 12/2023",
         challenge: "VT Technical vận hành với các hệ thống rời rạc trên các bộ phận bán hàng, kho hàng và dịch vụ. Dữ liệu nằm rải rác trên nhiều nguồn mà không có khả năng hiển thị tập trung. Quy trình phê duyệt thủ công tạo ra các điểm nghẽn, và thiếu theo dõi tồn kho thời gian thực dẫn đến tình trạng thiếu hàng và tồn kho thừa thường xuyên.",
         approach: [
           "Phỏng vấn toàn diện các bên liên quan trên các bộ phận Bán hàng, Kho, Dịch vụ, Tài chính và Quản lý để hiểu quy trình hiện tại",
