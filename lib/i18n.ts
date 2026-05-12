@@ -292,6 +292,24 @@ const en = {
     results: "Results",
     items: [
       {
+        title: "Apriso MES & MRP for Fuji Electric Malaysia",
+        subtitle: "On-site survey, Fit-Gap analysis, and Apriso solution design for semiconductor manufacturing",
+        period: "Jan 2026 – Present",
+        challenge: "Fuji Electric Malaysia (FEM) runs three disconnected systems — SAP as system-of-record, a legacy in-house ERP Suite for shop floor execution, and i-Merge bridging Excel-based plans from Japan. Manual spreadsheet reconciliation caused inventory discrepancies (chênh hàng nghìn pcs), paper Travel Sheets and handwritten Material Request Forms hid traceability gaps (~20% qty deltas), and twice-weekly planning cycles lacked real-time visibility. FEM needs a unified Apriso MES + MRP platform to digitize production execution and consolidate planning.",
+        approach: [
+          "Researched Apriso / Delmia capabilities — Operation Steps, Material Genealogy, Maintenance Autonomous Checklist, Resource modeling — and mapped them to FEM's semiconductor production workflows (IGBT modules)",
+          "Conducted a 10-day on-site survey at FEM's Malaysia plant across three streams: Business Process, IoT / PLC discovery, and SAP ↔ Apriso Integration",
+          "Documented As-Is process flows for Pre-process (Pencil Drawing, Brushing, Pin Insert, Terminal Press) and Assembly (Yamaha YSM10 Chip Mounter, Vacuum Soldering) using BPMN swimlane diagrams",
+          "Performed Fit-Gap analysis between FEM's current workflows and Apriso standard capabilities, identifying customization scope and SAP integration touchpoints (Stock, GR, Wafer receive, Material balance)",
+          "Captured 27 documented findings with severity rating, 50+ machine evidence photos, and stakeholder interviews to inform To-Be solution design and BRD drafting",
+        ],
+        results: [
+          { metric: "10 days", label: "On-site survey at FEM Malaysia"      },
+          { metric: "27",      label: "Findings documented with severity"   },
+          { metric: "3",       label: "Streams: Business · IoT · Integration"},
+        ],
+      },
+      {
         title: "Spartronics Manufacturing Execution System",
         subtitle: "Custom MES — built from scratch with IoT integration",
         period: "Dec 2024 – Jun 2025",
@@ -632,6 +650,24 @@ const vi: typeof en = {
     approach: "Quy trình BA",
     results: "Kết quả",
     items: [
+      {
+        title: "Apriso MES & MRP cho Fuji Electric Malaysia",
+        subtitle: "Khảo sát onsite, phân tích Fit-Gap và thiết kế giải pháp Apriso cho sản xuất bán dẫn",
+        period: "Tháng 1/2026 – Nay",
+        challenge: "Fuji Electric Malaysia (FEM) đang vận hành 3 hệ thống rời rạc — SAP làm system-of-record, ERP Suite nội bộ cho sàn sản xuất, và i-Merge cầu nối kế hoạch Excel từ Nhật. Reconcile thủ công giữa các spreadsheet gây lệch tồn kho (chênh hàng nghìn pcs), Travel Sheet giấy và Material Request Form viết tay che giấu gap truy nguyên (~20% chênh số lượng), và chu kỳ planning 2 lần/tuần không có visibility thời gian thực. FEM cần một nền tảng Apriso MES + MRP thống nhất để số hóa thực thi sản xuất và hợp nhất planning.",
+        approach: [
+          "Nghiên cứu năng lực Apriso / Delmia — Operation Steps, Material Genealogy, Maintenance Autonomous Checklist, Resource modeling — và map vào quy trình sản xuất bán dẫn (IGBT modules) của FEM",
+          "Tổ chức khảo sát onsite 10 ngày tại nhà máy FEM Malaysia trên 3 luồng: Business Process, IoT / PLC discovery, và Tích hợp SAP ↔ Apriso",
+          "Lập As-Is process flow cho khu Pre-process (Pencil Drawing, Brushing, Pin Insert, Terminal Press) và Assembly (Yamaha YSM10 Chip Mounter, Vacuum Soldering) bằng BPMN swimlane",
+          "Phân tích Fit-Gap giữa workflow hiện tại của FEM và năng lực chuẩn của Apriso, xác định scope tùy chỉnh và các điểm tích hợp SAP (Stock, GR, Wafer receive, Material balance)",
+          "Tổng hợp 27 finding kèm severity, 50+ ảnh evidence máy/quy trình, và phỏng vấn stakeholder để định hướng thiết kế To-Be và dự thảo BRD",
+        ],
+        results: [
+          { metric: "10 ngày", label: "Khảo sát onsite tại FEM Malaysia"        },
+          { metric: "27",      label: "Findings tài liệu hóa kèm severity"       },
+          { metric: "3",       label: "Luồng: Business · IoT · Integration"      },
+        ],
+      },
       {
         title: "Spartronics Manufacturing Execution System",
         subtitle: "MES tùy chỉnh — xây dựng từ đầu với tích hợp IoT",

@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { TrendingUp, Zap, Factory, ChevronDown, ExternalLink, Cpu, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { TrendingUp, Zap, Factory, ChevronDown, ExternalLink, Cpu, CircuitBoard, X, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { translations } from "@/lib/i18n";
@@ -202,7 +202,27 @@ function ArtifactsPanel({ artifacts }: { artifacts: Artifacts }) {
 // Static config: icons, screenshots, tags, company/client names (non-translatable)
 const PROJECT_CONFIG = [
   {
-    id: "smes", num: "01", icon: Factory, logo: "/spartronics-logo.png",
+    id: "fuji", num: "01", icon: CircuitBoard, logo: "/fuji-logo.svg",
+    company: "AES Vietnam", client: "Fuji Electric Malaysia",
+    screenshots: [
+      { src: "/fuji/1.jpg", alt: "Fuji Electric Malaysia — Site survey 1", objectPosition: "object-center" },
+      { src: "/fuji/2.jpg", alt: "Fuji Electric Malaysia — Site survey 2", objectPosition: "object-center" },
+      { src: "/fuji/3.jpg", alt: "Fuji Electric Malaysia — Site survey 3", objectPosition: "object-center" },
+    ],
+    tags: ["Apriso","MES / MOM","MRP","Fit-Gap","Site Survey","Semiconductor","BPMN","SAP Integration"],
+    artifacts: {
+      figma: "",
+      mockups: [
+        { src: "/fuji/4.jpg", caption: "Site survey 4" },
+        { src: "/fuji/5.jpg", caption: "Site survey 5" },
+        { src: "/fuji/6.jpg", caption: "Site survey 6" },
+        { src: "/fuji/7.jpg", caption: "Site survey 7" },
+      ],
+      diagrams: [],
+    } as Artifacts,
+  },
+  {
+    id: "smes", num: "02", icon: Factory, logo: "/spartronics-logo.png",
     company: "AES Vietnam", client: "Spartronics",
     screenshots: [
       { src: "/spartronics/image 150.png", alt: "SMES System Interface" },
@@ -224,7 +244,7 @@ const PROJECT_CONFIG = [
     } as Artifacts,
   },
   {
-    id: "pnj", num: "02", icon: Zap, logo: "/pnj-logo.png",
+    id: "pnj", num: "03", icon: Zap, logo: "/pnj-logo.png",
     company: "AES Vietnam", client: "PNJ — Phu Nhuan Jewelry",
     screenshots: [
       { src: "/pnj-production.png", alt: "PNJ Production Execution Screen", url: "pnj-mes.apriso.com/production" },
@@ -246,7 +266,7 @@ const PROJECT_CONFIG = [
     } as Artifacts,
   },
   {
-    id: "unilever", num: "03", icon: Cpu, logo: "/unilever-logo.png",
+    id: "unilever", num: "04", icon: Cpu, logo: "/unilever-logo.png",
     company: "AES Vietnam", client: "Unilever",
     screenshots: [
       { src: "/unilever/z7785199456681_01d637a3c9be9ec1bf279a54f4ea5655.jpg", alt: "Unilever Site Visit", objectPosition: "object-center" },
@@ -267,7 +287,7 @@ const PROJECT_CONFIG = [
     } as Artifacts,
   },
   {
-    id: "vt-technical", num: "04", icon: TrendingUp, logo: "/vt technical/311314982_183116150959857_7860860617042099955_n.jpg",
+    id: "vt-technical", num: "05", icon: TrendingUp, logo: "/vt technical/311314982_183116150959857_7860860617042099955_n.jpg",
     company: "Lumos IS", client: "VT Technical",
     screenshots: [
       { src: "/vt technical/portfolio-selected/phe-duyet/screenshot_page071_img04.png", alt: "VT Technical ERP Approval Workflow — Complete System Overview" },
