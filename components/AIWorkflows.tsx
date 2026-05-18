@@ -104,15 +104,15 @@ export default function AIWorkflows() {
                     </span>
                   </div>
 
-                  <div className="flex items-center gap-2 flex-1 min-w-0 flex-wrap">
+                  <div className="flex items-center gap-2 flex-1 min-w-0">
                     <span className="text-xs shrink-0 hidden sm:inline" style={{ color: isDark ? "rgba(255,255,255,0.3)" : "var(--text-muted)" }}>
                       {t.inputLabel}
                     </span>
-                    <span className="text-xs" style={{ color: isDark ? "rgba(255,255,255,0.5)" : "var(--text-secondary)" }}>{wf.input}</span>
+                    <span className="text-xs whitespace-nowrap" style={{ color: isDark ? "rgba(255,255,255,0.5)" : "var(--text-secondary)" }}>{wf.input}</span>
                     <ArrowRight size={11} className="shrink-0" style={{ color: isDark ? "rgba(255,255,255,0.2)" : "rgba(79,70,229,0.35)" }} />
-                    <span className="text-[11px] font-bold px-2 py-0.5 rounded shrink-0" style={{ background: `${cfg.toolColor}20`, color: cfg.toolColor }}>{cfg.tool}</span>
+                    <span className="text-[11px] font-bold px-2 py-0.5 rounded shrink-0 whitespace-nowrap" style={{ background: `${cfg.toolColor}20`, color: cfg.toolColor }}>{cfg.tool}</span>
                     <ArrowRight size={11} className="shrink-0" style={{ color: isDark ? "rgba(255,255,255,0.2)" : "rgba(79,70,229,0.35)" }} />
-                    <span className="text-xs" style={{ color: isDark ? "rgba(255,255,255,0.6)" : "var(--text-secondary)" }}>{wf.output}</span>
+                    <span className="text-xs truncate" style={{ color: isDark ? "rgba(255,255,255,0.6)" : "var(--text-secondary)" }}>{wf.output}</span>
                   </div>
 
                   <div className="shrink-0">

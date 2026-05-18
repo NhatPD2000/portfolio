@@ -148,7 +148,7 @@ const en = {
       { category: "Meeting → User Stories",    input: "Transcript, notes, or audio summary",             output: "Structured user stories + acceptance criteria",              impact: "Zero missed reqs"     },
       { category: "HTML Prototyping",          input: "Approved wireframes & interaction notes",          output: "Clickable HTML/CSS prototype for stakeholder demo",          impact: "Same-day demo"        },
       { category: "Domain Knowledge Base",     input: "Process docs, SOPs & tribal knowledge",           output: "Structured HTML reference — searchable & shareable",         impact: "Zero onboarding lag"  },
-      { category: "BA Mini-Apps",              input: "Repetitive calculation or template need",          output: "Custom web tool deployed for the team (e.g. effort estimator, UAT tracker)", impact: "Reusable toolkit" },
+      { category: "BA Mini-Apps",              input: "Repetitive calculation or template need",          output: "Custom web tool for the team (e.g. effort estimator)", impact: "Reusable toolkit" },
     ],
   },
 
@@ -507,7 +507,7 @@ const vi: typeof en = {
       { category: "Meeting → User Stories",    input: "Transcript, notes, or audio summary",             output: "Structured user stories + acceptance criteria",              impact: "Zero missed reqs"     },
       { category: "HTML Prototyping",          input: "Approved wireframes & interaction notes",          output: "Clickable HTML/CSS prototype for stakeholder demo",          impact: "Same-day demo"        },
       { category: "Domain Knowledge Base",     input: "Process docs, SOPs & tribal knowledge",           output: "Structured HTML reference — searchable & shareable",         impact: "Zero onboarding lag"  },
-      { category: "BA Mini-Apps",              input: "Repetitive calculation or template need",          output: "Custom web tool deployed for the team (e.g. effort estimator, UAT tracker)", impact: "Reusable toolkit" },
+      { category: "BA Mini-Apps",              input: "Repetitive calculation or template need",          output: "Custom web tool for the team (e.g. effort estimator)", impact: "Reusable toolkit" },
     ],
   },
 
