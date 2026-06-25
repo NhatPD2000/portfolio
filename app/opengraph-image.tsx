@@ -115,8 +115,8 @@ export default async function Image() {
         {/* Stats row */}
         <div style={{ display: "flex", gap: "48px" }}>
           {[
-            { v: "3+", l: "Years" },
-            { v: "2",  l: "Companies" },
+            { v: "4+", l: "Years" },
+            { v: "4",  l: "Companies" },
             { v: "5+", l: "Projects" },
             { v: "3",  l: "Languages" },
           ].map((s) => (

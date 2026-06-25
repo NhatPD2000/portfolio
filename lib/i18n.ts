@@ -66,8 +66,8 @@ const en = {
     viewProjects: "View Projects",
     downloadCV: "Download CV",
     stats: [
-      { value: "3+", label: "Years"     },
-      { value: "2",  label: "Companies" },
+      { value: "4+", label: "Years"     },
+      { value: "4",  label: "Companies" },
       { value: "5+", label: "Projects"  },
       { value: "3",  label: "Languages" },
     ],
@@ -91,7 +91,7 @@ const en = {
     label: "About",
     headingPlain: "Transform complex processes into",
     headingAccent: "clear, digital systems",
-    para1: "Business Analyst with 3+ years of experience in manufacturing technology — deploying MES systems directly on factory floors and digitizing ERP processes for enterprise clients.",
+    para1: "Business Analyst with 4+ years of experience in manufacturing technology — deploying MES systems directly on factory floors and digitizing ERP processes for enterprise clients.",
     para2: "I speak both the language of the shop floor and the boardroom, translating operational reality into requirements that developers can build and users can apply.",
     location: "Ho Chi Minh City, Vietnam",
     highlights: [
@@ -425,8 +425,8 @@ const vi: typeof en = {
     viewProjects: "Xem Dự Án",
     downloadCV: "Tải CV",
     stats: [
-      { value: "3+", label: "Năm"      },
-      { value: "2",  label: "Công ty"  },
+      { value: "4+", label: "Năm"      },
+      { value: "4",  label: "Công ty"  },
       { value: "5+", label: "Dự án"    },
       { value: "3",  label: "Ngôn ngữ" },
     ],
@@ -450,7 +450,7 @@ const vi: typeof en = {
     label: "Về Tôi",
     headingPlain: "Biến quy trình phức tạp thành",
     headingAccent: "hệ thống kỹ thuật số rõ ràng",
-    para1: "Tôi là Business Analyst với hơn 3 năm kinh nghiệm trong lĩnh vực công nghệ sản xuất — triển khai hệ thống MES trực tiếp trên sàn nhà máy và số hóa quy trình ERP cho các khách hàng doanh nghiệp.",
+    para1: "Tôi là Business Analyst với hơn 4 năm kinh nghiệm trong lĩnh vực công nghệ sản xuất — triển khai hệ thống MES trực tiếp trên sàn nhà máy và số hóa quy trình ERP cho các khách hàng doanh nghiệp.",
     para2: "Tôi am hiểu cả ngôn ngữ của sàn sản xuất lẫn phòng họp ban lãnh đạo, chuyển đổi thực tế vận hành thành yêu cầu mà đội phát triển có thể xây dựng và người dùng có thể áp dụng.",
     location: "TP. Hồ Chí Minh, Việt Nam",
     highlights: [
